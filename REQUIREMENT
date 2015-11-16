@@ -1,4 +1,8 @@
-1 need a start / stop button that will activate and deactivate 2 campaigns in the vb called clientj6 & clientj8
+1 need a start / stop button that will activate and deactivate 2 campaigns 
+in the vb called clientj6 & clientj8
+
+
+
 
 there is 2 campaigns for the client but will need one button to activate and deactivate
 
@@ -15,3 +19,20 @@ balance - the result of seconds * ppminc
 we also need the calls outputted & the generated 
 
 if thats makes sense
+
+
+i got one more addtion to add to the view wihich will be the leads in the system   imm on that now
+
+
+the new view is client_panel now not clien_panel ...
+it has the addistion of leads to be out putted aswell
+
+
+
+gridview like the one 
+at the screenshot
+
+
+button to activate and deactivate 
+campaign called
+clientj6 & clientj8 

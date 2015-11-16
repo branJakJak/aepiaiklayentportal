@@ -101,6 +101,14 @@ return array(
             'password' => 'root',
             'charset' => 'utf8',  
         ),
+        'askteriskDb'=>array(
+            'class' => 'CDbConnection',
+            'connectionString' => 'mysql:host=68.168.223.221;dbname=asterisk',
+            'emulatePrepare' => true,
+            'username' => 'paulit',
+            'password' => 'Mad4itNOW!!',
+            'charset' => 'utf8',  
+        ),
         'errorHandler' => array(
             // use 'site/error' action to display errors
             'errorAction' => 'site/error',
