@@ -117,8 +117,8 @@ return array(
             'class' => 'CLogRouter',
             'routes' => array(
                 array(
-                    'class' => 'CWebLogRoute',
-                    // 'class' => 'CFileLogRoute',
+                    // 'class' => 'CWebLogRoute',
+                    'class' => 'CFileLogRoute',
                     'levels' => 'error, warning',
                 ),
             // uncomment the following to show log messages on web pages
