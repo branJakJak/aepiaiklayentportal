@@ -96,9 +96,9 @@ return array(
             ),
         ),
         'db'=>array(
-            'connectionString' => 'mysql:host=localhost;dbname=dncsyste_client',
+            'connectionString' => 'mysql:host=localhost;dbname=vbclient_client',
             'emulatePrepare' => true,
-            'username' => 'dncsyste_client',
+            'username' => 'vbclient_client',
             'password' => 'hitman052529',
             'charset' => 'utf8',  
         ),
