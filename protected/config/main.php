@@ -5,7 +5,7 @@ return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'APIVoip Client',
     'theme' => 'abound',
-    'language'=>'en-us',
+    'sourceLanguage'=>'en',
     // preloading 'log' component
     'preload' => array('log'),
     'aliases' => array(
