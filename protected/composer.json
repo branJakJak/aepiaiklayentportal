@@ -13,7 +13,6 @@
         "phpunit/phpunit-story": "*"
     },
     "require": {
-        "sunra/php-simple-html-dom-parser": "v1.5.0",
-        "zendframework/zend-mail": "^2.5"
+        "sunra/php-simple-html-dom-parser": "v1.5.0"
     }
 }
