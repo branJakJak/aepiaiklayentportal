@@ -29,7 +29,7 @@ class CampaignsController extends Controller
     {
         return array(
             array('allow',
-                'actions' => array('index','activate','deactivate'),
+                'actions' => array('activate','deactivate'),
                 'users' => array('@'),
             ),
             array('deny', // deny all users
@@ -48,7 +48,7 @@ class CampaignsController extends Controller
     {
         $campaignNames = array("clientj6","clientj8");
         foreach ($campaignNames as $key => $currentCampaignName) {
-            $activateObj = new ActivateCampaign($campaignNames);
+            $activateObj = new ActivateCampaign($currentCampaignName);
             $activateObj->activate();            
         }
         Yii::app()->user->setFlash('success', "<strong>Campaign Activated!</strong> Campaign is now activated.");
@@ -58,7 +58,7 @@ class CampaignsController extends Controller
     {
         $campaignNames = array("clientj6","clientj8");
         foreach ($campaignNames as $key => $currentCampaignName) {
-            $activateObj = new DeactivateCampaign($campaignNames);
+            $activateObj = new DeactivateCampaign($currentCampaignName);
             $activateObj->deactivate();            
         }
         Yii::app()->user->setFlash('success', "<strong>Campaign Deactivated!</strong> Campaign is now deactivated.");
