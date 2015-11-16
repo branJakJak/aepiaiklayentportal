@@ -95,10 +95,10 @@ return array(
             ),
         ),
         'db'=>array(
-            'connectionString' => 'mysql:host=localhost;dbname=apivoipclient',
+            'connectionString' => 'mysql:host=localhost;dbname=dncsyste_client',
             'emulatePrepare' => true,
-            'username' => 'root',
-            'password' => 'root',
+            'username' => 'dncsyste_client',
+            'password' => 'hitman052529',
             'charset' => 'utf8',  
         ),
         'askteriskDb'=>array(
