@@ -101,8 +101,9 @@ class CLocale extends CComponent
 		$dataFile=$dataPath.DIRECTORY_SEPARATOR.$this->_id.'.php';
 		if(is_file($dataFile))
 			$this->_data=require($dataFile);
-		else
+		else{
 			// throw new CException(Yii::t('yii','Unrecognized locale "{locale}".',array('{locale}'=>$id)));
+		}
 	}
 
 	/**
