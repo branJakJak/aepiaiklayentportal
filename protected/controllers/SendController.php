@@ -36,7 +36,7 @@ class SendController extends Controller
 	{
 		try {
 			// /*do index here*/
-	        $folderPath = Yii::getPathOfAlias("upload_folder") . '/../';
+	        $folderPath = Yii::getPathOfAlias("upload_folder");
 	        $filePath = $folderPath . $fileName;
 
 	  //       /*get mime type of file*/
@@ -115,7 +115,7 @@ class SendController extends Controller
 	  //       $transport->send($message);			
 			// Yii::app()->user->setFlash("success","Email sent!");
 			// $this->redirect(array('/site/index'));
-	        $folderPath = Yii::getPathOfAlias("upload_folder") . '/../';
+	        $folderPath = Yii::getPathOfAlias("upload_folder");
 	        $filePath = $folderPath . $fileName;
 
 			$this->sendFile($filePath,"hellsing357@gmail.com","this is a test activation");			
