@@ -45,11 +45,11 @@ class SiteController extends Controller
 		foreach ($clientVb as $key => $value) {
 			$tempContainer = $clientVb[$key];
 			$tempContainer['id'] = uniqid();
-			$tempContainer['total'] = doubleval($clientVb['seconds']) * doubleval($clientVb['ppminc']);
+			$tempContainer['total'] = doubleval($value['seconds']) * doubleval($value['ppminc']);
 			$clientVb[$key] =  $tempContainer;
 		}
 		/*compute the total*/
-		
+
 
 
 		/*file uploaded*/
