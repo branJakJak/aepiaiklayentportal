@@ -47,6 +47,7 @@ class SiteController extends Controller
 			$tempContainer['id'] = uniqid();
 			$tempContainer['total'] = doubleval($value['seconds']) * doubleval($value['ppminc']);
 			$tempContainer['balance'] = doubleval($value['balance']) + 300;
+			$tempContainer['balance'] -= doubleval($value['ppminc']);
 			$tempContainer['balance'] = '£ '.$tempContainer['balance'];
 			$clientVb[$key] =  $tempContainer;
 		}
