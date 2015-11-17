@@ -47,13 +47,11 @@ class SiteController extends Controller
 			$tempContainer['id'] = uniqid();
 			$tempContainer['total'] = doubleval($value['seconds']) * doubleval($value['ppminc']);
 			$tempContainer['balance'] = doubleval($value['balance']) + 300;
-			$tempContainer['balance'] -= doubleval($value['total']);
+			$tempContainer['balance'] -= doubleval($tempContainer['total']);
 			$tempContainer['balance'] = '£ '.$tempContainer['balance'];
 			$clientVb[$key] =  $tempContainer;
 		}
 		/*compute the total*/
-
-
 
 		/*file uploaded*/
 		$fileUploadedObj = new ClientUploadedData;
