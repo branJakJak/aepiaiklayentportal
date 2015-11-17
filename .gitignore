@@ -4,3 +4,5 @@ data/
 *.bat
 protected/components/UserIdentity.php
 protected/vendor/
+themes/abound/uploads/*
+composer.lock

@@ -40,13 +40,19 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
+		/* client data */
 		$clientVb = Yii::app()->askteriskDb->createCommand("select * from client_panel")->queryAll();
 		foreach ($clientVb as $key => $value) {
 			$tempContainer = $clientVb[$key];
 			$tempContainer['id'] = uniqid();
 			$clientVb[$key] =  $tempContainer;
 		}
-		$this->render('index',compact('clientVb'));
+
+		/*file uploaded*/
+		$fileUploadedObj = new ClientUploadedData;
+		$fileUploadedArr = $fileUploadedObj->getListUploaded();
+
+		$this->render('index',compact('clientVb','fileUploadedArr'));
 	}
 	public function actionUpload()
 	{

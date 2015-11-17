@@ -1,0 +1,27 @@
+
+
+@TODO 
+i see pauls request is asking you to calcluate then show
+what wee need from the view is the second * the ppminc to be outputted
+then the overall balance as in
+
+balance - the result of seconds * ppminc
+
+
+
+
+
+@TODo - 
+ok so add £300 in the balance guys
+coz client paid a week ago
+
+
+
+
+@TODO - use after all is OK
+goingmentalhere@gmail.com
+
+
+
+@TODO - remove seconds at the gridview
+ppminc
