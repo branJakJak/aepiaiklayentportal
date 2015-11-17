@@ -144,7 +144,7 @@ class qqFileUploader {
             }
         }
         touch($uploadDirectory .DIRECTORY_SEPARATOR. $filename . '.' . $ext);
-        if ($this->file->save($uploadDirectory . $filename . '.' . $ext)){
+        if ($this->file->save($uploadDirectory .DIRECTORY_SEPARATOR. $filename . '.' . $ext)){
             return array('success'=>true,'filename'=>$filename.'.'.$ext);
         } else {
             return array('error'=> 'Could not save uploaded file.' .
