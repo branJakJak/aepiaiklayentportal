@@ -102,13 +102,12 @@ class SendController extends Controller
 		 }
 
 	}
-
 	private function _mime_content_type($filename) {
-	    $result = new finfo();
-	    if (is_resource($result) === true) {
-	        return $result->file($filename, FILEINFO_MIME_TYPE);
-	    }
-	    return false;
+        $fileMimeType = "";
+        $finfo = finfo_open(FILEINFO_MIME_TYPE); // return mime type ala mimetype extension
+        $fileMimeType = finfo_file($finfo, $filename);
+        finfo_close($finfo);
+		return $fileMimeType;		
 	}
 
 	public function actionStop($fileName)
