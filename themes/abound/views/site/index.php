@@ -137,7 +137,7 @@ $fileUploadedDataProvider = new CArrayDataProvider($fileUploadedArr);
                 array(
                     'header'=>'Credit Used',
                     'type'=>'raw',
-                    'value'=>'$data["ppminc"]',
+                    'value'=>'$data["total"]',
                 ),
                 array(
                     'header'=>'Total Calls Made',

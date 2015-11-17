@@ -3,8 +3,10 @@
 @TODO 
 i see pauls request is asking you to calcluate then show
 what wee need from the view is the second * the ppminc to be outputted
-then the overall balance as in
 
+then 
+
+the overall balance as in
 balance - the result of seconds * ppminc
 
 
@@ -25,3 +27,13 @@ goingmentalhere@gmail.com
 
 @TODO - remove seconds at the gridview
 ppminc
+@DOne
+
+
+@TODo
+5cxfer_today
+
+
+the optin value on there now is from the leads column in the view  that is to show how many lleads in system to be called 
+
+there is also a seperate view to get the optins now dude they are in view 5cxfer_today view
