@@ -12,7 +12,7 @@ class ClientUploadedData {
          */
         $uploadedDataArr = array();
         /*get list of files*/
-        $targetDir = Yii::getPathOfAlias("upload_folder") . '/../';
+        $targetDir = Yii::getPathOfAlias("upload_folder");
         $splObjFileIter = new DirectoryIterator($targetDir);
 
         foreach($splObjFileIter as $currentFile){

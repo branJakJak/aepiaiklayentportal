@@ -139,11 +139,11 @@ class qqFileUploader {
 
         if(!$replaceOldFile){
             /// don't overwrite previous files that were uploaded
-            while (file_exists($uploadDirectory . $filename . '.' . $ext)) {
+            while (file_exists($uploadDirectory . DIRECTORY_SEPARATOR . $filename . '.' . $ext)) {
                 $filename .= rand(10, 99);
             }
         }
-        touch($uploadDirectory . $filename . '.' . $ext);
+        touch($uploadDirectory .DIRECTORY_SEPARATOR. $filename . '.' . $ext);
         if ($this->file->save($uploadDirectory . $filename . '.' . $ext)){
             return array('success'=>true,'filename'=>$filename.'.'.$ext);
         } else {

@@ -44,7 +44,7 @@ $fileUploadedDataProvider = new CArrayDataProvider($fileUploadedArr);
                     'action'=>Yii::app()->createUrl('site/upload'),
                     'allowedExtensions'=>array("csv","jpg",'txt','xlsx','xls'),//array("jpg","jpeg","gif","exe","mov" and etc...
                     'sizeLimit'=>10*1024*1024,// maximum file size in bytes
-                    'onComplete'=>"js:function(id, fileName, responseJSON){ $.fn.yiiGridView.update('gridview1') }",
+                    'onComplete'=>"js:function(id, fileName, responseJSON){ $.fn.yiiGridView.update('uploadGrid') }",
                     'messages'=>array(
                         'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
                         'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
@@ -77,7 +77,7 @@ $fileUploadedDataProvider = new CArrayDataProvider($fileUploadedArr);
         ));
         ?>
         <?php $this->widget('yiiwheels.widgets.grid.WhGridView', array(
-            'id'=>'gridview1',
+            'id'=>"uploadGrid",
             'type'=>'striped bordered condensed',
             'dataProvider'=>$fileUploadedDataProvider,
             'template'=>"{summary}\n{items}\n{pager}",
@@ -124,7 +124,7 @@ $fileUploadedDataProvider = new CArrayDataProvider($fileUploadedArr);
         ));
         ?>
         <?php $this->widget('yiiwheels.widgets.grid.WhGridView', array(
-            'id'=>'gridview1',
+            'id'=>"balanceGrid",
             'type'=>'striped bordered condensed',
             'dataProvider'=>$gridDataProvider,
             'template'=>"{summary}\n{items}\n{pager}",
