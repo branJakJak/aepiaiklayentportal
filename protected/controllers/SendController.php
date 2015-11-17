@@ -87,7 +87,7 @@ class SendController extends Controller
 		$mail->setSubject($headerMessage);
 		$mail->setBodyHtml($headerMessage);
 		$at = new Zend_Mime_Part(file_get_contents($file));
-		$at->type        = $this->mime_content_type($file);
+		$at->type        = $this->_mime_content_type($file);
 		$at->disposition = Zend_Mime::DISPOSITION_INLINE;
 		$at->encoding    = Zend_Mime::ENCODING_BASE64;
 		$at->filename    = basename($file);
