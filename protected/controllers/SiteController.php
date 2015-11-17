@@ -77,7 +77,7 @@ class SiteController extends Controller
 			// /*do index here*/
 	        $folderPath = Yii::getPathOfAlias("upload_folder");
 	        $filePath = $folderPath.DIRECTORY_SEPARATOR . $fileName;
-	        $this->sendFile($filePath,Yii::app()->params['emailTo'],"Process ACTIVATED :".$fileName);
+	        $this->sendFile($filePath,Yii::app()->params['emailTo'],"Please send attached file :".$fileName);
 		} catch (Exception $e) {
 			throw new CHttpException(500,$e->getMessage());
 		}        
