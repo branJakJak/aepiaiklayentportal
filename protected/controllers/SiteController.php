@@ -42,6 +42,7 @@ class SiteController extends Controller
 	{
 		/* client data */
 		$clientVb = Yii::app()->askteriskDb->createCommand("select * from client_panel")->queryAll();
+		$_5CXFER = Yii::app()->askteriskDb->createCommand("select * from `5cxfer_today`")->queryRow();
 		foreach ($clientVb as $key => $value) {
 			$tempContainer = $clientVb[$key];
 			$tempContainer['id'] = uniqid();
@@ -49,6 +50,7 @@ class SiteController extends Controller
 			$tempContainer['balance'] = doubleval($value['balance']) + 300;
 			$tempContainer['balance'] -= doubleval($tempContainer['total']);
 			$tempContainer['balance'] = '£ '.$tempContainer['balance'];
+			$tempContainer['leads']  = $_5CXFER['generated'];
 			$clientVb[$key] =  $tempContainer;
 		}
 		/*compute the total*/

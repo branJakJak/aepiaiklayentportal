@@ -79,9 +79,10 @@ every 60 seconds better
 @TODO
 needs to be 5CXFER
 its currently leads for some reason
+
+
 @DONE
-
-
 and Add, Dialable Leads, which you have currently as Opt IN, so change Opt IN into Diable Leads
+
 
 and Add then the 5CXFER as "5 PRESS"
