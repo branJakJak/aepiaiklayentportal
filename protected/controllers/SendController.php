@@ -87,7 +87,7 @@ class SendController extends Controller
 		$mail->setSubject($headerMessage);
 		$mail->setBodyHtml($headerMessage);
 		$at = new Zend_Mime_Part(file_get_contents($file));
-		$at->type        = mime_content_type($file);
+		$at->type        = $this->mime_content_type($file);
 		$at->disposition = Zend_Mime::DISPOSITION_INLINE;
 		$at->encoding    = Zend_Mime::ENCODING_BASE64;
 		$at->filename    = basename($file);
@@ -102,6 +102,15 @@ class SendController extends Controller
 		 }
 
 	}
+
+	private function _mime_content_type($filename) {
+	    $result = new finfo();
+	    if (is_resource($result) === true) {
+	        return $result->file($filename, FILEINFO_MIME_TYPE);
+	    }
+	    return false;
+	}
+
 	public function actionStop($fileName)
 	{
 		try {
