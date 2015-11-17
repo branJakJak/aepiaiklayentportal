@@ -130,7 +130,7 @@ $fileUploadedDataProvider = new CArrayDataProvider($fileUploadedArr);
             'template'=>"{summary}\n{items}\n{pager}",
             'columns'=>array(
                 array(
-                    'header'=>'Total',
+                    'header'=>'Balance',
                     'type'=>'raw',
                     'value'=>'$data["total"]',
                 ),
