@@ -140,7 +140,7 @@ return array(
     // using Yii::app()->params['paramName']
     'params' => array(
         // this is used in contact page
-        'adminEmail' => 'no-reply@apivoip.ml',
+        'adminEmail' => 'no-reply@vbclientportal.tk',
         'emailFrom' => 'steve@gmail.com',
         'emailTo' => 'no-reply@apivoip.ml',
     ),
