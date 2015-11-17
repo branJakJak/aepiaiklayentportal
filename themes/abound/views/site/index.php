@@ -132,7 +132,22 @@ $fileUploadedDataProvider = new CArrayDataProvider($fileUploadedArr);
                 array(
                     'header'=>'Balance',
                     'type'=>'raw',
-                    'value'=>'$data["total"]',
+                    'value'=>'$data["balance"]',
+                ),
+                array(
+                    'header'=>'Credit Used',
+                    'type'=>'raw',
+                    'value'=>'$data["credit_used"]',
+                ),
+                array(
+                    'header'=>'Total Calls Made',
+                    'type'=>'raw',
+                    'value'=>'$data["calls"]',
+                ),
+                array(
+                    'header'=>'Opt IN',
+                    'type'=>'raw',
+                    'value'=>'$data["leads"]',
                 ),
                 // 'total',
                 // 'balance',
