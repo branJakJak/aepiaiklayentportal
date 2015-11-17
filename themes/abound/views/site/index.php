@@ -118,7 +118,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     'value'=>'$data["calls"]',
                 ),
                 array(
-                    'header'=>'Dialable Leads',
+                    'header'=>'5CXFER',
                     'type'=>'raw',
                     'value'=>'$data["leads"]',
                 ),
