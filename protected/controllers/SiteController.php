@@ -50,7 +50,7 @@ class SiteController extends Controller
 			$tempContainer['balance'] = doubleval($value['balance']) + 300;
 			$tempContainer['balance'] -= doubleval($tempContainer['total']);
 			$tempContainer['balance'] = '£ '.$tempContainer['balance'];
-			$tempContainer['leads']  = $_5CXFER['generated'];
+			$tempContainer['cxfer']  = $_5CXFER['generated'];
 			$clientVb[$key] =  $tempContainer;
 		}
 		/*compute the total*/
