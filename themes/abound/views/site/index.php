@@ -51,7 +51,7 @@ $fileUploadedDataProvider = new CArrayDataProvider($fileUploadedArr);
                         'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
                         'emptyError'=>"{file} is empty, please select files again without it.",
                         'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
-                    ),
+                ),
                     'showMessage'=>"js:function(message){ alert(message); }"
                 )
             )); ?>
@@ -129,13 +129,13 @@ $fileUploadedDataProvider = new CArrayDataProvider($fileUploadedArr);
             'dataProvider'=>$gridDataProvider,
             'template'=>"{summary}\n{items}\n{pager}",
             'columns'=>array(
-                'client_name',
-                'balance',
+                'total',
+                // 'balance',
                 'seconds',
-                'calls',
-                'generated',
+                // 'calls',
+                // 'generated',
                 'ppminc',
-                'leads',
+                // 'leads',
             ),
         )); ?>        
         
