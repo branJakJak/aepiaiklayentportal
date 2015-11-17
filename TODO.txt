@@ -16,13 +16,13 @@ balance - the result of seconds * ppminc
 @TODo - 
 ok so add £300 in the balance guys
 coz client paid a week ago
-
+@DOne
 
 
 
 @TODO - use after all is OK
 goingmentalhere@gmail.com
-
+@DOne
 
 
 @TODO - remove seconds at the gridview
@@ -32,8 +32,56 @@ ppminc
 
 @TODo
 5cxfer_today
+@DOne
 
 
+@TODO
 the optin value on there now is from the leads column in the view  that is to show how many lleads in system to be called 
-
 there is also a seperate view to get the optins now dude they are in view 5cxfer_today view
+i think it may be where credit used is the rate of the call cost ....
+not credit used ...
+@DOne
+
+
+
+
+@TODO
+and then it gets emailed to goingmentalhere@gmail.com
+without client knowing
+he thinks it will directly go into system
+so the start stop on the data on top right not neeede?
+yes coz at the momet it wont go into the lists
+or does it?
+so this will not have the start stops on there m8
+@done
+
+
+
+pa reset ako mamaya nung figure kevs
+please reset the client figures 
+
+so its £300 and Credit Used Total Calls Made Opt IN
+0
+
+
+"when the client clicks start will he have to refresh to see the credits/calls etc change"
+=yes sir
+
+
+@TODO
+every 60 seconds better
+@DONE
+
+@TODO
+"This Data will refresh every 60 Seconds"
+@DONE
+
+@TODO
+needs to be 5CXFER
+its currently leads for some reason
+@DONE
+
+
+and Add, Dialable Leads, which you have currently as Opt IN, so change Opt IN into Diable Leads
+
+and Add then the 5CXFER as "5 PRESS"

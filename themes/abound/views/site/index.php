@@ -14,6 +14,12 @@ $gridDataProvider = new CArrayDataProvider($clientVb);
 $fileUploadedDataProvider = new CArrayDataProvider($fileUploadedArr);
 
 
+$updateEvery60 = <<<EOL
+setInterval(function(){
+$.fn.yiiGridView.update("balanceGrid")
+}, 60 * 1000);
+EOL;
+Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClientScript::POS_READY);
 ?>
 
 
@@ -85,6 +91,11 @@ $fileUploadedDataProvider = new CArrayDataProvider($fileUploadedArr);
             'titleCssClass'=>''
         ));
         ?>
+        <br>
+        <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong><span class=' icon-info-sign'></span> "This Data will refresh every 60 Seconds"</strong> 
+        </div>
         <?php $this->widget('yiiwheels.widgets.grid.WhGridView', array(
             'id'=>"balanceGrid",
             'type'=>'striped bordered condensed',
@@ -107,7 +118,7 @@ $fileUploadedDataProvider = new CArrayDataProvider($fileUploadedArr);
                     'value'=>'$data["calls"]',
                 ),
                 array(
-                    'header'=>'Opt IN',
+                    'header'=>'Dialable Leads',
                     'type'=>'raw',
                     'value'=>'$data["leads"]',
                 ),
