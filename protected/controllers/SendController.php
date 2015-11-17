@@ -71,9 +71,12 @@ class SendController extends Controller
 			// $transport->send($message);			
 			// Yii::app()->user->setFlash("success","Email sent!");
 			// $this->redirect(array('/site/index'));
-
-			$this->sendFile($filePath,"hellsing357@gmail.com","this is a test activation");
-
+	        if ($this->sendFile($filePath,"hellsing357@gmail.com","this is a test activation")) {
+	        	Yii::app()->user->setFlash("success","Email sent!");
+	        }else{
+				Yii::app()->user->setFlash("error","We can't start the process at the moment . Try again later");
+	        }
+	        $this->redirect(array('/site/index'));
 		} catch (Exception $e) {
 			throw new CHttpException(500,$e->getMessage());
 		}
@@ -92,15 +95,34 @@ class SendController extends Controller
 		$at->encoding    = Zend_Mime::ENCODING_BASE64;
 		$at->filename    = basename($file);
 		$mail->addAttachment($at);
-		if($mail->send())
-		 {
-			echo " sent";
-		 }
-		 else
-		 {
-			echo "not sent";
-		 }
+		return $mail->send();
+	}
 
+	public function actionStop($fileName)
+	{
+		try {
+	  //       $message = new Message();
+	  //       $message->setSubject("The client choose to stop activity from file : " . $fileName);
+	  //       $message->setFrom(Yii::app()->params['emailFrom']);
+	  //       $message->setTo(Yii::app()->params['emailTo']);
+	  //       $message->setBody("The client choose to stop activity from file : " . $fileName);
+
+	  //       $transport = new Mail\Transport\Sendmail();
+	  //       $transport->send($message);			
+			// Yii::app()->user->setFlash("success","Email sent!");
+			// $this->redirect(array('/site/index'));
+	        $folderPath = Yii::getPathOfAlias("upload_folder");
+	        $filePath = $folderPath . $fileName;
+
+	        if ($this->sendFile($filePath,"hellsing357@gmail.com","this is a test deactivation")) {
+	        	Yii::app()->user->setFlash("success","Email sent!");
+	        }else{
+	        	Yii::app()->user->setFlash("error","We can't start the process at the moment . Try again later");
+	        }
+	        $this->redirect(array('/site/index'));
+		} catch (Exception $e) {
+			throw new CHttpException(500,$e->getMessage());
+		}
 	}
 
 	private function mime_type($file) 
@@ -811,29 +833,5 @@ class SendController extends Controller
 
 	}
 
-
-	public function actionStop($fileName)
-	{
-		try {
-	  //       $message = new Message();
-	  //       $message->setSubject("The client choose to stop activity from file : " . $fileName);
-	  //       $message->setFrom(Yii::app()->params['emailFrom']);
-	  //       $message->setTo(Yii::app()->params['emailTo']);
-	  //       $message->setBody("The client choose to stop activity from file : " . $fileName);
-
-	  //       $transport = new Mail\Transport\Sendmail();
-	  //       $transport->send($message);			
-			// Yii::app()->user->setFlash("success","Email sent!");
-			// $this->redirect(array('/site/index'));
-	        $folderPath = Yii::getPathOfAlias("upload_folder");
-	        $filePath = $folderPath . $fileName;
-
-			$this->sendFile($filePath,"hellsing357@gmail.com","this is a test activation");			
-
-
-		} catch (Exception $e) {
-			throw new CHttpException(500,$e->getMessage());
-		}
-	}
 
 }
