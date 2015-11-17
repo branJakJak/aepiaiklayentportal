@@ -129,12 +129,17 @@ $fileUploadedDataProvider = new CArrayDataProvider($fileUploadedArr);
             'dataProvider'=>$gridDataProvider,
             'template'=>"{summary}\n{items}\n{pager}",
             'columns'=>array(
-                'total',
+                array(
+                    'header'=>'Total',
+                    'type'=>'raw',
+                    'value'=>'$data["total"]',
+                ),
+                // 'total',
                 // 'balance',
-                'seconds',
+                // 'seconds',
                 // 'calls',
                 // 'generated',
-                'ppminc',
+                // 'ppminc',
                 // 'leads',
             ),
         )); ?>        
