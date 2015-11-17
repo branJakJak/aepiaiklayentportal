@@ -45,7 +45,7 @@ class SiteController extends Controller
 		foreach ($clientVb as $key => $value) {
 			$tempContainer = $clientVb[$key];
 			$tempContainer['id'] = uniqid();
-			$tempContainer['total'] = doubleval($value['seconds']) * doubleval($value['ppminc']);
+			$tempContainer['total'] = (  ( doubleval($value['seconds']) ) / 60  ) * doubleval($value['ppminc']);
 			$tempContainer['balance'] = doubleval($value['balance']) + 300;
 			$tempContainer['balance'] -= doubleval($tempContainer['total']);
 			$tempContainer['balance'] = '£ '.$tempContainer['balance'];
