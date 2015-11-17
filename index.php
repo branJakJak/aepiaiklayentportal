@@ -3,6 +3,9 @@
 // admin
 // BE9rm6DO0BpyUfhsSfbD
 
+// client
+// ;9;'9=C6)WRz4^KX
+
 // // remove the following lines when in production mode
 // defined('YII_DEBUG') or define('YII_DEBUG',true);
 // // specify how many levels of call stack should be shown in each log message
