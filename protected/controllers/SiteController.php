@@ -70,7 +70,7 @@ class SiteController extends Controller
         $result = $uploader->handleUpload($folder);
         $return = htmlspecialchars(json_encode($result), ENT_NOQUOTES);
  
-        $fileSize=filesize($folder.$result['filename']);//GETTING FILE SIZE
+        $fileSize=filesize($folder.DIRECTORY_SEPARATOR.$result['filename']);//GETTING FILE SIZE
         $fileName=$result['filename'];//GETTING FILE NAME
  
         echo $return;// it's array		
