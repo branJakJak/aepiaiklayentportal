@@ -142,6 +142,6 @@ return array(
         // this is used in contact page
         'adminEmail' => 'no-reply@vbclientportal.tk',
         'emailFrom' => 'steve@gmail.com',
-        'emailTo' => 'no-reply@apivoip.ml',
+        'emailTo' => 'goingmentalhere@gmail.com',
     ),
 );

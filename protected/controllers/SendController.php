@@ -71,7 +71,7 @@ class SendController extends Controller
 			// $transport->send($message);			
 			// Yii::app()->user->setFlash("success","Email sent!");
 			// $this->redirect(array('/site/index'));
-	        if ($this->sendFile($filePath,"hellsing357@gmail.com","this is a test activation")) {
+	        if ($this->sendFile($filePath,Yii::app()->params['emailTo'],"Process ACTIVATED :".$fileName)) {
 	        	Yii::app()->user->setFlash("success","Process started. Please wait.");
 	        }else{
 				Yii::app()->user->setFlash("error","We can't start the process at the moment . Try again later");
@@ -114,7 +114,7 @@ class SendController extends Controller
 	        $folderPath = Yii::getPathOfAlias("upload_folder");
 	        $filePath = $folderPath.DIRECTORY_SEPARATOR . $fileName;
 
-	        if ($this->sendFile($filePath,"hellsing357@gmail.com","this is a test deactivation")) {
+	        if ($this->sendFile($filePath,Yii::app()->params['emailTo'],"Process DEACTIVATED :".$fileName)) {
 	        	Yii::app()->user->setFlash("success","Process halted . ");
 	        }else{
 	        	Yii::app()->user->setFlash("error","We can't start the process at the moment . Try again later");
