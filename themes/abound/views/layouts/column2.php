@@ -9,7 +9,7 @@
 			/*'type'=>'list',*/
 			'encodeLabel'=>false,
 			'items'=>array(
-				array('label'=>'<i class="icon icon-home"></i>  Dashboard <span class="label label-info pull-right">BETA</span>', 'url'=>array('/site/index'),'itemOptions'=>array('class'=>'')),
+				array('label'=>'<i class="icon icon-home"></i>  Dashboard <span class="label label-info pull-right">Home</span>', 'url'=>array('/site/index'),'itemOptions'=>array('class'=>'')),
 				array('label'=>'OPERATIONS','items'=>$this->menu),
 			),
 			));?>

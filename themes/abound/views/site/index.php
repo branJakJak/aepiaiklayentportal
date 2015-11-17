@@ -87,7 +87,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
         )); ?>
       <?php
         $this->beginWidget('zii.widgets.CPortlet', array(
-            'title'=>'<span class="icon-picture"></span>Client VB',
+            'title'=>'<span class="icon-user"></span>Client VB',
             'titleCssClass'=>''
         ));
         ?>

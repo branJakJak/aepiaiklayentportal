@@ -43,11 +43,21 @@ class SiteController extends Controller
 		/* client data */
 		$clientVb = Yii::app()->askteriskDb->createCommand("select * from client_panel")->queryAll();
 		$_5CXFER = Yii::app()->askteriskDb->createCommand("select * from `5cxfer_today`")->queryRow();
+		$criteria = new CDbCriteria;
+		$criteria->order = "date_created DESC";
+		$currentBalance = BalanceLog::model()->find($criteria);
 		foreach ($clientVb as $key => $value) {
+			$updatedInitBalance = 300;
+			if ($currentBalance) {
+				$updatedInitBalance = $currentBalance->current_balance;
+			}
+			
+
 			$tempContainer = $clientVb[$key];
 			$tempContainer['id'] = uniqid();
 			$tempContainer['total'] = (  ( doubleval($value['seconds']) ) / 60  ) * doubleval($value['ppminc']);
-			$tempContainer['balance'] = doubleval($value['balance']) + 300;
+
+			$tempContainer['balance'] = doubleval($value['balance']) + $updatedInitBalance;
 			$tempContainer['balance'] -= doubleval($tempContainer['total']);
 			$tempContainer['balance'] = '£ '.$tempContainer['balance'];
 			$tempContainer['cxfer']  = $_5CXFER['generated'];

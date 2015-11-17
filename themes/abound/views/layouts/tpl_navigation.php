@@ -1,3 +1,15 @@
+<?php 
+$role = Yii::app()->authManager->getRoles(Yii::app()->user->id);
+$isFacilitator = false;
+$currentRoleName = "";
+foreach ($role as $key => $value) {
+  if ($value->name === "facilitator") {
+    $isFacilitator = true;
+  }
+}
+
+
+?>
 <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-inner">
     <div class="container">
@@ -13,24 +25,11 @@
 			<?php $this->widget('zii.widgets.CMenu',array(
                     'htmlOptions'=>array('class'=>'pull-right nav'),
                     'submenuHtmlOptions'=>array('class'=>'dropdown-menu'),
-					'itemCssClass'=>'item-test',
+					           'itemCssClass'=>'item-test',
                     'encodeLabel'=>false,
                     'items'=>array(
                         array('label'=>'Home', 'url'=>array('/site/index')),
-      //                   array('label'=>'Graphs & Charts', 'url'=>array('/site/page', 'view'=>'graphs')),
-      //                   array('label'=>'Forms', 'url'=>array('/site/page', 'view'=>'forms')),
-      //                   array('label'=>'Tables', 'url'=>array('/site/page', 'view'=>'tables')),
-						// array('label'=>'Interface', 'url'=>array('/site/page', 'view'=>'interface')),
-      //                   array('label'=>'Typography', 'url'=>array('/site/page', 'view'=>'typography')),
-      //                   /*array('label'=>'Gii generated', 'url'=>array('customer/index')),*/
-      //                   array('label'=>'My Account <span class="caret"></span>', 'url'=>'#','itemOptions'=>array('class'=>'dropdown','tabindex'=>"-1"),'linkOptions'=>array('class'=>'dropdown-toggle','data-toggle'=>"dropdown"), 
-      //                   'items'=>array(
-      //                       array('label'=>'My Messages <span class="badge badge-warning pull-right">26</span>', 'url'=>'#'),
-						// 	array('label'=>'My Tasks <span class="badge badge-important pull-right">112</span>', 'url'=>'#'),
-						// 	array('label'=>'My Invoices <span class="badge badge-info pull-right">12</span>', 'url'=>'#'),
-						// 	array('label'=>'Separated link', 'url'=>'#'),
-						// 	array('label'=>'One more separated link', 'url'=>'#'),
-      //                   )),
+                        array('label'=>'Balance', 'url'=>array('/balance/create'), 'visible'=>$isFacilitator && !Yii::app()->user->isGuest ),
                         array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
                         array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
                     ),
