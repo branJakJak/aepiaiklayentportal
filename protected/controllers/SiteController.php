@@ -46,10 +46,13 @@ class SiteController extends Controller
 		$criteria = new CDbCriteria;
 		$criteria->order = "date_created DESC";
 		$currentBalance = BalanceLog::model()->find($criteria);
+		$updatedInitBalance = 300;
 		foreach ($clientVb as $key => $value) {
-			$updatedInitBalance = 300;
 			if ($currentBalance) {
 				$updatedInitBalance = $currentBalance->current_balance;
+			}else{
+				$currentBalance->current_balance = 300;
+				$currentBalance->save();
 			}
 			$tempContainer = $clientVb[$key];
 			$tempContainer['id'] = uniqid();
