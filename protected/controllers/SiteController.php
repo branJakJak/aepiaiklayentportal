@@ -58,7 +58,7 @@ class SiteController extends Controller
 			$tempContainer['balance'] -= doubleval($tempContainer['total']);
 			$tempContainer['balance'] = '£ '.$tempContainer['balance'];
 
-			// $value['clientj_sec_count'] = 500;//500 seconds
+			$value['clientj_sec_count'] = 500;//500 seconds
 
 			$tempContainer['seconds'] = doubleval($value['clientj_sec_count']);
 			$tempContainer['hours'] = (int) $tempContainer['seconds'] / (60 * 60);//hours

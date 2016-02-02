@@ -130,17 +130,17 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                 // 'total',
                 // 'balance',
                 array(
-                    'header'=>'Credit Used',
+                    'header'=>'Hours',
                     'type'=>'raw',
                     'value'=>'$data["hours"]',
                 ),
                 array(
-                    'header'=>'Credit Used',
+                    'header'=>'Minutes',
                     'type'=>'raw',
                     'value'=>'$data["minutes"]',
                 ),
                 array(
-                    'header'=>'Credit Used',
+                    'header'=>'Seconds',
                     'type'=>'raw',
                     'value'=>'$data["seconds"]',
                 ),
