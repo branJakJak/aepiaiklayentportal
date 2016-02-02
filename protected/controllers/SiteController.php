@@ -56,7 +56,7 @@ class SiteController extends Controller
 			}
 			$tempContainer = $clientVb[$key];
 			$tempContainer['id'] = uniqid();
-			$tempContainer['total'] = (  ( doubleval($value['clientj_sec_count']) ) / 60  ) * doubleval($value['ppminc']);
+			$tempContainer['total'] = (  ( doubleval($value['seconds']) ) / 60  ) * doubleval($value['ppminc']);
 			$tempContainer['balance'] = doubleval($value['balance']) + $updatedInitBalance;
 			$tempContainer['balance'] -= doubleval($tempContainer['total']);
 			$tempContainer['balance'] = '£ '.$tempContainer['balance'];
