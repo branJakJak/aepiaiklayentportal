@@ -59,15 +59,15 @@ class SiteController extends Controller
 			$tempContainer['balance'] = '£ '.$tempContainer['balance'];
 
 			$tempContainer['seconds'] = doubleval($value['seconds']);
-			$tempContainer['hours'] = (int) $tempContainer['seconds'] / (60 * 60);//hours
-			$tempContainer['minutes'] = (int) $tempContainer['seconds'] / 60;//minutes
-			$tempContainer['seconds'] = $tempContainer['seconds'] % 60;// remaining reconds
+			$tempContainer['hours'] = intval($tempContainer['seconds'] / (60 * 60));//hours
+			$tempContainer['minutes'] = intval($tempContainer['seconds'] / 60);//minutes
+			$tempContainer['seconds'] = intval($tempContainer['seconds'] % 60);// remaining reconds
 
 			$tempContainer['cxfer']  = $_5CXFER['generated'];
 			$clientVb[$key] =  $tempContainer;
 		}
 		/*compute the total*/
-		
+
 		/*file uploaded*/
 		$fileUploadedObj = new ClientUploadedData;
 		$fileUploadedArr = $fileUploadedObj->getListUploaded();
