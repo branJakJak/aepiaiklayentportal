@@ -58,10 +58,11 @@ class SiteController extends Controller
 			$tempContainer['balance'] -= doubleval($tempContainer['total']);
 			$tempContainer['balance'] = '£ '.$tempContainer['balance'];
 
-			$tempContainer['seconds'] = doubleval($value['seconds']);
-			$tempContainer['hours'] = intval($tempContainer['seconds'] / (60 * 60));//hours
-			$tempContainer['minutes'] = intval($tempContainer['seconds'] / 60);//minutes
-			$tempContainer['seconds'] = intval($tempContainer['seconds'] % 60);// remaining reconds
+			$tempContainer['raw_seconds'] = doubleval($value['seconds']);
+
+			$tempContainer['hours'] = gmdate("H", $tempContainer['raw_seconds']);
+			$tempContainer['minutes'] = gmdate("i", $tempContainer['raw_seconds']);
+			$tempContainer['seconds'] = gmdate("s", $tempContainer['raw_seconds']);
 
 			$tempContainer['cxfer']  = $_5CXFER['generated'];
 			$clientVb[$key] =  $tempContainer;
