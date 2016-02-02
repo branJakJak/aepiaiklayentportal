@@ -129,6 +129,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                 ),
                 // 'total',
                 // 'balance',
+                // 'clientj_sec_count',
                 array(
                     'header'=>'Hours',
                     'type'=>'raw',
