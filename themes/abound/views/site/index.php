@@ -145,7 +145,12 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                 //     'type'=>'raw',
                 //     'value'=>'$data["seconds"]',
                 // ),
-                'raw_seconds',
+                array(
+                    'header'=>'Seconds',
+                    'type'=>'raw',
+                    'value'=>'$data["raw_seconds"]',
+                ),
+                // 'raw_seconds',
                 // 'calls',
                 // 'generated',
                 // 'ppminc',
