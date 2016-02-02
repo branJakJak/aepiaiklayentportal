@@ -51,15 +51,13 @@ class SiteController extends Controller
 			if ($currentBalance) {
 				$updatedInitBalance = $currentBalance->current_balance;
 			}
-			
-
 			$tempContainer = $clientVb[$key];
 			$tempContainer['id'] = uniqid();
-			$tempContainer['total'] = (  ( doubleval($value['seconds']) ) / 60  ) * doubleval($value['ppminc']);
-
+			$tempContainer['total'] = (  ( doubleval($value['clientj_sec_count']) ) / 60  ) * doubleval($value['ppminc']);
 			$tempContainer['balance'] = doubleval($value['balance']) + $updatedInitBalance;
 			$tempContainer['balance'] -= doubleval($tempContainer['total']);
 			$tempContainer['balance'] = '£ '.$tempContainer['balance'];
+			$tempContainer['seconds'] = doubleval($value['clientj_sec_count']);
 			$tempContainer['cxfer']  = $_5CXFER['generated'];
 			$clientVb[$key] =  $tempContainer;
 		}

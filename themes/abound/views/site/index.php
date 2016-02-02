@@ -129,7 +129,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                 ),
                 // 'total',
                 // 'balance',
-                // 'seconds',
+                'seconds',
                 // 'calls',
                 // 'generated',
                 // 'ppminc',
