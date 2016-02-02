@@ -94,7 +94,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
         <br>
         <div class="alert alert-info">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <strong><span class=' icon-info-sign'></span> "This Data will refresh every 60 Seconds"</strong> 
+            <strong><span class=' icon-info-sign'></span> "This Data will refresh every 5 minutes"</strong> 
         </div>
         <?php $this->widget('yiiwheels.widgets.grid.WhGridView', array(
             'id'=>"balanceGrid",
