@@ -130,21 +130,22 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                 // 'total',
                 // 'balance',
                 // 'clientj_sec_count',
-                array(
-                    'header'=>'Hours',
-                    'type'=>'raw',
-                    'value'=>'$data["hours"]',
-                ),
-                array(
-                    'header'=>'Minutes',
-                    'type'=>'raw',
-                    'value'=>'$data["minutes"]',
-                ),
-                array(
-                    'header'=>'Seconds',
-                    'type'=>'raw',
-                    'value'=>'$data["seconds"]',
-                ),
+                // array(
+                //     'header'=>'Hours',
+                //     'type'=>'raw',
+                //     'value'=>'$data["hours"]',
+                // ),
+                // array(
+                //     'header'=>'Minutes',
+                //     'type'=>'raw',
+                //     'value'=>'$data["minutes"]',
+                // ),
+                // array(
+                //     'header'=>'Seconds',
+                //     'type'=>'raw',
+                //     'value'=>'$data["seconds"]',
+                // ),
+                'raw_seconds',
                 // 'calls',
                 // 'generated',
                 // 'ppminc',
