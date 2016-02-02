@@ -69,7 +69,8 @@ class SiteController extends Controller
 			$clientVb[$key] =  $tempContainer;
 		}
 		/*compute the total*/
-
+		print_r($clientVb);
+		die();
 		/*file uploaded*/
 		$fileUploadedObj = new ClientUploadedData;
 		$fileUploadedArr = $fileUploadedObj->getListUploaded();
