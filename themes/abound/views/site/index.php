@@ -17,7 +17,7 @@ $fileUploadedDataProvider = new CArrayDataProvider($fileUploadedArr);
 $updateEvery60 = <<<EOL
 setInterval(function(){
 $.fn.yiiGridView.update("balanceGrid")
-}, 60 * 1000);
+}, 5 * (60 * 1000));
 EOL;
 Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClientScript::POS_READY);
 ?>

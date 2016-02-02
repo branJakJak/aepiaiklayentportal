@@ -86,3 +86,10 @@ and Add, Dialable Leads, which you have currently as Opt IN, so change Opt IN in
 
 
 and Add then the 5CXFER as "5 PRESS"
+
+
+1 ) OptIN kanina kevs eh gawin mo syang Diable Leads
+2 ) tapos yung Diable Leads is kukunin mo sya from 5CXFER
+3 ) and Add then the 5CXFER as "5 PRESS"
+4 ) tapos yung Opt IN eh palitan mo sya to Diable Leads
+
