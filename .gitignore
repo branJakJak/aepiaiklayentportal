@@ -6,3 +6,5 @@ protected/components/UserIdentity.php
 protected/vendor/
 themes/abound/uploads/*
 composer.lock
+assets
+.phpintel

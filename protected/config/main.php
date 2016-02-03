@@ -143,6 +143,7 @@ return array(
         'adminEmail' => 'no-reply@vbclientportal.tk',
         'emailFrom' => 'steve@gmail.com',
         'emailTo' => 'goingmentalhere@gmail.com',
+        'reset_url'=>"https://162.250.124.167/vicidial/add_to_5s.php?function=resetreset&user=resetitallto_barry5s&pass=Resetitall",
         // 'emailTo' => 'hellsing357@gmail.com',
     ),
 );

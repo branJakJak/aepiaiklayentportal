@@ -1,12 +1,18 @@
 <?php
 /* @var $this SiteController */
 
-$this->pageTitle=Yii::app()->name;
+$this->pageTitle = Yii::app()->name;
 $baseUrl = Yii::app()->theme->baseUrl;
 
 
 $placeHolderDataGridView = new CArrayDataProvider(array(
-    array('id'=>1, 'firstName'=>'Mark', 'lastName'=>'Otto', 'language'=>'CSS','usage'=>'<span class="inlinebar">1,3,4,5,3,5</span>'),
+    array(
+        'id' => 1,
+        'firstName' => 'Mark',
+        'lastName' => 'Otto',
+        'language' => 'CSS',
+        'usage' => '<span class="inlinebar">1,3,4,5,3,5</span>'
+    ),
 ));
 
 $gridDataProvider = new CArrayDataProvider($clientVb);
@@ -32,100 +38,117 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
 </style>
 
 
-
-
 <div class="row-fluid">
-    <div class="span8 offset2">
+    <div class="span2">
+        <?php if (Yii::app()->user->checkAccess('administrator')): ?>
+            <?php
+            $this->beginWidget('zii.widgets.CPortlet', array(
+                'title' => '<span class=" icon-wrench"></span>Admin Action',
+                'titleCssClass' => ''
+            ));
+            ?>
+            <h5>
+                <span class="icon-download"></span>
+                <?php
+                echo CHtml::link("Export Data", ['/export']);
+                ?>
+            </h5>
+            <hr>
+            <h5>
+                <span class="icon-remove"></span>
+                <?php
+                echo CHtml::link("Clear Data", ['/clearData'], ['confirm'=>"Are you sure you want to clear the data ?"]);
+                ?>
+            </h5>
+            <?php $this->endWidget(); ?>
+        <?php endif; ?>
+    </div>
+
+    <div class="span8">
         <?php
         $this->beginWidget('zii.widgets.CPortlet', array(
-            'title'=>'<span class="icon-picture"></span>Upload Files',
-            'titleCssClass'=>''
+            'title' => '<span class="icon-picture"></span>Upload Files',
+            'titleCssClass' => ''
         ));
         ?>
         <?php $this->widget('ext.EAjaxUpload.EAjaxUpload',
             array(
-                'id'=>'uploadFile',
-                'config'=>array(
-                    'template'=>'<div class="qq-uploader"><div class="qq-upload-drop-area"><span>Drop files here to upload</span></div><div class="qq-upload-button">Upload a file</div><ul class="qq-upload-list"></ul></div>',
-                    'action'=>Yii::app()->createUrl('site/upload'),
-                    'allowedExtensions'=>array("csv","jpg",'txt','xlsx','xls'),//array("jpg","jpeg","gif","exe","mov" and etc...
-                    'sizeLimit'=>10*1024*1024,// maximum file size in bytes
-                    'onComplete'=>"js:function(id, fileName, responseJSON){ alert('Success! File uploaded. ') }",
-                    'messages'=>array(
-                        'typeError'=>"{file} has invalid extension. Only {extensions} are allowed.",
-                        'sizeError'=>"{file} is too large, maximum file size is {sizeLimit}.",
-                        'minSizeError'=>"{file} is too small, minimum file size is {minSizeLimit}.",
-                        'emptyError'=>"{file} is empty, please select files again without it.",
-                        'onLeave'=>"The files are being uploaded, if you leave now the upload will be cancelled."
-                ),
-                    'showMessage'=>"js:function(message){ alert(message); }"
+                'id' => 'uploadFile',
+                'config' => array(
+                    'template' => '<div class="qq-uploader"><div class="qq-upload-drop-area"><span>Drop files here to upload</span></div><div class="qq-upload-button">Upload a file</div><ul class="qq-upload-list"></ul></div>',
+                    'action' => Yii::app()->createUrl('site/upload'),
+                    'allowedExtensions' => array("csv", "jpg", 'txt', 'xlsx', 'xls'),
+                    //array("jpg","jpeg","gif","exe","mov" and etc...
+                    'sizeLimit' => 10 * 1024 * 1024,
+                    // maximum file size in bytes
+                    'onComplete' => "js:function(id, fileName, responseJSON){ alert('Success! File uploaded. ') }",
+                    'messages' => array(
+                        'typeError' => "{file} has invalid extension. Only {extensions} are allowed.",
+                        'sizeError' => "{file} is too large, maximum file size is {sizeLimit}.",
+                        'minSizeError' => "{file} is too small, minimum file size is {minSizeLimit}.",
+                        'emptyError' => "{file} is empty, please select files again without it.",
+                        'onLeave' => "The files are being uploaded, if you leave now the upload will be cancelled."
+                    ),
+                    'showMessage' => "js:function(message){ alert(message); }"
                 )
             )); ?>
         <?php $this->endWidget(); ?>
 
-    </div>
 
-</div>
-
-
-
-
-
-
-
-
-<div class="row-fluid">
-    <div class="span8 offset2">
         <?php
         $this->widget('bootstrap.widgets.TbAlert', array(
-            'fade'=>true, // use transitions?
-            'closeText'=>'×', // close link text - if set to false, no close link is displayed
-            'alerts'=>array( // configurations per alert type
-                'success'=>array('block'=>true, 'fade'=>true, 'closeText'=>'×'), // success, info, warning, error or danger
-                'error'=>array('block'=>true, 'fade'=>true, 'closeText'=>'×'), // success, info, warning, error or danger
+            'fade' => true, // use transitions?
+            'closeText' => '×', // close link text - if set to false, no close link is displayed
+            'alerts' => array( // configurations per alert type
+                'success' => array('block' => true, 'fade' => true, 'closeText' => '×'),
+                // success, info, warning, error or danger
+                'error' => array('block' => true, 'fade' => true, 'closeText' => '×'),
+                // success, info, warning, error or danger
             ),
         )); ?>
-      <?php
+
+        <?php
         $this->beginWidget('zii.widgets.CPortlet', array(
-            'title'=>'<span class="icon-user"></span>Client VB',
-            'titleCssClass'=>''
+            'title' => '<span class="icon-user"></span>Client VB',
+            'titleCssClass' => ''
         ));
         ?>
         <br>
+
         <div class="alert alert-info">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <strong><span class=' icon-info-sign'></span> "This Data will refresh every 5 minutes"</strong> 
+            <strong><span class=' icon-info-sign'></span> "This Data will refresh every 5 minutes"</strong>
         </div>
         <?php $this->widget('yiiwheels.widgets.grid.WhGridView', array(
-            'id'=>"balanceGrid",
-            'type'=>'striped bordered condensed',
-            'dataProvider'=>$gridDataProvider,
-            'template'=>"{summary}\n{items}\n{pager}",
-            'columns'=>array(
+            'id' => "balanceGrid",
+            'type' => 'striped bordered condensed',
+            'dataProvider' => $gridDataProvider,
+            'template' => "{summary}\n{items}\n{pager}",
+            'columns' => array(
                 array(
-                    'header'=>'Balance',
-                    'type'=>'raw',
-                    'value'=>'$data["balance"]',
+                    'header' => 'Balance',
+                    'type' => 'raw',
+                    'value' => '$data["balance"]',
                 ),
                 array(
-                    'header'=>'Credit Used',
-                    'type'=>'raw',
-                    'value'=>'$data["total"]',
+                    'header' => 'Credit Used',
+                    'type' => 'raw',
+                    'value' => '$data["total"]',
                 ),
                 array(
-                    'header'=>'Total Calls Made',
-                    'type'=>'raw',
-                    'value'=>'$data["calls"]',
+                    'header' => 'Total Calls Made',
+                    'type' => 'raw',
+                    'value' => '$data["calls"]',
                 ),
                 array(
-                    'header'=>'Diable Leads',
-                    'type'=>'raw',
-                    'value'=>'$data["leads"]',
+                    'header' => 'Diable Leads',
+                    'type' => 'raw',
+                    'value' => '$data["leads"]',
                 ),
                 array(
-                    'header'=>'5 PRESS',
-                    'type'=>'raw',
-                    'value'=>'$data["cxfer"]',
+                    'header' => '5 PRESS',
+                    'type' => 'raw',
+                    'value' => '$data["cxfer"]',
                 ),
                 // 'total',
                 // 'balance',
@@ -146,9 +169,9 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                 //     'value'=>'$data["seconds"]',
                 // ),
                 array(
-                    'header'=>'Seconds',
-                    'type'=>'raw',
-                    'value'=>'$data["raw_seconds"]',
+                    'header' => 'Seconds',
+                    'type' => 'raw',
+                    'value' => '$data["raw_seconds"]',
                 ),
                 // 'raw_seconds',
                 // 'calls',
@@ -156,20 +179,23 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                 // 'ppminc',
                 // 'leads',
             ),
-        )); ?>        
-        
+        )); ?>
+
         <?php $this->endWidget(); ?>
-        
+
+    </div>
+    <div class="row-fluid">
+        <div class="span4 offset2">
+            <?php echo CHtml::link('Start', array('/campaigns/activate'),
+                array('class' => 'btn btn-primary btn-block action-buttons')); ?>
+        </div>
+        <div class="span4">
+            <?php echo CHtml::link('Stop', array('/campaigns/deactivate'),
+                array('class' => 'btn btn-danger btn-block action-buttons')); ?>
+        </div>
     </div>
 </div>
 
-<div class="row-fluid">
-	<div class="span4 offset2">
-        <?php echo CHtml::link('Start', array('/campaigns/activate'), array('class'=>'btn btn-primary btn-block action-buttons')); ?>
-	</div>
-    <div class="span4">
-        <?php echo CHtml::link('Stop', array('/campaigns/deactivate'), array('class'=>'btn btn-danger btn-block action-buttons')); ?>
-    </div>
-</div>
+
 
 
