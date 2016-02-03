@@ -18,6 +18,7 @@ class ResetContentAPI {
         $curlRes = curl_init($resetUrl);
         curl_setopt($curlRes, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($curlRes, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curlRes, CURLOPT_RETURNTRANSFER, true);
         $returnedData = curl_exec($curlRes);
         $httpcode = curl_getinfo($curlRes, CURLINFO_HTTP_CODE);
         if ($httpcode == '200') {
