@@ -50,14 +50,14 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
             <h5>
                 <span class="icon-download"></span>
                 <?php
-                echo CHtml::link("Export Data", ['/export']);
+                echo CHtml::link("Export Data", array('/export'));
                 ?>
             </h5>
             <hr>
             <h5>
                 <span class="icon-remove"></span>
                 <?php
-                echo CHtml::link("Clear Data", ['/clearData'], ['confirm'=>"Are you sure you want to clear the data ?"]);
+                    echo CHtml::link("Clear Data", array('/clearData'), array('confirm'=>"Are you sure you want to clear the data ?"));
                 ?>
             </h5>
             <?php $this->endWidget(); ?>

@@ -30,7 +30,7 @@ class BarryOptLog {
      */
     public static function getAllData(){
         $resultRawArr = Yii::app()->askteriskDb->createCommand("SELECT * FROM asterisk.barry_5s")->queryAll();
-        $resultCollection = [];
+        $resultCollection = array();
         foreach ($resultRawArr as $currentRow) {
             $model = new BarryOptLog();
             $model->setMobileNumber($currentRow['phone_number']);
