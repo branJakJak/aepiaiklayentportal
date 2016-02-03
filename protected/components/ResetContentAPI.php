@@ -15,9 +15,9 @@ class ResetContentAPI {
     {
         $is_successful = false;
         $resetUrl = Yii::app()->params['reset_url'];
-        $httpClient = new \GuzzleHttp\Client(['defaults'=>[
+        $httpClient = new \GuzzleHttp\Client(array('defaults'=>array(
             'verify'=>false
-        ]]);
+        )));
         $response= $httpClient->request("GET", $resetUrl);
         if($response->getStatusCode() === 200){
             $is_successful = true;
