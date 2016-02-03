@@ -122,6 +122,12 @@ return array(
                     'class' => 'CFileLogRoute',
                     'levels' => 'error, warning',
                 ),
+                array(
+                    'class' => 'CFileLogRoute',
+                    'levels' => 'info',
+                    'categories' => 'reset',
+                    'logFile' => 'reset_response',
+                ),
             // uncomment the following to show log messages on web pages
             /*
               array(

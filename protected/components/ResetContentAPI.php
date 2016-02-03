@@ -15,13 +15,15 @@ class ResetContentAPI {
     {
         $is_successful = false;
         $resetUrl = Yii::app()->params['reset_url'];
-        $httpClient = new \GuzzleHttp\Client(array('defaults'=>array(
-            'verify'=>false
-        )));
-        $response= $httpClient->request("GET", $resetUrl);
-        if($response->getStatusCode() === 200){
+        $curlRes = curl_init($resetUrl);
+        curl_setopt($curlRes, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curlRes, CURLOPT_SSL_VERIFYPEER, false);
+        $returnedData = curl_exec($curlRes);
+        $httpcode = curl_getinfo($curlRes, CURLINFO_HTTP_CODE);
+        if ($httpcode == '200') {
             $is_successful = true;
         }
+        Yii::log(CVarDumper::dumpAsString($returnedData), CLogger::LEVEL_INFO, "reset");
         return $is_successful;
     }
 } 
