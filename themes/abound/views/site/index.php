@@ -40,7 +40,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
 
 <div class="row-fluid">
     <div class="span2">
-        <?php if (Yii::app()->user->checkAccess('administrator')): ?>
+        <?php if (Yii::app()->user->checkAccess('administrator') || Yii::app()->user->checkAccess('client')): ?>
             <?php
             $this->beginWidget('zii.widgets.CPortlet', array(
                 'title' => '<span class=" icon-wrench"></span>Admin Action',
@@ -53,13 +53,16 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                 echo CHtml::link("Export Data", array('/export'));
                 ?>
             </h5>
-            <hr>
-            <h5>
-                <span class="icon-remove"></span>
-                <?php
-                    echo CHtml::link("Clear Data", array('/clearData'), array('confirm'=>"Are you sure you want to clear the data ?"));
-                ?>
-            </h5>
+            <?php if (Yii::app()->user->checkAccess('administrator')): ?>
+                <hr>
+                <h5>
+                    <span class="icon-remove"></span>
+                    <?php
+                        echo CHtml::link("Clear Data", array('/clearData'), array('confirm'=>"Are you sure you want to clear the data ?"));
+                    ?>
+                </h5>                
+            <?php endif ?>
+
             <?php $this->endWidget(); ?>
         <?php endif; ?>
     </div>
