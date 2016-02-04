@@ -38,4 +38,22 @@ class BarryOptLog {
         }
         return $resultCollection;
     }
+    /**
+     * @return array Returns collection ofBarryOptLog objects
+     */
+    public static function getAllDataRange($dateFrom, $dateTo){
+        $commandObj= Yii::app()->askteriskDb->createCommand("SELECT * FROM asterisk.barry_5s where (entry_time >= :date_from && entry_time <= :date_to)");
+        $commandObj->params = array(
+                "date_from"=>date("Y-m-d H:i:s"),
+                "date_to"=>date("Y-m-d H:i:s")
+            );
+        $resultRawArr = $commandObj->queryAll();
+        $resultCollection = array();
+        foreach ($resultRawArr as $currentRow) {
+            $model = new BarryOptLog();
+            $model->setMobileNumber($currentRow['phone_number']);
+            $resultCollection[] = $model;
+        }
+        return $resultCollection;
+    }
 } 

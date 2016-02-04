@@ -37,6 +37,20 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
 
 </style>
 
+<?php 
+    $this->beginWidget('zii.widgets.jui.CJuiDialog',array(
+        'id'=>'exportModal',
+        'options'=>array(
+            'title'=>'Export Range',
+            'autoOpen'=>false,
+            'modal'=>true,
+        ),
+    ));
+    echo $this->renderPartial('_export_range', compact('exportModel'),true);
+    $this->endWidget('zii.widgets.jui.CJuiDialog');
+?>
+
+
 
 <div class="row-fluid">
     <div class="span2">
@@ -44,7 +58,8 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
             <?php
             $this->beginWidget('zii.widgets.CPortlet', array(
                 'title' => '<span class=" icon-wrench"></span>Admin Action',
-                'titleCssClass' => ''
+                'titleCssClass' => '',
+                'htmlOptions' => array('style'=>'text-align: center')
             ));
             ?>
             <h5>
@@ -53,6 +68,15 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                 echo CHtml::link("Export Data", array('/export'));
                 ?>
             </h5>
+            <hr>
+            <h5>
+                <span class="icon-calendar"></span>
+                <?php
+                    echo CHtml::link("Export Range", "#"  , array("onclick"=>'$("#exportModal").dialog("open"); return false;'));
+                ?>
+            </h5>
+
+
             <?php if (Yii::app()->user->checkAccess('administrator')): ?>
                 <hr>
                 <h5>
@@ -64,7 +88,9 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
             <?php endif ?>
 
             <?php $this->endWidget(); ?>
+            <div class="clearfix"></div>
         <?php endif; ?>
+
     </div>
 
     <div class="span8">

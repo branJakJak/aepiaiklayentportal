@@ -93,3 +93,5 @@ and Add then the 5CXFER as "5 PRESS"
 3 ) and Add then the 5CXFER as "5 PRESS"
 4 ) tapos yung Opt IN eh palitan mo sya to Diable Leads
 
+@DONE
+

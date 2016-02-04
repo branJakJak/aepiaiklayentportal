@@ -76,7 +76,20 @@ class SiteController extends Controller
 		$fileUploadedObj = new ClientUploadedData;
 		$fileUploadedArr = $fileUploadedObj->getListUploaded();
 
-		$this->render('index',compact('clientVb','fileUploadedArr'));
+
+		/*export range form*/
+		$exportModel = new ExportRangeForm();
+		$exportModel->unsetAttributes();
+		if (isset($_POST['ExportRangeForm'])) {
+			$exportModel->attributes = $_POST['ExportRangeForm'];
+			if ($exportModel->validate()) {
+				$this->redirect(array("/export/range" , "dateFrom"=>$exportModel->date_from  , "dateTo"=>$exportModel->date_to));
+			}else{
+				Yii::app()->user->setFlash("error",CHtml::errorSummary($exportModel));
+				$this->redirect(array('/site/index'));
+			}
+		}
+		$this->render('index',compact('clientVb','fileUploadedArr','exportModel'));
 	}
 	public function actionUpload()
 	{
