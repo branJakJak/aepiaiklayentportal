@@ -1,5 +1,4 @@
 protected/runtime/*
-assets/*
 data/
 *.bat
 protected/components/UserIdentity.php
@@ -9,6 +8,7 @@ composer.lock
 assets
 .phpintel
 
+
 protected/config/development.php
 protected/config/main.php
 protected/config/mail.php
@@ -16,27 +16,3 @@ protected/config/test.php
 protected/config/console.php
 protected/config/console_dev.php
 
-
-#ignore thumbnails created by windows
-Thumbs.db
-#Ignore files build by Visual Studio
-*.obj
-*.exe
-*.pdb
-*.user
-*.aps
-*.pch
-*.vspscc
-*_i.c
-*_p.c
-*.ncb
-*.suo
-*.tlb
-*.tlh
-*.bak
-*.cache
-*.ilk
-*.log
-*.dll
-*.lib
-*.sbr
