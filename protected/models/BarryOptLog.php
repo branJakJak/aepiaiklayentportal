@@ -5,7 +5,6 @@
  * Date: 2/4/2016
  * Time: 2:26 AM
  */
-
 class BarryOptLog {
     protected $mobile_number;
 
@@ -67,6 +66,17 @@ class BarryOptLog {
             $resultCollection[] = $model;
         }
         return $resultCollection;
-        
+    }
+    public static function getCountToday()
+    {
+        $obj = new BarryOptLog;
+        $resColl = $obj->getAllToday();
+        return count($resColl);
+    }
+    public static function getCountAll()
+    {
+        $obj = new BarryOptLog;
+        $resColl = $obj->getAllData();
+        return count($resColl);
     }
 } 

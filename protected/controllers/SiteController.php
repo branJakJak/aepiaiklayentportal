@@ -59,7 +59,7 @@ class SiteController extends Controller
 			$tempContainer['total'] = (  ( doubleval($value['seconds']) ) / 60  ) * doubleval($value['ppminc']);
 			$tempContainer['balance'] = $updatedInitBalance;
 			$tempContainer['balance'] -= doubleval($tempContainer['total']);
-			$tempContainer['balance'] = '£ '.$tempContainer['balance'];
+			$tempContainer['balance'] = '£ '.sprintf("%.2f", $tempContainer['balance']);
 
 			$tempContainer['raw_seconds'] = doubleval($value['seconds']);
 
