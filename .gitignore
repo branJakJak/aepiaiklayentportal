@@ -1,5 +1,4 @@
 protected/runtime/*
-data/
 *.bat
 protected/components/UserIdentity.php
 protected/vendor/
@@ -16,3 +15,5 @@ protected/config/test.php
 protected/config/console.php
 protected/config/console_dev.php
 
+
+protected/data
