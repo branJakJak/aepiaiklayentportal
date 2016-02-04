@@ -59,7 +59,7 @@ class SiteController extends Controller
 			$tempContainer = $clientVb[$key];
 			$tempContainer['id'] = uniqid();
 			$tempContainer['total'] = (  ( doubleval($value['seconds']) ) / 60  ) * doubleval($value['ppminc']);
-            $tempContainer['total'] = sprintf("%.2f", $tempContainer['total']);
+            $tempContainer['total'] = '£ ' .sprintf("%.2f", $tempContainer['total']);
 			$tempContainer['balance'] = $updatedInitBalance;
 			$tempContainer['balance'] -= doubleval($tempContainer['total']);
 			$tempContainer['balance'] = '£ '.sprintf("%.2f", $tempContainer['balance']);
