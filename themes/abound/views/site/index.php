@@ -65,7 +65,14 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
             <h5>
                 <span class="icon-download"></span>
                 <?php
-                echo CHtml::link("Export Data", array('/export'));
+                    echo CHtml::link("Export Data", array('/export'));
+                ?>
+            </h5>
+            <hr>
+            <h5>
+                <span class="icon-calendar"></span>
+                <?php
+                    echo CHtml::link("Export Today",  array('/export/today'));
                 ?>
             </h5>
             <hr>

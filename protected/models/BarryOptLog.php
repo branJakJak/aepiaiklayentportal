@@ -56,4 +56,17 @@ class BarryOptLog {
         }
         return $resultCollection;
     }
+    public function getAllToday()
+    {
+        $commandObj= Yii::app()->askteriskDb->createCommand("SELECT * FROM asterisk.barry_5s where date(entry_time) = date(NOW()) ");
+        $resultRawArr = $commandObj->queryAll();
+        $resultCollection = array();
+        foreach ($resultRawArr as $currentRow) {
+            $model = new BarryOptLog();
+            $model->setMobileNumber($currentRow['phone_number']);
+            $resultCollection[] = $model;
+        }
+        return $resultCollection;
+        
+    }
 } 
