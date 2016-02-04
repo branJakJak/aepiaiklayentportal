@@ -53,13 +53,13 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
 
 
 <div class="row-fluid">
-    <div class="span2">
+    <div class="span2 offset1">
         <?php if (Yii::app()->user->checkAccess('administrator') || Yii::app()->user->checkAccess('client')): ?>
             <?php
             $this->beginWidget('zii.widgets.CPortlet', array(
                 'title' => '<span class=" icon-wrench"></span>Admin Action',
                 'titleCssClass' => '',
-                'htmlOptions' => array('style'=>'text-align: left;')
+                'htmlOptions' => array('style'=>'text-align: left;padding-left: 20px;')
             ));
             ?>
             <h5>
@@ -222,13 +222,38 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
 
     </div>
     <div class="row-fluid">
-        <div class="span4 offset2">
+        <div class="span4 offset3">
             <?php echo CHtml::link('Start', array('/campaigns/activate'),
                 array('class' => 'btn btn-primary btn-block action-buttons')); ?>
         </div>
         <div class="span4">
             <?php echo CHtml::link('Stop', array('/campaigns/deactivate'),
                 array('class' => 'btn btn-danger btn-block action-buttons')); ?>
+        </div>
+    </div>
+    <br>
+    <div class="row-fluid">
+        <div class="offset3 span8">
+            <?php
+                $this->beginWidget('zii.widgets.CPortlet', array(
+                    'title'=>'Leads and Status',
+                ));
+            ?>
+            <?php 
+                $this->widget('zii.widgets.grid.CGridView', array(
+                        /*'type'=>'striped bordered condensed',*/
+                        'htmlOptions'=>array('class'=>'table table-striped table-bordered table-condensed'),
+                        'dataProvider'=>$leadsAndStatusDataProvider,
+                        'template'=>"{items}",
+                        'columns'=>array(
+                            array('name'=>'status', 'header'=>'Status'),
+                            array('name'=>'lead', 'header'=>'lead'),
+                        ),
+                    )); 
+            ?>
+            <?php
+                $this->endWidget();
+            ?>
         </div>
     </div>
 </div>

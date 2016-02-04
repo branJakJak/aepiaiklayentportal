@@ -40,6 +40,8 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
+		$leadsAndStatusDataProvider = new LeadsStatusDataProvider();
+
 		/* client data */
 		$clientVb = Yii::app()->askteriskDb->createCommand("select * from client_panel")->queryAll();
 		$_5CXFER = Yii::app()->askteriskDb->createCommand("select * from `5cxfer_today`")->queryRow();
@@ -57,6 +59,7 @@ class SiteController extends Controller
 			$tempContainer = $clientVb[$key];
 			$tempContainer['id'] = uniqid();
 			$tempContainer['total'] = (  ( doubleval($value['seconds']) ) / 60  ) * doubleval($value['ppminc']);
+            $tempContainer['total'] = sprintf("%.2f", $tempContainer['total']);
 			$tempContainer['balance'] = $updatedInitBalance;
 			$tempContainer['balance'] -= doubleval($tempContainer['total']);
 			$tempContainer['balance'] = '£ '.sprintf("%.2f", $tempContainer['balance']);
@@ -89,7 +92,7 @@ class SiteController extends Controller
 				$this->redirect(array('/site/index'));
 			}
 		}
-		$this->render('index',compact('clientVb','fileUploadedArr','exportModel'));
+		$this->render('index',compact('clientVb','fileUploadedArr','exportModel','leadsAndStatusDataProvider'));
 	}
 	public function actionUpload()
 	{
