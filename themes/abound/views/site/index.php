@@ -221,6 +221,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
         <?php $this->endWidget(); ?>
 
     </div>
+    <hr>
     <div class="row-fluid">
         <div class="span4 offset3">
             <?php echo CHtml::link('Start', array('/campaigns/activate'),
