@@ -34,6 +34,9 @@ class LeadsStatusDataProvider extends CArrayDataProvider
         $this->id = "id";
         $this->keyField = "id";
         //done
+
+
+        $this->pagination = false;
     }
 
 }

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="10d65566-217e-4f15-90d0-a3d439b76b66" name="Default" comment="reverted to traditional 5.3">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/controllers/SiteController.php" afterPath="$PROJECT_DIR$/protected/controllers/SiteController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/components/LeadsStatusDataProvider.php" afterPath="$PROJECT_DIR$/protected/components/LeadsStatusDataProvider.php" />
     </list>
     <ignored path="ApiVoip-  Client Portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -72,11 +72,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SiteController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SiteController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/protected/controllers/SiteController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.56369424" vertical-offset="860" max-vertical-offset="15028">
-              <caret line="61" column="41" selection-start-line="61" selection-start-column="41" selection-end-line="61" selection-end-column="41" />
+            <state vertical-scroll-proportion="-6.8076925" vertical-offset="860" max-vertical-offset="15028">
+              <caret line="61" column="85" selection-start-line="61" selection-start-column="85" selection-end-line="61" selection-end-column="85" />
               <folding>
                 <marker date="1454605239584" expanded="true" signature="900:926" placeholder="select * fro..client_panel..." />
                 <marker date="1454605239584" expanded="true" signature="995:1023" placeholder="select * fro..." />
@@ -85,11 +85,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LeadsStatusDataProvider.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="LeadsStatusDataProvider.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/protected/components/LeadsStatusDataProvider.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.1538463" vertical-offset="10" max-vertical-offset="748">
-              <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.888535" vertical-offset="367" max-vertical-offset="799">
+              <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -120,10 +120,10 @@
         <option value="$PROJECT_DIR$/protected/models/BarryOptLog.php" />
         <option value="$PROJECT_DIR$/protected/components/ResetContentAPI.php" />
         <option value="$PROJECT_DIR$/protected/config/main.php" />
-        <option value="$PROJECT_DIR$/protected/components/LeadsStatusDataProvider.php" />
         <option value="$PROJECT_DIR$/protected/models/LeadDataFetcher.php" />
         <option value="$PROJECT_DIR$/themes/abound/views/site/index.php" />
         <option value="$PROJECT_DIR$/protected/controllers/SiteController.php" />
+        <option value="$PROJECT_DIR$/protected/components/LeadsStatusDataProvider.php" />
       </list>
     </option>
   </component>
@@ -806,14 +806,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/protected/components/LeadsStatusDataProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.1538463" vertical-offset="10" max-vertical-offset="748">
-          <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/protected/views/site/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4456929" vertical-offset="0" max-vertical-offset="534">
@@ -842,12 +834,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/controllers/SiteController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56369424" vertical-offset="860" max-vertical-offset="15028">
-          <caret line="61" column="41" selection-start-line="61" selection-start-column="41" selection-end-line="61" selection-end-column="41" />
+        <state vertical-scroll-proportion="-6.8076925" vertical-offset="860" max-vertical-offset="15028">
+          <caret line="61" column="85" selection-start-line="61" selection-start-column="85" selection-end-line="61" selection-end-column="85" />
           <folding>
             <marker date="1454605239584" expanded="true" signature="900:926" placeholder="select * fro..client_panel..." />
             <marker date="1454605239584" expanded="true" signature="995:1023" placeholder="select * fro..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/components/LeadsStatusDataProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.888535" vertical-offset="367" max-vertical-offset="799">
+          <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
