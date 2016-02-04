@@ -59,7 +59,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
             $this->beginWidget('zii.widgets.CPortlet', array(
                 'title' => '<span class=" icon-wrench"></span>Admin Action',
                 'titleCssClass' => '',
-                'htmlOptions' => array('style'=>'text-align: center')
+                'htmlOptions' => array('style'=>'text-align: left;')
             ));
             ?>
             <h5>
