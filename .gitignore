@@ -6,7 +6,7 @@ themes/abound/uploads/*
 composer.lock
 /assets
 .phpintel
-
+.idea
 
 protected/config/development.php
 protected/config/main.php
