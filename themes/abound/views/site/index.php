@@ -203,16 +203,15 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                 //     'value'=>'$data["seconds"]',
                 // ),
                 array(
-                    'header' => 'Seconds',
-                    'type' => 'raw',
-                    'value' => '$data["raw_seconds"]',
-                ),
-                array(
                     'header'=>'Minutes',
                     'type'=>'raw',
                     'value'=>'$data["minutes"]',
                 ),
-
+                array(
+                    'header' => 'Seconds',
+                    'type' => 'raw',
+                    'value' => '$data["raw_seconds"]',
+                ),
                 // 'raw_seconds',
                 // 'calls',
                 // 'generated',
