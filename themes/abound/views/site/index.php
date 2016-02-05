@@ -184,11 +184,11 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     'type' => 'raw',
                     'value' => '$data["leads"]',
                 ),
-                // array(
-                //     'header' => '5 PRESS',
-                //     'type' => 'raw',
-                //     'value' => '$data["cxfer"]',
-                // ),
+                array(
+                    'header' => '5 PRESS',
+                    'type' => 'raw',
+                    'value' => '$data["cxfer"]',
+                ),
                 // 'total',
                 // 'balance',
                 // 'clientj_sec_count',
