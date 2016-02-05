@@ -41,6 +41,10 @@ class LeadDataFetcher
 
         return $leadCollection;
     }
+    public function retrieveRemoteData()
+    {
+        return Yii::app()->askteriskDb->createCommand("select * from clientj_stats")->queryAll();
+    }
 
     /**
      * // https://roadtoriches.co.uk/rr_list_total_v2.php?list_id=555&starting_date=2016-01-16
