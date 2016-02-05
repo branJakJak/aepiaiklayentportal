@@ -72,7 +72,8 @@ class SiteController extends Controller
 			$tempContainer['minutes'] = gmdate("i", $tempContainer['raw_seconds']);
 			$tempContainer['seconds'] = gmdate("s", $tempContainer['raw_seconds']);
 
-			$tempContainer['cxfer']  = $_5CXFER['generated'];
+			// $tempContainer['cxfer']  = $_5CXFER['generated'];
+			$tempContainer['cxfer']  = BarryOptLog::getCountAll();
 			$clientVb[$key] =  $tempContainer;
 		}
 		/*compute the total*/
