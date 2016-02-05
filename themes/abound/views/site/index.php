@@ -255,6 +255,49 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
             <?php
                 $this->endWidget();
             ?>
+            <hr>
+            <?php
+                $this->beginWidget('zii.widgets.CPortlet', array(
+                    'title'=>'Chart',
+                ));
+            ?>
+            <?php
+                $this->widget(
+                    'yiiwheels.widgets.highcharts.WhHighCharts',
+                    array(
+                        'pluginOptions' => array(
+                                "chart"=>array(
+                                        "type"=>'pie'
+                                    ),
+                                "title"=>"Leads and status report",
+                                "pie"=>array(
+                                        "allowPointSelect"=>true,
+                                        "cursor"=>'pointer',
+                                        "dataLabels"=>array(
+                                                'enabled'=> false,
+                                                // 'format'=> '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                                // 'style'=> array(
+                                                //     'color'=> "(Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'"
+                                                // )                               
+                                            ),
+                                        "showInLegend"=>true
+                                    ),
+                                "series"=>array(
+                                        array(
+                                                "Name"=>"Brands",
+                                                "colorByPoint"=>true,
+                                                "data"=>$chartDataProvider
+                                            )
+                                    )
+                            ),
+                    )
+                );
+            ?>    
+            <?php
+                $this->endWidget();
+            ?>
+                    
+
         </div>
     </div>
 </div>

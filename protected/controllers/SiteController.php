@@ -41,6 +41,8 @@ class SiteController extends Controller
 	public function actionIndex()
 	{
 		$leadsAndStatusDataProvider = new LeadsStatusDataProvider();
+		$chartDataObj = new ChartDataProvider($leadsAndStatusDataProvider->data);
+		$chartDataProvider = $chartDataObj->getData();
 
 		/* client data */
 		$clientVb = Yii::app()->askteriskDb->createCommand("select * from client_panel")->queryAll();
@@ -92,7 +94,7 @@ class SiteController extends Controller
 				$this->redirect(array('/site/index'));
 			}
 		}
-		$this->render('index',compact('clientVb','fileUploadedArr','exportModel','leadsAndStatusDataProvider'));
+		$this->render('index',compact('clientVb','fileUploadedArr','exportModel','leadsAndStatusDataProvider','chartDataProvider'));
 	}
 	public function actionUpload()
 	{
