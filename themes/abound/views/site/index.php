@@ -34,7 +34,9 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
         font-size: 31px;
         padding: 20px;
     }
-
+    #balanceGrid > table > tbody > tr > td{
+        text-align: center;
+    }
 </style>
 
 <?php 
@@ -172,21 +174,21 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     'type' => 'raw',
                     'value' => '$data["total"]',
                 ),
-                array(
-                    'header' => 'Total Calls Made',
-                    'type' => 'raw',
-                    'value' => '$data["calls"]',
-                ),
+                // array(
+                //     'header' => 'Total Calls Made',
+                //     'type' => 'raw',
+                //     'value' => '$data["calls"]',
+                // ),
                 array(
                     'header' => 'Diable Leads',
                     'type' => 'raw',
                     'value' => '$data["leads"]',
                 ),
-                array(
-                    'header' => '5 PRESS',
-                    'type' => 'raw',
-                    'value' => '$data["cxfer"]',
-                ),
+                // array(
+                //     'header' => '5 PRESS',
+                //     'type' => 'raw',
+                //     'value' => '$data["cxfer"]',
+                // ),
                 // 'total',
                 // 'balance',
                 // 'clientj_sec_count',
@@ -194,11 +196,6 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                 //     'header'=>'Hours',
                 //     'type'=>'raw',
                 //     'value'=>'$data["hours"]',
-                // ),
-                // array(
-                //     'header'=>'Minutes',
-                //     'type'=>'raw',
-                //     'value'=>'$data["minutes"]',
                 // ),
                 // array(
                 //     'header'=>'Seconds',
@@ -210,6 +207,12 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     'type' => 'raw',
                     'value' => '$data["raw_seconds"]',
                 ),
+                array(
+                    'header'=>'Minutes',
+                    'type'=>'raw',
+                    'value'=>'$data["minutes"]',
+                ),
+
                 // 'raw_seconds',
                 // 'calls',
                 // 'generated',
