@@ -208,11 +208,11 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                 //     'type'=>'raw',
                 //     'value'=>'$data["seconds"]',
                 // ),
-                array(
-                    'header' => 'Total in Seconds',
-                    'type' => 'raw',
-                    'value' => '$data["raw_seconds"]',
-                ),
+                // array(
+                //     'header' => 'Total in Seconds',
+                //     'type' => 'raw',
+                //     'value' => '$data["raw_seconds"]',
+                // ),
                 // array(
                 //     'header' => 'Rate',
                 //     'type' => 'raw',
