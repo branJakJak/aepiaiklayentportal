@@ -62,8 +62,10 @@ class BalanceController extends Controller
 		if(isset($_POST['BalanceLog']))
 		{
 			$model->attributes=$_POST['BalanceLog'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			if($model->save()){
+				$this->redirect(array('/home'));
+				// $this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('create',array(

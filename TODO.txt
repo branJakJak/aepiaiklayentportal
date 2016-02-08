@@ -1,5 +1,19 @@
 
 
+
+
+
+
+
+@TODO 
+	Reset 
+		Balance
+			- reset the balance to zero
+		5press data reset
+			- call this https://162.250.124.167/vicidial/add_to_5s.php?function=resetreset&user=resetitallto_barry5s&pass=Resetitall!!
+
+
+
 @TODO 
 i see pauls request is asking you to calcluate then show
 what wee need from the view is the second * the ppminc to be outputted
