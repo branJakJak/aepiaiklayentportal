@@ -184,6 +184,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     'type' => 'raw',
                     'value' => '$data["leads"]',
                 ),
+
                 array(
                     'header' => '5 PRESS',
                     'type' => 'raw',
@@ -197,21 +198,22 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                 //     'type'=>'raw',
                 //     'value'=>'$data["hours"]',
                 // ),
-                // array(
-                //     'header'=>'Seconds',
-                //     'type'=>'raw',
-                //     'value'=>'$data["seconds"]',
-                // ),
                 array(
                     'header'=>'Minutes',
                     'type'=>'raw',
                     'value'=>'$data["minutes"]',
                 ),
                 array(
-                    'header' => 'Seconds',
-                    'type' => 'raw',
-                    'value' => '$data["raw_seconds"]',
+                    'header'=>'Seconds',
+                    'type'=>'raw',
+                    'value'=>'$data["seconds"]',
                 ),
+                
+                // array(
+                //     'header' => 'Seconds',
+                //     'type' => 'raw',
+                //     'value' => '$data["raw_seconds"]',
+                // ),
                 // 'raw_seconds',
                 // 'calls',
                 // 'generated',
