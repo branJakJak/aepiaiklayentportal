@@ -1,19 +1,21 @@
 <?php 
+
 /**
-* LeadsStatusDataProvider
+* LeadsStatusUrlDataProvider
 */
-class LeadsStatusDataProvider extends CArrayDataProvider
+class LeadsStatusUrlDataProvider extends CArrayDataProvider
 {
     function __construct()
     {
         // get all leads from 1501
         $fetcher = new LeadDataFetcher();
-        $rawData = $fetcher->retrieveRemoteData();
+        // $rawData = $fetcher->retrieveRemoteData();
+        $rawData = $fetcher->getDataFromDialer("5555");
         foreach ($rawData as $currentRowKey => $currentRowValue) {
             $combinedLeadData[] = array(
-            "id"=>$currentRowKey,
-                "status"=>$currentRowValue['status_name'],
-                "lead"=>intval($currentRowValue['COUNT(vicidial_list.lead_id)'])
+                "id"=>$currentRowKey,
+                "status"=>$currentRowValue->getLeadStatus(),
+                "lead"=>$currentRowValue->getLeadValue()
             );
         }
         $this->data = $combinedLeadData;
@@ -22,6 +24,5 @@ class LeadsStatusDataProvider extends CArrayDataProvider
         $this->keyField = "id";
         //done
         $this->pagination = false;
-    }
-
+    }	
 }
