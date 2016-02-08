@@ -70,8 +70,8 @@ class SiteController extends Controller
 			$tempContainer['raw_seconds'] = doubleval($value['seconds']);
 
 			$tempContainer['hours'] = gmdate("H", $tempContainer['raw_seconds']);
-			$tempContainer['minutes'] = doubleval($tempContainer['raw_seconds'] / 60);
-			$tempContainer['seconds'] = doubleval($tempContainer['raw_seconds'] % 60);
+			$tempContainer['minutes'] = intval($tempContainer['raw_seconds'] / 60);
+			$tempContainer['seconds'] = intval($tempContainer['raw_seconds'] % 60);
 
 			// $tempContainer['cxfer']  = $_5CXFER['generated'];
 			$tempContainer['cxfer']  = BarryOptLog::getCountToday();
