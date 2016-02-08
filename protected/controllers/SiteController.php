@@ -69,7 +69,7 @@ class SiteController extends Controller
 
 			$tempContainer['raw_seconds'] = doubleval($value['seconds']);
 
-			$tempContainer['hours'] = gmdate("H", $tempContainer['raw_seconds']);
+			$tempContainer['hours'] = intval($tempContainer['raw_seconds'] / (60 * 60));
 			$tempContainer['minutes'] = intval($tempContainer['raw_seconds'] / 60);
 			$tempContainer['seconds'] = intval($tempContainer['raw_seconds'] % 60);
 
