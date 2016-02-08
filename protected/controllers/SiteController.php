@@ -62,8 +62,9 @@ class SiteController extends Controller
 				$currentBalance->save();
 			}
 			$tempContainer = $clientVb[$key];
+			$tempContainer['raw_seconds'] = doubleval($value['seconds']) + doubleval($clientj6['seconds']);
 			$tempContainer['id'] = uniqid();
-			$tempContainer['total'] = (  ( doubleval($value['seconds']) ) / 60  ) * doubleval($value['ppminc']);
+			$tempContainer['total'] = (  ( doubleval($tempContainer['raw_seconds']) ) / 60  ) * doubleval($value['ppminc']);
 			$tempContainer['balance'] = doubleval($updatedInitBalance);
 			$tempContainer['balance'] -= doubleval($tempContainer['total']);
             $tempContainer['total'] = '£ ' .sprintf("%.2f", $tempContainer['total']);
