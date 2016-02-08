@@ -198,11 +198,11 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                 //     'type'=>'raw',
                 //     'value'=>'$data["hours"]',
                 // ),
-                // array(
-                //     'header'=>'Minutes',
-                //     'type'=>'raw',
-                //     'value'=>'$data["minutes"]',
-                // ),
+                array(
+                    'header'=>'Total Minutes',
+                    'type'=>'raw',
+                    'value'=>'$data["minutes"]',
+                ),
                 // array(
                 //     'header'=>'Seconds',
                 //     'type'=>'raw',
