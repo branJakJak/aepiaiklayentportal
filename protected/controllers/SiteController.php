@@ -40,8 +40,8 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// $leadsAndStatusDataProvider = new LeadsStatusDataProvider();
-		$leadsAndStatusDataProvider = new LeadsStatusUrlDataProvider();
+		$leadsAndStatusDataProvider = new LeadsStatusDataProvider();
+		// $leadsAndStatusDataProvider = new LeadsStatusUrlDataProvider();
 		$chartDataObj = new ChartDataProvider($leadsAndStatusDataProvider->data);
 		$chartDataProvider = $chartDataObj->getData();
 
