@@ -81,8 +81,8 @@ class SiteController extends Controller
 
 		/* client data */
 		$clientVb = Yii::app()->askteriskDb->createCommand("select * from client_panel")->queryAll();
-		$clientj6 = Yii::app()->askteriskDb->createCommand("select * from clientj6_sec_today")->queryAll();
-		$clientj6 = $clientj6[0];
+		// $clientj6 = Yii::app()->askteriskDb->createCommand("select * from clientj6_sec_today")->queryAll();
+		// $clientj6 = $clientj6[0];
 		// $_5CXFER = Yii::app()->askteriskDb->createCommand("select * from `5cxfer_today`")->queryRow();
 		$criteria = new CDbCriteria;
 		$criteria->order = "date_created DESC";
@@ -98,7 +98,11 @@ class SiteController extends Controller
 				$currentBalance->save();
 			}
 			$tempContainer = $clientVb[$key];
-			$tempContainer['raw_seconds'] = doubleval($value['seconds']) + doubleval($clientj6['seconds']);
+			if ( !is_null(@$clientj6) && isset($clientj6['seconds'])) {
+				$tempContainer['raw_seconds'] = doubleval($value['seconds']) + doubleval($clientj6['seconds']);
+			}
+			$tempContainer['raw_seconds'] = doubleval($value['seconds']);
+			
 			$tempContainer['id'] = uniqid();
 			$tempContainer['total'] = (  ( doubleval($tempContainer['raw_seconds']) ) / 60  ) * doubleval($value['ppminc']);
 			$tempContainer['balance'] = doubleval($updatedInitBalance);
