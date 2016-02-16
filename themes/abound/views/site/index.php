@@ -63,14 +63,6 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
             <hr>
             <h5>
                 <span class="icon-calendar"></span>
-
-                <?php
-                    echo CHtml::link("Export Today  <span class='label label-info'>".BarryOptLog::getCountToday()."</span>",  array('/export/today'));
-                ?>
-            </h5>
-            <hr>
-            <h5>
-                <span class="icon-calendar"></span>
                 <?php
                     echo CHtml::link("Export Range", "#"  , array("onclick"=>'$("#exportModal").dialog("open"); return false;'));
                 ?>
@@ -90,7 +82,15 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
             <?php $this->endWidget(); ?>
             <div class="clearfix"></div>
         <?php endif; ?>
-
+        <?php if (Yii::app()->user->checkAccess('exporter')): ?>
+            <h5>
+                <span class="icon-calendar"></span>
+                <?php
+                    echo CHtml::link("Export Today  <span class='label label-info'>".BarryOptLog::getCountToday()."</span>",  array('/export/today'));
+                ?>
+            </h5>
+            <hr>
+        <?php endif ?>
     </div>
 
     <div class="span8">
