@@ -93,7 +93,9 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
         <?php endif ?>
     </div>
 
-    <div class="span8">
+    <div class="span8" >
+        <?php if (!Yii::app()->user->checkAccess('exporter')): ?>
+
         <?php
         $this->beginWidget('zii.widgets.CPortlet', array(
             'title' => '<span class="icon-picture"></span>Upload Files',
@@ -215,23 +217,25 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                 // 'leads',
             ),
         )); ?>
-
         <?php $this->endWidget(); ?>
-
+        <?php endif ?>
     </div>
     <hr>
     <div class="row-fluid">
-        <div class="span4 offset3">
-            <?php echo CHtml::link('Start', array('/campaigns/activate'),
-                array('class' => 'btn btn-primary btn-block action-buttons')); ?>
-        </div>
-        <div class="span4">
-            <?php echo CHtml::link('Stop', array('/campaigns/deactivate'),
-                array('class' => 'btn btn-danger btn-block action-buttons')); ?>
-        </div>
+        <?php if (!Yii::app()->user->checkAccess('exporter')): ?>
+            <div class="span4 offset3">
+                <?php echo CHtml::link('Start', array('/campaigns/activate'),
+                    array('class' => 'btn btn-primary btn-block action-buttons')); ?>
+            </div>
+            <div class="span4">
+                <?php echo CHtml::link('Stop', array('/campaigns/deactivate'),
+                    array('class' => 'btn btn-danger btn-block action-buttons')); ?>
+            </div>
+        <?php endif ?>
     </div>
     <br>
     <div class="row-fluid">
+        <?php if (!Yii::app()->user->checkAccess('exporter')): ?>
         <div class="offset3 span8">
             <?php
                 $this->beginWidget('zii.widgets.CPortlet', array(
@@ -302,8 +306,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
             <?php
                 $this->endWidget();
             ?>
-                    
-
+        <?php endif ?>
         </div>
     </div>
 </div>
