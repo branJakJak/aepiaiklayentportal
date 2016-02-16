@@ -51,9 +51,9 @@ class SiteController extends Controller
 		$data2Arr = $leadsAndStatusDataProvider2->data;
 		$tempClone = array();
 		if (!empty($data1Arr)) {
-			$tempClone = clone $data1Arr;
+			$tempClone = $data1Arr;
 		}else if (!empty($data2Arr)) {
-			$tempClone = clone $data2Arr;
+			$tempClone = $data2Arr;
 		}
 		$combinedArr = array();
 		foreach ($tempClone as $key => $value) {
