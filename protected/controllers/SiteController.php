@@ -40,6 +40,8 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
+		$dialableLeads = 0;
+
 		$leadsAndStatusDataProvider1 = new LeadsStatusDataProvider('1501');
 		$leadsAndStatusDataProvider2 = new LeadsStatusDataProvider('1502');
 		if (  isset($_GET['listid']) && $_GET['listid'] == '1503,1504') {
@@ -61,9 +63,12 @@ class SiteController extends Controller
 			$second = $data2Arr[$key]['lead'];
 			$combinedArr[] = array(
 					'id'=>$key,
-					'status'=>$data1Arr[$key]['status'],
+					'status'=>$tempClone[$key]['status'],
 					'lead'=>intval($first) + intval($second)
 				);
+			if ($tempClone[$key] == 'New Lead') {
+				$dialableLeads = $tempClone[$key]['New Lead'];
+			}
 		}
 
 
@@ -115,6 +120,7 @@ class SiteController extends Controller
 			$tempContainer['hours'] = intval($tempContainer['raw_seconds'] / (60 * 60));
 			$tempContainer['minutes'] = intval($tempContainer['raw_seconds'] / 60);
 			$tempContainer['seconds'] = intval($tempContainer['raw_seconds'] % 60);
+			$tempContainer['leads'] = intval($dialableLeads);
 
 			// $tempContainer['cxfer']  = $_5CXFER['generated'];
 			$tempContainer['cxfer']  = BarryOptLog::getCountToday();
