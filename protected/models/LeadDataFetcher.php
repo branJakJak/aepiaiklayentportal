@@ -41,9 +41,26 @@ class LeadDataFetcher
 
         return $leadCollection;
     }
-    public function retrieveRemoteData()
+
+    public function retrieveRemoteData($listid)
     {
-        return Yii::app()->askteriskDb->createCommand("select * from clientj_stats")->queryAll();
+
+        $sqlCommand = <<<EOL
+    SELECT 
+        COUNT(`vicidial_list`.`lead_id`) AS `COUNT(vicidial_list.lead_id)`,
+        `vicidial_statuses`.`status_name` AS `status_name`
+    FROM
+        ((`vicidial_list`
+        JOIN `vicidial_statuses` ON ((`vicidial_list`.`status` = `vicidial_statuses`.`status`)))
+        JOIN `vicidial_lists` ON ((`vicidial_lists`.`list_id` = `vicidial_list`.`list_id`)))
+    WHERE
+        (
+            `vicidial_list`.`list_id` = '$listid'
+            AND (`vicidial_lists`.`active` = 'Y')
+        )
+    GROUP BY `vicidial_statuses`.`status_name`
+EOL;
+        return Yii::app()->askteriskDb->createCommand($sqlCommand)->queryAll();
     }
 
     /**

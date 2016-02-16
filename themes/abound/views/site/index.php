@@ -5,16 +5,6 @@ $this->pageTitle = Yii::app()->name;
 $baseUrl = Yii::app()->theme->baseUrl;
 
 
-$placeHolderDataGridView = new CArrayDataProvider(array(
-    array(
-        'id' => 1,
-        'firstName' => 'Mark',
-        'lastName' => 'Otto',
-        'language' => 'CSS',
-        'usage' => '<span class="inlinebar">1,3,4,5,3,5</span>'
-    ),
-));
-
 $gridDataProvider = new CArrayDataProvider($clientVb);
 
 $fileUploadedDataProvider = new CArrayDataProvider($fileUploadedArr);
@@ -248,6 +238,14 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     'title'=>'Leads and Status',
                 ));
             ?>
+            <?php echo CHtml::beginForm(array('/site/index'), 'GET',array('id'=>'quickFilterData')); ?>
+                Load Source : 
+                <?php 
+                    echo CHtml::dropDownList('listid', @$_GET['listid'], array(
+                        '1501,1502'=>'1501,1502',
+                        '1503,1504'=>'1503,1504'
+                    ), array('onchange'=>'submitFilterForm(this)')); ?>
+            <?php echo CHtml::endForm(); ?>
             <?php 
                 $this->widget('zii.widgets.grid.CGridView', array(
                         /*'type'=>'striped bordered condensed',*/
@@ -312,4 +310,9 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
 
 
 
-
+<script type="text/javascript">
+    
+    function submitFilterForm (dom) {
+        document.getElementById("quickFilterData").submit();
+    }
+</script>

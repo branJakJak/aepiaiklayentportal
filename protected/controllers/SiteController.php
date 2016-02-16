@@ -40,10 +40,36 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$leadsAndStatusDataProvider = new LeadsStatusDataProvider();
-		// $leadsAndStatusDataProvider = new LeadsStatusUrlDataProvider();
+		$leadsAndStatusDataProvider1 = new LeadsStatusDataProvider('1501');
+		$leadsAndStatusDataProvider2 = new LeadsStatusDataProvider('1502');
+		if (  isset($_GET['listid']) && $_GET['listid'] == '1503,1504') {
+			$leadsAndStatusDataProvider1 = new LeadsStatusDataProvider('1503');
+			$leadsAndStatusDataProvider2 = new LeadsStatusDataProvider('1504');
+		}
+		//@TODO - combine leads status
+		$data1Arr = $leadsAndStatusDataProvider1->data;
+		$data2Arr = $leadsAndStatusDataProvider2->data;
+		$combinedArr = array();
+		foreach ($data1Arr as $key => $value) {
+			$first = $data1Arr[$key]['lead'];
+			$second = $data2Arr[$key]['lead'];
+			$combinedArr[] = array(
+					'id'=>$key,
+					'status'=>$data1Arr[$key]['status'],
+					'lead'=>intval($first) + intval($second)
+				);
+		}
+		$leadsAndStatusDataProvider = new CArrayDataProvider($combinedArr,array(
+				'id'=>'id',
+				'keyField'=>'id',
+			));
+		$leadsAndStatusDataProvider->pagination = false;
+
+		//Pass the combined data for chart
 		$chartDataObj = new ChartDataProvider($leadsAndStatusDataProvider->data);
 		$chartDataProvider = $chartDataObj->getData();
+
+
 
 		/* client data */
 		$clientVb = Yii::app()->askteriskDb->createCommand("select * from client_panel")->queryAll();
@@ -54,7 +80,9 @@ class SiteController extends Controller
 		$criteria->order = "date_created DESC";
 		$currentBalance = BalanceLog::model()->find($criteria);
 		$updatedInitBalance = 300;
+
 		foreach ($clientVb as $key => $value) {
+			
 			if ($currentBalance) {
 				$updatedInitBalance = $currentBalance->current_balance;
 			}else{

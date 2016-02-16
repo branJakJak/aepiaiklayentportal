@@ -4,11 +4,13 @@
 */
 class LeadsStatusDataProvider extends CArrayDataProvider
 {
-    function __construct()
+    public $listid;
+    function __construct($listid)
     {
         // get all leads from 1501
         $fetcher = new LeadDataFetcher();
-        $rawData = $fetcher->retrieveRemoteData();
+        $rawData = $fetcher->retrieveRemoteData($listid);
+        $combinedLeadData = array();
         foreach ($rawData as $currentRowKey => $currentRowValue) {
             $combinedLeadData[] = array(
             "id"=>$currentRowKey,
@@ -22,6 +24,25 @@ class LeadsStatusDataProvider extends CArrayDataProvider
         $this->keyField = "id";
         //done
         $this->pagination = false;
+        $this->setListid($listid);
     }
 
+    /**
+     * Gets list id property
+     *
+     * @return integer listid
+     */
+    public function getListid() {
+        return $this->listid;
+    }
+    
+    /**
+     * sets listid value
+     *
+     * @param Integer $newlistid Listid
+     */
+    public function setListid($listid) {
+        $this->listid = $listid;
+        return $this;
+    }
 }
