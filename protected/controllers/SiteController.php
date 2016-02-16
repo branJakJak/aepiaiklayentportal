@@ -75,7 +75,7 @@ class SiteController extends Controller
 		$clientVb = Yii::app()->askteriskDb->createCommand("select * from client_panel")->queryAll();
 		$clientj6 = Yii::app()->askteriskDb->createCommand("select * from clientj6_sec_today")->queryAll();
 		$clientj6 = $clientj6[0];
-		$_5CXFER = Yii::app()->askteriskDb->createCommand("select * from `5cxfer_today`")->queryRow();
+		// $_5CXFER = Yii::app()->askteriskDb->createCommand("select * from `5cxfer_today`")->queryRow();
 		$criteria = new CDbCriteria;
 		$criteria->order = "date_created DESC";
 		$currentBalance = BalanceLog::model()->find($criteria);

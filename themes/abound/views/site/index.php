@@ -242,8 +242,8 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                 Load Source : 
                 <?php 
                     echo CHtml::dropDownList('listid', @$_GET['listid'], array(
-                        '1501,1502'=>'1501,1502',
-                        '1503,1504'=>'1503,1504'
+                        '1501,1502'=>'Car 1',
+                        '1503,1504'=>'Car 2'
                     ), array('onchange'=>'submitFilterForm(this)')); ?>
             <?php echo CHtml::endForm(); ?>
             <?php 
