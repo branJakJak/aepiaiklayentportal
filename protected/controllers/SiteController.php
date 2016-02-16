@@ -66,7 +66,7 @@ class SiteController extends Controller
 					'status'=>$tempClone[$key]['status'],
 					'lead'=>intval($first) + intval($second)
 				);
-			if ($tempClone[$key] == 'New Lead') {
+			if ($tempClone[$key]['status'] == 'New Lead') {
 				$dialableLeads = $tempClone[$key]['New Lead'];
 			}
 		}
