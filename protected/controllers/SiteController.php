@@ -49,8 +49,14 @@ class SiteController extends Controller
 		//@TODO - combine leads status
 		$data1Arr = $leadsAndStatusDataProvider1->data;
 		$data2Arr = $leadsAndStatusDataProvider2->data;
+		$tempClone = array();
+		if (!empty($data1Arr)) {
+			$tempClone = clone $data1Arr;
+		}else if (!empty($data2Arr)) {
+			$tempClone = clone $data2Arr;
+		}
 		$combinedArr = array();
-		foreach ($data1Arr as $key => $value) {
+		foreach ($tempClone as $key => $value) {
 			$first = $data1Arr[$key]['lead'];
 			$second = $data2Arr[$key]['lead'];
 			$combinedArr[] = array(
@@ -59,6 +65,8 @@ class SiteController extends Controller
 					'lead'=>intval($first) + intval($second)
 				);
 		}
+
+
 		$leadsAndStatusDataProvider = new CArrayDataProvider($combinedArr,array(
 				'id'=>'id',
 				'keyField'=>'id',
