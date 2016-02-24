@@ -1,4 +1,7 @@
 <?php
+// defined('YII_DEBUG') or define('YII_DEBUG',true);
+// defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
+
 
 // admin
 // BE9rm6DO0BpyUfhsSfbD
@@ -13,10 +16,15 @@
 // client
 // oco2xgMrS42govb
 
-// // remove the following lines when in production mode
-// defined('YII_DEBUG') or define('YII_DEBUG',true);
-// // specify how many levels of call stack should be shown in each log message
-// defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
+
+
+//
+// ROLES
+// administrator - required
+// facilitator - required
+// exporter - optional
+
+
 
 
 

@@ -250,14 +250,19 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     'title'=>'Leads and Status',
                 ));
             ?>
-            <?php echo CHtml::beginForm(array('/site/index'), 'GET',array('id'=>'quickFilterData')); ?>
-                Load Source : 
-                <?php 
-                    echo CHtml::dropDownList('listid', @$_GET['listid'], array(
-                        '1501,1502'=>'Car 1',
-                        '1503,1504'=>'Car 2'
-                    ), array('onchange'=>'submitFilterForm(this)')); ?>
-            <?php echo CHtml::endForm(); ?>
+
+            <?php if (false): ?>
+                <?php echo CHtml::beginForm(array('/site/index'), 'GET',array('id'=>'quickFilterData')); ?>
+                    Load Source : 
+                    <?php 
+                        echo CHtml::dropDownList('listid', @$_GET['listid'], array(
+                            '1501,1502'=>'Car 1',
+                            '1503,1504'=>'Car 2'
+                        ), array('onchange'=>'submitFilterForm(this)')); ?>
+                <?php echo CHtml::endForm(); ?>
+            <?php endif ?>
+
+
             <?php 
                 $this->widget('zii.widgets.grid.CGridView', array(
                         /*'type'=>'striped bordered condensed',*/
