@@ -22,14 +22,14 @@ foreach ($role as $key => $value) {
           <!-- Be sure to leave the brand out there if you want it shown -->
           <?php echo CHtml::link(Yii::app()->name, array('/site/index'), array('class'=>'brand')); ?>
           <div class="nav-collapse">
-			<?php $this->widget('zii.widgets.CMenu',array(
+  			<?php $this->widget('zii.widgets.CMenu',array(
                     'htmlOptions'=>array('class'=>'pull-right nav'),
                     'submenuHtmlOptions'=>array('class'=>'dropdown-menu'),
 					           'itemCssClass'=>'item-test',
                     'encodeLabel'=>false,
                     'items'=>array(
                         array('label'=>'Home', 'url'=>array('/site/index')),
-                        array('label'=>'Balance', 'url'=>array('/balance/create'), 'visible'=>$isFacilitator && !Yii::app()->user->isGuest ),
+                        array('label'=>'Balance', 'url'=>array('/balance/create'), 'visible'=>!Yii::app()->user->isGuest && Yii::app()->user->checkAccess('administrator')),
                         array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
                         array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
                     ),

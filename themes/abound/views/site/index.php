@@ -102,36 +102,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
     </div>
 
     <div class="span8" >
-        <?php if (!Yii::app()->user->checkAccess('exporter')): ?>
 
-        <?php
-        $this->beginWidget('zii.widgets.CPortlet', array(
-            'title' => '<span class="icon-picture"></span>Upload Files',
-            'titleCssClass' => ''
-        ));
-        ?>
-        <?php $this->widget('ext.EAjaxUpload.EAjaxUpload',
-            array(
-                'id' => 'uploadFile',
-                'config' => array(
-                    'template' => '<div class="qq-uploader"><div class="qq-upload-drop-area"><span>Drop files here to upload</span></div><div class="qq-upload-button">Upload a file</div><ul class="qq-upload-list"></ul></div>',
-                    'action' => Yii::app()->createUrl('site/upload'),
-                    'allowedExtensions' => array("csv", "jpg", 'txt', 'xlsx', 'xls'),
-                    //array("jpg","jpeg","gif","exe","mov" and etc...
-                    'sizeLimit' => 10 * 1024 * 1024,
-                    // maximum file size in bytes
-                    'onComplete' => "js:function(id, fileName, responseJSON){ alert('Success! File uploaded. ') }",
-                    'messages' => array(
-                        'typeError' => "{file} has invalid extension. Only {extensions} are allowed.",
-                        'sizeError' => "{file} is too large, maximum file size is {sizeLimit}.",
-                        'minSizeError' => "{file} is too small, minimum file size is {minSizeLimit}.",
-                        'emptyError' => "{file} is empty, please select files again without it.",
-                        'onLeave' => "The files are being uploaded, if you leave now the upload will be cancelled."
-                    ),
-                    'showMessage' => "js:function(message){ alert(message); }"
-                )
-            )); ?>
-        <?php $this->endWidget(); ?>
 
 
         <?php
@@ -140,11 +111,70 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
             'closeText' => '×', // close link text - if set to false, no close link is displayed
             'alerts' => array( // configurations per alert type
                 'success' => array('block' => true, 'fade' => true, 'closeText' => '×'),
-                // success, info, warning, error or danger
                 'error' => array('block' => true, 'fade' => true, 'closeText' => '×'),
-                // success, info, warning, error or danger
             ),
-        )); ?>
+        )); ?>    
+        <?php if (!Yii::app()->user->checkAccess('exporter')): ?>
+
+
+
+
+        <?php
+            $this->beginWidget('zii.widgets.CPortlet', array(
+                'title' => '<span class="icon-picture"></span>Request Form',
+                'titleCssClass' => ''
+            ));
+        ?>
+        <?php echo CHtml::beginForm(array('/site/clientRequest'), 'POST',array('class'=>'well')); ?>
+            <h1>Request Form</h1>
+            <hr>
+            <?php echo CHtml::hiddenField('clientUpload', 'clientUpload'); ?>
+            <?php echo CHtml::hiddenField('fileName', null, array('id'=>'fileName')); ?>
+            <label>Upload the mobile numbers</label>
+            <?php $this->widget('ext.EAjaxUpload.EAjaxUpload',
+                array(
+                    'id' => 'uploadFile',
+                    'config' => array(
+                        'template' => '<div class="qq-uploader"><div class="qq-upload-drop-area"><span>Drop files here to upload</span></div><div class="qq-upload-button">Upload a file</div><ul class="qq-upload-list"></ul></div>',
+                        'action' => Yii::app()->createUrl('site/upload'),
+                        'allowedExtensions' => array("csv",'txt', 'xlsx', 'xls'),
+                        //array("jpg","jpeg","gif","exe","mov" and etc...
+                        'sizeLimit' => 10 * 1024 * 1024,
+                        // maximum file size in bytes
+                        'onComplete' => "js:
+                            function(id, fileName, responseJSON){ 
+                                document.getElementById('fileName').value = fileName;
+                            }
+                        ",
+                        'messages' => array(
+                            'typeError' => "{file} has invalid extension. Only {extensions} are allowed.",
+                            'sizeError' => "{file} is too large, maximum file size is {sizeLimit}.",
+                            'minSizeError' => "{file} is too small, minimum file size is {minSizeLimit}.",
+                            'emptyError' => "{file} is empty, please select files again without it.",
+                            'onLeave' => "The files are being uploaded, if you leave now the upload will be cancelled."
+                        ),
+                        // 'showMessage' => "js:function(message){ alert(message);}"
+                    )
+                )); 
+            ?>
+            <label>Select sound file : </label>
+            <?php 
+                echo CHtml::dropDownList('soundFileName', null, array(
+                    'Boiler'=>'Boiler',
+                    'Car_Finance'=>'Car_Finance',
+                    'Debt_3000'=>'Debt_3000',
+                    'Debt_5000'=>'Debt_5000',
+                    'FlightDelay'=>'FlightDelay',
+                    'Funeral'=>'Funeral',
+                    'PBA'=>'PBA'
+                ), array('prompt'=>'Please select a sound file')); 
+            ?>
+            <br>
+            <button type="submit" class="btn btn-primary btn-large">Submit</button>
+        <?php echo CHtml::endForm(); ?>
+        
+        <?php $this->endWidget(); ?>
+
 
         <?php
         $this->beginWidget('zii.widgets.CPortlet', array(
@@ -153,11 +183,11 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
         ));
         ?>
         <br>
-
         <div class="alert alert-info">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <strong><span class=' icon-info-sign'></span> "This Data will refresh every 5 minutes"</strong>
         </div>
+
         <?php $this->widget('yiiwheels.widgets.grid.WhGridView', array(
             'id' => "balanceGrid",
             'type' => 'striped bordered condensed',

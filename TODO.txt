@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 @TODO 
 	Reset 
 		Balance
@@ -110,6 +104,10 @@ and Add then the 5CXFER as "5 PRESS"
 @DONE
 
 
+@TODO
+allow user to choose what 
+sound to send 
 
 
+@TODO - allow user to listen to sound recordings
 

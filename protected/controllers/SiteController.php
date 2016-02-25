@@ -21,11 +21,11 @@ class SiteController extends Controller
 	{
 		return array(
 			array('allow',
-				'actions'=>array('error','login'),
+				'actions'=>array('error','login','logout'),
 				'users'=>array('*'),
 			),
 			array('allow',
-				'actions'=>array('index','logout','upload'),
+				'actions'=>array('index','upload','clientRequest'),
 				'users'=>array('@'),
 			),
 			array('deny', 
@@ -85,8 +85,8 @@ class SiteController extends Controller
 
 		/* client data */
 		$clientVb = Yii::app()->askteriskDb->createCommand("select * from client_panel")->queryAll();
-		// $clientj6 = Yii::app()->askteriskDb->createCommand("select * from clientj6_sec_today")->queryAll();
-		// $clientj6 = $clientj6[0];
+		$clientj6 = Yii::app()->askteriskDb->createCommand("select * from clientj6_sec_today")->queryAll();
+		$clientj6 = $clientj6[0];
 		// $_5CXFER = Yii::app()->askteriskDb->createCommand("select * from `5cxfer_today`")->queryRow();
 		$criteria = new CDbCriteria;
 		$criteria->order = "date_created DESC";
@@ -146,6 +146,29 @@ class SiteController extends Controller
 		}
 		$this->render('index',compact('clientVb','fileUploadedArr','exportModel','leadsAndStatusDataProvider','chartDataProvider'));
 	}
+	public function actionClientRequest()
+	{
+		if (	(isset($_POST['clientUpload']) && !empty($_POST['clientUpload'])) && 
+				(isset($_POST['fileName']) && !empty($_POST['fileName'])) && 
+				(isset($_POST['soundFileName']) && !empty($_POST['clientUpload']))
+			) {
+			$fileName = $_POST['fileName'];
+			$soundFileName = $_POST['soundFileName'];
+			try {
+		        $folderPath = Yii::getPathOfAlias("upload_folder");
+		        $filePath = $folderPath.DIRECTORY_SEPARATOR . $fileName;
+		        $message = sprintf("Please send attached file : %s using sound file %s sound file", $fileName , $soundFileName);
+		        $this->sendFile($filePath,Yii::app()->params['emailTo'],$message);
+		        Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You successfully read this important alert message.');
+			} catch (Exception $e) {
+				throw new CHttpException(500,$e->getMessage());
+			}        
+			Yii::app()->user->setFlash("success","Success! Request sent.");
+		}else{
+			Yii::app()->user->setFlash("error","Please complete the request form.");
+		}
+		$this->redirect(array('/site/index'));
+	}
 	public function actionUpload()
 	{
    		Yii::import("ext.EAjaxUpload.qqFileUploader");
@@ -158,17 +181,6 @@ class SiteController extends Controller
  
         $fileSize=filesize($folder.DIRECTORY_SEPARATOR.$result['filename']);//GETTING FILE SIZE
         $fileName=$result['filename'];//GETTING FILE NAME
-
-
-		try {
-			// /*do index here*/
-	        $folderPath = Yii::getPathOfAlias("upload_folder");
-	        $filePath = $folderPath.DIRECTORY_SEPARATOR . $fileName;
-	        $this->sendFile($filePath,Yii::app()->params['emailTo'],"Please send attached file :".$fileName);
-		} catch (Exception $e) {
-			throw new CHttpException(500,$e->getMessage());
-		}        
- 
         echo $return;// it's array		
 	}
 	private function sendFile($filePath , $emailAddress,$headerMessage)
