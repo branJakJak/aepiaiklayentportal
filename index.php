@@ -21,6 +21,7 @@
 //
 // ROLES
 // administrator - required
+// client - required
 // facilitator - required
 // exporter - optional
 

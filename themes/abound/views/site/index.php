@@ -115,10 +115,6 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
             ),
         )); ?>    
         <?php if (!Yii::app()->user->checkAccess('exporter')): ?>
-
-
-
-
         <?php
             $this->beginWidget('zii.widgets.CPortlet', array(
                 'title' => '<span class="icon-picture"></span>Request Form',
@@ -166,7 +162,8 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     'Debt_5000'=>'Debt - 5000',
                     'FlightDelay'=>'Flight Delay',
                     'Funeral'=>'Funeral',
-                    'PBA'=>'PBA'
+                    'PBA'=>'PBA',
+                    'PI'=>'PI'
                 ), array('id'=>'soundFileName','prompt'=>'Please select a sound file')); 
             ?>
             <button type='button' onclick='playSoundFile(this);' style="margin-top: -10px;">
@@ -379,6 +376,9 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
 </audio>
 <audio id="PBA">
 <source src="<?php echo $baseUrl ?>/recordings/PBA.wav" type="audio/ogg">
+</audio>
+<audio id="PI">
+<source src="<?php echo $baseUrl ?>/recordings/Pi.mp3" type="audio/ogg">
 </audio>
 
 
