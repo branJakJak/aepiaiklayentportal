@@ -161,14 +161,20 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
             <?php 
                 echo CHtml::dropDownList('soundFileName', null, array(
                     'Boiler'=>'Boiler',
-                    'Car_Finance'=>'Car_Finance',
-                    'Debt_3000'=>'Debt_3000',
-                    'Debt_5000'=>'Debt_5000',
-                    'FlightDelay'=>'FlightDelay',
+                    'Car_Finance'=>'Car Finance',
+                    'Debt_3000'=>'Debt - 3000',
+                    'Debt_5000'=>'Debt - 5000',
+                    'FlightDelay'=>'Flight Delay',
                     'Funeral'=>'Funeral',
                     'PBA'=>'PBA'
-                ), array('prompt'=>'Please select a sound file')); 
+                ), array('id'=>'soundFileName','prompt'=>'Please select a sound file')); 
             ?>
+            <button type='button' onclick='playSoundFile(this);' style="margin-top: -10px;">
+                <span id="playIcon" class='icon icon-play'></span>
+            </button>
+            <button type='button' onclick='stopAllSoundFile(this);' style="margin-top: -10px;">
+                <span class='icon icon-stop'></span>
+            </button>
             <br>
             <button type="submit" class="btn btn-primary btn-large">Submit</button>
         <?php echo CHtml::endForm(); ?>
@@ -350,10 +356,57 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
     </div>
 </div>
 
+<?php 
+    $baseUrl = Yii::app()->theme->baseUrl; 
+?>
+<audio id="Boiler">
+  <source src="<?php echo $baseUrl ?>/recordings/Boiler.WAV" type="audio/ogg">
+</audio>
+<audio id="Car_Finance">
+<source src="<?php echo $baseUrl ?>/recordings/CarFinance1.wav" type="audio/ogg">
+</audio>
+<audio id="Debt_3000">
+<source src="<?php echo $baseUrl ?>/recordings/Debt_3000.wav" type="audio/ogg">
+</audio>
+<audio id="Debt_5000">
+<source src="<?php echo $baseUrl ?>/recordings/Debt_5000.mp3" type="audio/ogg">
+</audio>
+<audio id="FlightDelay">
+<source src="<?php echo $baseUrl ?>/recordings/FlightDelay.wav" type="audio/ogg">
+</audio>
+<audio id="Funeral">
+<source src="<?php echo $baseUrl ?>/recordings/Funeral.wav" type="audio/ogg">
+</audio>
+<audio id="PBA">
+<source src="<?php echo $baseUrl ?>/recordings/PBA.wav" type="audio/ogg">
+</audio>
 
 
 <script type="text/javascript">
-    
+    window.previousAudio= null;
+    function playSoundFile (currentDomeObject) {
+        var soundFileSelected = document.getElementById("soundFileName").value;
+        var audioSelected = document.getElementById(soundFileSelected);
+        console.log("playng");
+        console.log(audioSelected);
+        if (window.previousAudio !== null) {
+            window.previousAudio.currentTime = 0;
+            window.previousAudio.pause();
+        }
+        if (audioSelected) {
+            audioSelected.currentTime = 0;
+            audioSelected.play();
+        }else{
+            console.log("No sound file selected or can't find the sound file.");
+        }
+        window.previousAudio = audioSelected;
+    }
+    function stopAllSoundFile (currentDomObject) {
+        console.log("stopping");
+        console.log(window.previousAudio);
+        window.previousAudio.currentTime = 0;
+        window.previousAudio.pause();
+    }
     function submitFilterForm (dom) {
         document.getElementById("quickFilterData").submit();
     }
