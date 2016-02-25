@@ -158,8 +158,12 @@ class SiteController extends Controller
 		        $folderPath = Yii::getPathOfAlias("upload_folder");
 		        $filePath = $folderPath.DIRECTORY_SEPARATOR . $fileName;
 		        $message = sprintf("Please send attached file : %s using sound file %s sound file", $fileName , $soundFileName);
-		        $this->sendFile($filePath,Yii::app()->params['emailTo'],$message);
-		        Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You successfully read this important alert message.');
+		        $emailSending = $this->sendFile($filePath,Yii::app()->params['emailTo'],$message);
+		        if ($emailSending) {
+		        	Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You successfully read this important alert message.');
+		        }else{
+		        	Yii::app()->user->setFlash("error","Sorry , we can't send your request today.");
+		        }
 			} catch (Exception $e) {
 				throw new CHttpException(500,$e->getMessage());
 			}        
