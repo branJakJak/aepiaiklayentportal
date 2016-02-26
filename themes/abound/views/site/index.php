@@ -157,7 +157,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
             <?php 
             
                 echo CHtml::dropDownList('soundFileName', null, array(
-                    'Boiler'=>'Boiler',
+                    'Boiler'=>'HCCRO',
                     'Car_Finance'=>'Car Finance',
                     'Debt_3000'=>'Debt - 3000',
                     'Debt_5000'=>'Debt - 5000',
@@ -166,7 +166,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     'PBA'=>'PBA',
                     'PI'=>'PI',
                     'MISSOLD_PENSION'=>'Missold Pension',
-                    'ECO'=>'Eco',
+                    // 'ECO'=>'Eco',
                 ), array('id'=>'soundFileName','prompt'=>'Please select a sound file')); 
             ?>
             <button type='button' onclick='playSoundFile(this);' style="margin-top: -10px;">
