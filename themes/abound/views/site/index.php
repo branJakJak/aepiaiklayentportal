@@ -155,6 +155,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
             ?>
             <label>Select sound file : </label>
             <?php 
+            
                 echo CHtml::dropDownList('soundFileName', null, array(
                     'Boiler'=>'Boiler',
                     'Car_Finance'=>'Car Finance',
