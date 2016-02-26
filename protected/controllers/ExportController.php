@@ -37,7 +37,7 @@ class ExportController extends Controller{
 
     public function actionIndex()
     {
-        $fileName = sprintf("%s-%s","barry-export-data",date("Y-m-d"));
+        $fileName = sprintf("%s-%s","export-data",date("Y-m-d"));
         header("Pragma: public");
         header("Expires: 0");
         header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
@@ -56,7 +56,7 @@ class ExportController extends Controller{
     }
     public function actionRange($dateFrom, $dateTo)
     {
-        $fileName = sprintf("%s-%s","barry-export-data",date("Y-m-d"));
+        $fileName = sprintf("%s-%s","export-data",date("Y-m-d"));
         header("Pragma: public");
         header("Expires: 0");
         header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
@@ -76,7 +76,7 @@ class ExportController extends Controller{
     }
     public function actionToday()
     {
-        $fileName = sprintf("%s-%s","barry-export-data",date("Y-m-d"));
+        $fileName = sprintf("%s-%s","export-data",date("Y-m-d"));
         header("Pragma: public");
         header("Expires: 0");
         header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
