@@ -117,7 +117,8 @@ class SiteController extends Controller
 			$tempContainer['raw_seconds'] = doubleval($value['seconds']) + doubleval($clientj6['seconds']);
 
 			$tempContainer['hours'] = intval($tempContainer['raw_seconds'] / (60 * 60));
-			$tempContainer['minutes'] = intval($tempContainer['raw_seconds'] / 60);
+			// $tempContainer['minutes'] = intval($tempContainer['raw_seconds'] / 60);
+			$tempContainer['minutes'] = 0;
 			$tempContainer['seconds'] = intval($tempContainer['raw_seconds'] % 60);
 			$tempContainer['leads'] = intval($dialableLeads);
 
