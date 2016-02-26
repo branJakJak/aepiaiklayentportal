@@ -165,7 +165,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     'Funeral'=>'Funeral',
                     'PBA'=>'PBA',
                     'PI'=>'PI',
-                    'MISSOLD_PENSION'=>'Mis-Sold Pension HCCRO',
+                    'MISSOLD_PENSION'=>'Mis-Sold Pension',
                     // 'ECO'=>'Eco',
                 ), array('id'=>'soundFileName','prompt'=>'Please select a sound file')); 
             ?>
