@@ -163,7 +163,9 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     'FlightDelay'=>'Flight Delay',
                     'Funeral'=>'Funeral',
                     'PBA'=>'PBA',
-                    'PI'=>'PI'
+                    'PI'=>'PI',
+                    'MISSOLD_PENSION'=>'Missold Pension',
+                    'ECO'=>'Eco',
                 ), array('id'=>'soundFileName','prompt'=>'Please select a sound file')); 
             ?>
             <button type='button' onclick='playSoundFile(this);' style="margin-top: -10px;">
@@ -379,6 +381,12 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
 </audio>
 <audio id="PI">
 <source src="<?php echo $baseUrl ?>/recordings/Pi.mp3" type="audio/ogg">
+</audio>
+<audio id="MISSOLD_PENSION">
+<source src="<?php echo $baseUrl ?>/recordings/MISSOLD_PENSION.wav" type="audio/ogg">
+</audio>
+<audio id="ECO">
+<source src="<?php echo $baseUrl ?>/recordings/ECO.WAV" type="audio/ogg">
 </audio>
 
 

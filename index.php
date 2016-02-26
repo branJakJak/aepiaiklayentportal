@@ -25,7 +25,12 @@
 // facilitator - required
 // exporter - optional
 
-
+/**
+ * Web browser compatibility
+ * 
+ * Firefox 40.0.2
+ * 
+ */
 
 
 
