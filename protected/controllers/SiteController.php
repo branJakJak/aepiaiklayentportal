@@ -104,10 +104,10 @@ class SiteController extends Controller
 		$seconds =0;
 		$leads =0;
 
-		$clientDashboardVariables = new EmptyClientDashboardVariables();
+		// $clientDashboardVariables = new EmptyClientDashboardVariables();
 		if (  isset($_GET['listid'])) {
 			//@TODO
-			$clientDashboardVariables = new ClientDashboardVariables($_GET['listid']);
+			// $clientDashboardVariables = new ClientDashboardVariables($_GET['listid']);
 			//@TODO
 			$totalRawSeconds = $clientDashboard[0]['seconds'];
 			$totalRawSeconds += intval($anotherSeconds[0]['seconds']);
