@@ -114,9 +114,11 @@ class SiteController extends Controller
 			$ppminc = $clientDashboard[0]['ppminc'];
 			$diallableLeads = $clientDashboard[0]['leads'];
 			// LOOK for New Leads row
-			foreach ($leadsAndStatusDataProvider->data as $key => $value) {
-				if (isset($value['New Leads'])) {
-					$diallableLeads = $value['New Leads'];
+			// print_r($leadsAndStatusDataProvider->data);
+			// die();
+			foreach ($leadsAndStatusDataProvider->data[0] as $key => $value) {
+				if (isset($value['status'] === 'New Leads')) {
+					$diallableLeads = $value['lead'];
 				}
 			}
 			$totalExpended = ( $totalRawSeconds / 60 ) * doubleval($ppminc);
