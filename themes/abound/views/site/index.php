@@ -295,7 +295,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                         "Campaign2"=>"Campaign2 (ACTIVE)",
                         "Campaign3"=>"Campaign3 (INACTIVE)",
                         "Campaign4"=>"Campaign4 (INACTIVE)"
-                    ), array('onchange'=>'submitFilterForm(this)')); ?>
+                    ), array('prompt'=>'Select Campaign','onchange'=>'submitFilterForm(this)')); ?>
                 <br>
                 <div class="btn-group">
                     <button type="submit" class="btn btn-primary btn-large" name="campaign_action" value="start">Start</button>
