@@ -51,7 +51,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
 
 
 <div class="row-fluid">
-    <div class="span2 offset1">
+    <div class="span3">
         <?php if (Yii::app()->user->checkAccess('administrator') || Yii::app()->user->checkAccess('client')): ?>
             <?php
             $this->beginWidget('zii.widgets.CPortlet', array(
@@ -255,11 +255,11 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                         echo CHtml::dropDownList('listid', @$_GET['listid'], array(
                             "2262016"=>"Pension1",
                             "22920162"=>"Funeral1",
-                        ), array('prompt'=>'Select Campaign','onchange'=>'submitFilterForm(this)')); ?>
+                        ), array('prompt'=>'Select Campaign','onchange'=>'submitFilterForm(this)','id'=>'currentSelectedCampaign')); ?>
                     <br>
                     <div class="btn-group">
-                        <button type="submit" class="btn btn-primary btn-large" name="campaign_action" value="start">Start</button>
-                        <button type="submit" class="btn btn-danger btn-large" name="campaign_action" value="stop">Stop</button>
+                        <button onclick="confirmCampaignStatusUpdate('start')" type="button" class="btn btn-primary btn-large" name="campaign_action" value="start">Start</button>
+                        <button onclick="confirmCampaignStatusUpdate('stop')" type="button" class="btn btn-danger btn-large" name="campaign_action" value="stop">Stop</button>
                     </div>
                 <?php echo CHtml::endForm(); ?>
             </div>
@@ -353,4 +353,10 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
     function submitFilterForm (dom) {
         document.getElementById("quickFilterData").submit();
     }
+    function confirmCampaignStatusUpdate (status) {
+        var campaignSelected = document.getElementById("currentSelectedCampaign").value;
+        if (confirm("Are you sure you want to "+status+ " " +campaignSelected)) {
+            document.getElementById("quickFilterData").submit();
+        }
+    }    
 </script>

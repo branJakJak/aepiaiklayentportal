@@ -47,6 +47,8 @@ class SiteController extends Controller
 				"2262016"=>"PENSION1",
 				"22920162"=>"Funeral1"
 			);
+
+		/*setup initial balance*/
 		$criteria = new CDbCriteria;
 		$criteria->order = "date_created DESC";
 		$currentBalance = BalanceLog::model()->find($criteria);
@@ -57,8 +59,7 @@ class SiteController extends Controller
 			$currentBalance->current_balance = 300;
 			$currentBalance->save();
 		}
-
-
+		/*END - setup initial balance*/
 
 
 		$leadsAndStatusDataProvider = new LeadsStatusDataProvider('2262016');
@@ -73,18 +74,22 @@ class SiteController extends Controller
 		if (isset($_GET['campaign_action'])) {
 			$campaignStatusUpdater = null;
 			if ($_GET['campaign_action'] === 'start') {
-				$campaignStatusUpdater = new ActivateCampaign($campaignName);
+				$campaignStatusUpdater = new ActivateCampaign($currentCampaignSelected);
+				Yii::app()->user->setFlash("success","Success! Campaign $currentCampaignSelected activated.");
 			}else if ($_GET['campaign_action'] === 'stop') {
-				$campaignStatusUpdater = new DeactivateCampaign($campaignName);
+				$campaignStatusUpdater = new DeactivateCampaign($currentCampaignSelected);
+				Yii::app()->user->setFlash("success","Success! Campaign $currentCampaignSelected deactivated.");
 			}
 			$campaignStatusUpdater->updateStatus();
+
 		}
 
 		//Pass the combined data for chart
 		$chartDataObj = new ChartDataProvider($leadsAndStatusDataProvider->data);
 		$chartDataProvider = $chartDataObj->getData();
 
-		/* client data */
+
+		/* data for client dashboard */
 		$clientDashboard = Yii::app()->askteriskDb->createCommand("select * from client_panel")->queryAll();
 		$anotherSeconds = Yii::app()->askteriskDb->createCommand("select * from clientj6_sec_today")->queryAll();
 
