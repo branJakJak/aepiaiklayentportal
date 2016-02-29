@@ -295,13 +295,13 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
     $baseUrl = Yii::app()->theme->baseUrl; 
 ?>
 <audio id="Boiler">
-  <source src="<?php echo $baseUrl ?>/recordings/Boiler.WAV" type="audio/ogg">
+  <source src="<?php echo $baseUrl ?>/recordings/Boiler.wav" type="audio/ogg">
 </audio>
 <audio id="Car_Finance">
 <source src="<?php echo $baseUrl ?>/recordings/CarFinance1.mp3" type="audio/mp3">
 </audio>
 <audio id="Debt_3000">
-<source src="<?php echo $baseUrl ?>/recordings/Debt_3000.WAV" type="audio/ogg">
+<source src="<?php echo $baseUrl ?>/recordings/Debt_3000.wav" type="audio/ogg">
 </audio>
 <audio id="Debt_5000">
 <source src="<?php echo $baseUrl ?>/recordings/Debt_5000.mp3" type="audio/mp3">
@@ -322,7 +322,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
 <source src="<?php echo $baseUrl ?>/recordings/MISSOLD_PENSION.wav" type="audio/ogg">
 </audio>
 <audio id="ECO">
-<source src="<?php echo $baseUrl ?>/recordings/ECO.WAV" type="audio/ogg">
+<source src="<?php echo $baseUrl ?>/recordings/ECO.wav" type="audio/ogg">
 </audio>
 
 
