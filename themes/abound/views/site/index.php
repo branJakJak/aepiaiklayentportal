@@ -265,7 +265,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
         <?php endif ?>
     </div>
     <hr>
-    <div class="row-fluid">
+    <div class="row-fluid hidden">
         <?php if (!Yii::app()->user->checkAccess('exporter')): ?>
             <div class="span4 offset3">
                 <?php echo CHtml::link('Start', array('/campaigns/activate'),
@@ -288,10 +288,19 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
             ?>
 
             <?php echo CHtml::beginForm(array('/site/index'), 'GET',array('id'=>'quickFilterData')); ?>
-                Load Source : 
+                Load Source/Campaign<br>
                 <?php 
                     echo CHtml::dropDownList('listid', @$_GET['listid'], array(
+                        "Campaign1"=>"Campaign1 (ACTIVE)",
+                        "Campaign2"=>"Campaign2 (ACTIVE)",
+                        "Campaign3"=>"Campaign3 (INACTIVE)",
+                        "Campaign4"=>"Campaign4 (INACTIVE)"
                     ), array('onchange'=>'submitFilterForm(this)')); ?>
+                <br>
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-primary btn-large" name="campaign_action" value="start">Start</button>
+                    <button type="submit" class="btn btn-danger btn-large" name="campaign_action" value="stop">Stop</button>
+                </div>
             <?php echo CHtml::endForm(); ?>
 
 
@@ -303,7 +312,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                         'template'=>"{items}",
                         'columns'=>array(
                             array('name'=>'status', 'header'=>'Status'),
-                            array('name'=>'lead', 'header'=>'lead'),
+                            array('name'=>'lead', 'header'=>'Lead'),
                         ),
                     )); 
             ?>

@@ -111,3 +111,15 @@ sound to send
 
 @TODO - allow user to listen to sound recordings
 
+
+
+===================================================================================================
+
+
+Allow user to manage campaign 
+	-add , edit ,delete
+allow user to view campaign in card view
+	-
+
+
+
