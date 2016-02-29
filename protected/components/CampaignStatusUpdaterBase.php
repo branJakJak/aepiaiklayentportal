@@ -6,9 +6,11 @@
 class CampaignStatusUpdaterBase
 {
 	protected $campaign_name;
+	protected $status;
 
-	function __construct($campaign_name) {
+	function __construct($campaign_name,$status) {
 		$this->setCampaignName($campaign_name);
+		$this->setStatus($status);
 	}
 
 	/**
@@ -30,8 +32,27 @@ class CampaignStatusUpdaterBase
 	    return $this;
 	}
 
+	/**
+	 * gets status
+	 *
+	 * @return string retrieves status
+	 */
+	public function getStatus() {
+	    return $this->status;
+	}
 
-	public function updateStatus($status)
+	/**
+	 * set status
+	 *
+	 * @param String $newstatus Retrieves status
+	 */
+	public function setStatus($status) {
+	    $this->status = $status;
+
+	    return $this;
+	}
+
+	public function updateStatus()
 	{
 		$url = "https://162.250.124.167/vicidial/non_agent_api.php?";
 		$httpParams = array(
@@ -40,7 +61,7 @@ class CampaignStatusUpdaterBase
 			"user"=>"admin",
 			"pass"=>"Mad4itNOW",
 			"camp"=>$this->getCampaignName(),
-			"activate"=>$status,
+			"activate"=>$this->getStatus(),
 		);
 		$curlURL = $url.http_build_query($httpParams);
 		$curlres = curl_init($curlURL);

@@ -6,9 +6,8 @@
 */
 class ActivateCampaign extends CampaignStatusUpdaterBase
 {
-
-	public function activate()
-	{
-		$this->updateStatus("on");
+	function __construct($campaignName) {
+		parent::__construct($campaignName,"on");
 	}
+
 }

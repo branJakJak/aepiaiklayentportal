@@ -43,6 +43,10 @@ class SiteController extends Controller
 	public function actionIndex()
 	{
 		$dialableLeads = 0;
+		$campaignIdMap = array(
+				"2262016"=>"PENSION1",
+				"22920162"=>"Funeral1"
+			);
 		$leadsAndStatusDataProvider = new LeadsStatusDataProvider('2262016');
 		$currentCampaignSelected = "PENSION1";
 		if (  isset($_GET['listid'])) {
@@ -51,11 +55,27 @@ class SiteController extends Controller
 			$currentCampaignSelected = "Funeral1";
 		}
 
+
+
+
+		/*check if campaign_action*/
+		if (isset($_GET['campaign_action'])) {
+			$campaignStatusUpdater = null;
+			$campaignName = null;
+			if (isset($_GET['listid'])) {
+				$campaignName = $campaignIdMap[$_GET['listid']];
+			}
+			if ($_GET['campaign_action'] === 'start') {
+				$campaignStatusUpdater = new ActivateCampaign($campaignName);
+			}else if ($_GET['campaign_action'] === 'stop') {
+				$campaignStatusUpdater = new DeactivateCampaign($campaignName);
+			}
+			$campaignStatusUpdater->updateStatus();
+		}
+
 		//Pass the combined data for chart
 		$chartDataObj = new ChartDataProvider($leadsAndStatusDataProvider->data);
 		$chartDataProvider = $chartDataObj->getData();
-
-
 
 		/* client data */
 		$clientVb = Yii::app()->askteriskDb->createCommand("select * from client_panel")->queryAll();
@@ -66,7 +86,6 @@ class SiteController extends Controller
 		$criteria->order = "date_created DESC";
 		$currentBalance = BalanceLog::model()->find($criteria);
 		$updatedInitBalance = 300;
-
 		foreach ($clientVb as $key => $value) {
 			
 			if ($currentBalance) {
@@ -80,27 +99,22 @@ class SiteController extends Controller
 				$tempContainer['raw_seconds'] = doubleval($value['seconds']) + doubleval($clientj6['seconds']);
 			}
 			$tempContainer['raw_seconds'] = doubleval($value['seconds']);
-			
 			$tempContainer['id'] = uniqid();
 			$tempContainer['total'] = (  ( doubleval($tempContainer['raw_seconds']) ) / 60  ) * doubleval($value['ppminc']);
 			$tempContainer['balance'] = doubleval($updatedInitBalance);
 			$tempContainer['balance'] -= doubleval($tempContainer['total']);
             $tempContainer['total'] = '£ ' .sprintf("%.2f", $tempContainer['total']);
 			$tempContainer['balance'] = '£ '.sprintf("%.2f", $tempContainer['balance']);
-
 			$tempContainer['raw_seconds'] = doubleval($value['seconds']) + doubleval($clientj6['seconds']);
-
 			$tempContainer['hours'] = intval($tempContainer['raw_seconds'] / (60 * 60));
-			// $tempContainer['minutes'] = intval($tempContainer['raw_seconds'] / 60);
 			$tempContainer['minutes'] = 0;
 			$tempContainer['seconds'] = intval($tempContainer['raw_seconds'] % 60);
 			$tempContainer['leads'] = intval($dialableLeads);
-
-			// $tempContainer['cxfer']  = $_5CXFER['generated'];
 			$tempContainer['cxfer']  = BarryOptLog::getCountToday();
 			$clientVb[$key] =  $tempContainer;
 		}
 		/*compute the total*/
+
 
 		/*file uploaded*/
 		$fileUploadedObj = new ClientUploadedData;
