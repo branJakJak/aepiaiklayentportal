@@ -156,6 +156,20 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
         
         <?php $this->endWidget(); ?>
 
+        <div class="row-fluid">
+            <?php
+                $this->beginWidget('zii.widgets.CPortlet', array(
+                    'title'=>'Leads and status',
+                ));
+            ?>
+            <?php 
+                $this->renderPartial('leadsAndStatus', array('leadsAndStatusDataProvider'=>$leadsAndStatusDataProvider));
+            ?>
+            <?php
+                $this->endWidget();
+            ?>
+        </div>
+
 
         <div class="row-fluid">
             <div class="span4 well text-center">
@@ -230,7 +244,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
         <div class="offset3 span8">
             <?php
                 $this->beginWidget('zii.widgets.CPortlet', array(
-                    'title'=>'Leads and Status',
+                    'title'=>'Export and Status',
                 ));
             ?>
             
@@ -256,13 +270,11 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
             </div>
             <div class="clearfix"></div>
             <br>
-            <?php 
-                $this->renderPartial('leadsAndStatus', array('leadsAndStatusDataProvider'=>$leadsAndStatusDataProvider));
-            ?>
 
             <?php
                 $this->endWidget();
             ?>
+
             <hr>
             <?php
                 $this->beginWidget('zii.widgets.CPortlet', array(

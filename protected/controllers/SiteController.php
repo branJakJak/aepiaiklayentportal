@@ -41,11 +41,9 @@ class SiteController extends Controller
 	public function actionIndex()
 	{
 		$dialableLeads = 0;
-		// $leadsAndStatusDataProvider1 = new LeadsStatusDataProvider('test');
-		// $leadsAndStatusDataProvider2 = new LeadsStatusDataProvider('test');
+		$leadsAndStatusDataProvider1 = new LeadsStatusDataProvider('2262016');
+		$leadsAndStatusDataProvider2 = new LeadsStatusDataProvider('22920162');
 
-		$leadsAndStatusDataProvider1 = new TestLeadStatusDataProvider();
-		$leadsAndStatusDataProvider2 = new TestLeadStatusDataProvider();
 
 		if (  isset($_GET['listid']) && $_GET['listid'] == '1503,1504') {
 			$leadsAndStatusDataProvider1 = new LeadsStatusDataProvider('1503');
