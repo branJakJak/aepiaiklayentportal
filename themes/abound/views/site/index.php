@@ -27,6 +27,9 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
     #balanceGrid > table > tbody > tr > td{
         text-align: center;
     }
+    #content > div > div.span8 > div.row-fluid > div > h3 > small{
+        font-size: 25px;
+    }
 </style>
 
 <?php 
