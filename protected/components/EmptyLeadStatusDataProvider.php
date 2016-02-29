@@ -5,7 +5,7 @@
 class EmptyLeadStatusDataProvider extends CArrayDataProvider
 {
 	
-   function __construct($listid)
+   function __construct()
     {
         $emptyLeadData = array(
         	array(
