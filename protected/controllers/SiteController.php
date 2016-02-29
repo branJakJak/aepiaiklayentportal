@@ -72,7 +72,7 @@ class SiteController extends Controller
 		}
 
 		/*check if campaign_action*/
-		if (isset($_GET['campaign_action'])) {
+		if (isset($_GET['campaign_action']) && !empty($_GET['campaign_action'])) {
 			$campaignStatusUpdater = null;
 			if ($_GET['campaign_action'] === 'start') {
 				$campaignStatusUpdater = new ActivateCampaign($currentCampaignSelected);
