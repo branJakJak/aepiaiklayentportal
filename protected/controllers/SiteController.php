@@ -98,7 +98,7 @@ class SiteController extends Controller
 		$totalRawSeconds = $clientDashboard[0]['seconds'];
 		$totalRawSeconds += intval($anotherSeconds[0]['seconds']);
 		$ppminc = $clientDashboard['ppminc'];
-		$diallableLeads = $clientDashboard['leads'];
+		$diallableLeads = $clientDashboard[0]['leads'];
 		$totalExpended = ( $totalRawSeconds / 60 ) * $ppminc;
 		$remainingBalance = $updatedInitBalance - $totalExpended;
 		$hours = $totalRawSeconds / (60*60);
