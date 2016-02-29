@@ -30,6 +30,9 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
     #content > div > div.span8 > div.row-fluid > div > h3 > small{
         font-size: 25px;
     }
+    #content > div > div.span8 > div.row-fluid > div:nth-child(4){
+        margin-left: 109px;
+    }
 </style>
 
 <?php 
