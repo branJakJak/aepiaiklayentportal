@@ -102,7 +102,7 @@ class SiteController extends Controller
 		$totalExpended = ( $totalRawSeconds / 60 ) * $ppminc;
 		$remainingBalance = $updatedInitBalance - $totalExpended;
 		$hours = $totalRawSeconds / (60*60);
-		$minutes = $totalRawSeconds / 60;
+		$minutes = intval($totalRawSeconds / 60);
 		$seconds = $totalRawSeconds % 60;
 		$leads = BarryOptLog::getCountToday();
 
