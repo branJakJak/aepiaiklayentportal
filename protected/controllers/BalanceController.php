@@ -63,6 +63,7 @@ class BalanceController extends Controller
 		{
 			$model->attributes=$_POST['BalanceLog'];
 			if($model->save()){
+				Yii::app()->user->setFlash("success","Amount of $model->current_balance was loaded");
 				$this->redirect(array('/home'));
 				// $this->redirect(array('view','id'=>$model->id));
 			}
