@@ -60,31 +60,8 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                 'htmlOptions' => array('style'=>'text-align: left;padding-left: 20px;')
             ));
             ?>
-            <h5>
-                <span class="icon-download"></span>
-                <?php
-                    echo CHtml::link("Export Data <span class='label label-info'>".BarryOptLog::getCountAll()."</span>", array('/export'));
-                ?>
-            </h5>
-            <hr>
-            <h5>
-                <span class="icon-calendar"></span>
-                <?php
-                    echo CHtml::link("Export Today  <span class='label label-info'>".BarryOptLog::getCountToday()."</span>",  array('/export/today'));
-                ?>
-            </h5>
-            <hr>
-            
-            <h5>
-                <span class="icon-calendar"></span>
-                <?php
-                    echo CHtml::link("Export Range", "#"  , array("onclick"=>'$("#exportModal").dialog("open"); return false;'));
-                ?>
-            </h5>
-
 
             <?php if (Yii::app()->user->checkAccess('administrator')): ?>
-                <hr>
                 <h5>
                     <span class="icon-remove"></span>
                     <?php
@@ -95,16 +72,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
 
             <?php $this->endWidget(); ?>
             <div class="clearfix"></div>
-        <?php endif; ?>
-        <?php if (Yii::app()->user->checkAccess('exporter')): ?>
-            <h5>
-                <span class="icon-calendar"></span>
-                <?php
-                    echo CHtml::link("Export Today  <span class='label label-info'>".BarryOptLog::getCountToday()."</span>",  array('/export/today'));
-                ?>
-            </h5>
-            <hr>
-        <?php endif ?>
+            <?php endif; ?>
     </div>
 
     <div class="span8" >
@@ -120,6 +88,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                 'error' => array('block' => true, 'fade' => true, 'closeText' => '×'),
             ),
         )); ?>    
+
         <?php if (!Yii::app()->user->checkAccess('exporter')): ?>
         <?php
             $this->beginWidget('zii.widgets.CPortlet', array(
@@ -264,36 +233,33 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     'title'=>'Leads and Status',
                 ));
             ?>
-
-            <?php echo CHtml::beginForm(array('/site/index'), 'GET',array('id'=>'quickFilterData')); ?>
-                Load Source/Campaign<br>
-                <?php 
-                    echo CHtml::dropDownList('listid', @$_GET['listid'], array(
-                        "Campaign1"=>"Campaign1 (ACTIVE)",
-                        "Campaign2"=>"Campaign2 (ACTIVE)",
-                        "Campaign3"=>"Campaign3 (INACTIVE)",
-                        "Campaign4"=>"Campaign4 (INACTIVE)"
-                    ), array('prompt'=>'Select Campaign','onchange'=>'submitFilterForm(this)')); ?>
-                <br>
-                <div class="btn-group">
-                    <button type="submit" class="btn btn-primary btn-large" name="campaign_action" value="start">Start</button>
-                    <button type="submit" class="btn btn-danger btn-large" name="campaign_action" value="stop">Stop</button>
-                </div>
-            <?php echo CHtml::endForm(); ?>
-
-
+            
+            <div class="span8" style="padding: 22px;">
+                <?php echo CHtml::beginForm(array('/site/index'), 'GET',array('id'=>'quickFilterData')); ?>
+                    Load Source/Campaign<br>
+                    <?php 
+                        echo CHtml::dropDownList('listid', @$_GET['listid'], array(
+                            "Campaign1"=>"Campaign1 (ACTIVE)",
+                            "Campaign2"=>"Campaign2 (ACTIVE)",
+                            "Campaign3"=>"Campaign3 (INACTIVE)",
+                            "Campaign4"=>"Campaign4 (INACTIVE)"
+                        ), array('prompt'=>'Select Campaign','onchange'=>'submitFilterForm(this)')); ?>
+                    <br>
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-primary btn-large" name="campaign_action" value="start">Start</button>
+                        <button type="submit" class="btn btn-danger btn-large" name="campaign_action" value="stop">Stop</button>
+                    </div>
+                <?php echo CHtml::endForm(); ?>
+            </div>
+            <div class="span4">
+                <?php $this->renderPartial('_export', array()); ?>
+            </div>
+            <div class="clearfix"></div>
+            <br>
             <?php 
-                $this->widget('zii.widgets.grid.CGridView', array(
-                        /*'type'=>'striped bordered condensed',*/
-                        'htmlOptions'=>array('class'=>'table table-striped table-bordered table-condensed'),
-                        'dataProvider'=>$leadsAndStatusDataProvider,
-                        'template'=>"{items}",
-                        'columns'=>array(
-                            array('name'=>'status', 'header'=>'Status'),
-                            array('name'=>'lead', 'header'=>'Lead'),
-                        ),
-                    )); 
+                $this->renderPartial('leadsAndStatus', array('leadsAndStatusDataProvider'=>$leadsAndStatusDataProvider));
             ?>
+
             <?php
                 $this->endWidget();
             ?>
@@ -303,38 +269,9 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     'title'=>'Chart',
                 ));
             ?>
-            <?php
-                $this->widget(
-                    'yiiwheels.widgets.highcharts.WhHighCharts',
-                    array(
-                        'pluginOptions' => array(
-                                "chart"=>array(
-                                        "type"=>'pie'
-                                    ),
-                                "title"=>"Leads and status report",
-                                "pie"=>array(
-                                        "allowPointSelect"=>true,
-                                        "cursor"=>'pointer',
-                                        "dataLabels"=>array(
-                                                'enabled'=> false,
-                                                // 'format'=> '<b>{point.name}</b>: {point.percentage:.1f} %',
-                                                // 'style'=> array(
-                                                //     'color'=> "(Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'"
-                                                // )                               
-                                            ),
-                                        "showInLegend"=>true
-                                    ),
-                                "series"=>array(
-                                        array(
-                                                "Name"=>"Brands",
-                                                "colorByPoint"=>true,
-                                                "data"=>$chartDataProvider
-                                            )
-                                    )
-                            ),
-                    )
-                );
-            ?>    
+            <?php 
+                echo $this->renderPartial('_chart', array('chartDataProvider'=>$chartDataProvider),true);
+            ?>
             <?php
                 $this->endWidget();
             ?>
