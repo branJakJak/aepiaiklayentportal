@@ -47,6 +47,20 @@ class SiteController extends Controller
 				"2262016"=>"PENSION1",
 				"22920162"=>"Funeral1"
 			);
+		$criteria = new CDbCriteria;
+		$criteria->order = "date_created DESC";
+		$currentBalance = BalanceLog::model()->find($criteria);
+		$updatedInitBalance = 300;
+		if ($currentBalance) {
+			$updatedInitBalance = $currentBalance->current_balance;
+		}else{
+			$currentBalance->current_balance = 300;
+			$currentBalance->save();
+		}
+
+
+
+
 		$leadsAndStatusDataProvider = new LeadsStatusDataProvider('2262016');
 		$currentCampaignSelected = "PENSION1";
 		if (  isset($_GET['listid'])) {
@@ -78,43 +92,19 @@ class SiteController extends Controller
 		$chartDataProvider = $chartDataObj->getData();
 
 		/* client data */
-		$clientVb = Yii::app()->askteriskDb->createCommand("select * from client_panel")->queryAll();
-		$clientj6 = Yii::app()->askteriskDb->createCommand("select * from clientj6_sec_today")->queryAll();
-		$clientj6 = $clientj6[0];
-		// $_5CXFER = Yii::app()->askteriskDb->createCommand("select * from `5cxfer_today`")->queryRow();
-		$criteria = new CDbCriteria;
-		$criteria->order = "date_created DESC";
-		$currentBalance = BalanceLog::model()->find($criteria);
-		$updatedInitBalance = 300;
-		foreach ($clientVb as $key => $value) {
-			
-			if ($currentBalance) {
-				$updatedInitBalance = $currentBalance->current_balance;
-			}else{
-				$currentBalance->current_balance = 300;
-				$currentBalance->save();
-			}
-			$tempContainer = $clientVb[$key];
-			if ( !is_null(@$clientj6) && isset($clientj6['seconds'])) {
-				$tempContainer['raw_seconds'] = doubleval($value['seconds']) + doubleval($clientj6['seconds']);
-			}
-			$tempContainer['raw_seconds'] = doubleval($value['seconds']);
-			$tempContainer['id'] = uniqid();
-			$tempContainer['total'] = (  ( doubleval($tempContainer['raw_seconds']) ) / 60  ) * doubleval($value['ppminc']);
-			$tempContainer['balance'] = doubleval($updatedInitBalance);
-			$tempContainer['balance'] -= doubleval($tempContainer['total']);
-            $tempContainer['total'] = '£ ' .sprintf("%.2f", $tempContainer['total']);
-			$tempContainer['balance'] = '£ '.sprintf("%.2f", $tempContainer['balance']);
-			$tempContainer['raw_seconds'] = doubleval($value['seconds']) + doubleval($clientj6['seconds']);
-			$tempContainer['hours'] = intval($tempContainer['raw_seconds'] / (60 * 60));
-			$tempContainer['minutes'] = 0;
-			$tempContainer['seconds'] = intval($tempContainer['raw_seconds'] % 60);
-			$tempContainer['leads'] = intval($dialableLeads);
-			$tempContainer['cxfer']  = BarryOptLog::getCountToday();
-			$clientVb[$key] =  $tempContainer;
-		}
-		/*compute the total*/
+		$clientDashboard = Yii::app()->askteriskDb->createCommand("select * from client_panel")->queryAll();
+		$anotherSeconds = Yii::app()->askteriskDb->createCommand("select * from clientj6_sec_today")->queryAll();
 
+		$totalRawSeconds = $clientDashboard[0]['seconds'];
+		$totalRawSeconds += intval($anotherSeconds[0]['seconds']);
+		$ppminc = $clientDashboard['ppminc'];
+		$diallableLeads = $clientDashboard['leads'];
+		$totalExpended = ( $totalRawSeconds / 60 ) * $ppminc;
+		$remainingBalance = $updatedInitBalance - $totalExpended;
+		$hours = $totalRawSeconds / (60*60);
+		$minutes = $totalRawSeconds / 60;
+		$seconds = $totalRawSeconds % 60;
+		$leads = BarryOptLog::getCountToday();
 
 		/*file uploaded*/
 		$fileUploadedObj = new ClientUploadedData;
@@ -134,9 +124,24 @@ class SiteController extends Controller
 			}
 		}
 
-
-
-		$this->render('index',compact('clientVb','fileUploadedArr','exportModel','leadsAndStatusDataProvider','chartDataProvider','currentCampaignSelected'));
+		$this->render('index',compact(
+				'clientVb',
+				'fileUploadedArr',
+				'exportModel',
+				'leadsAndStatusDataProvider',
+				'chartDataProvider',
+				'currentCampaignSelected',
+				"totalRawSeconds",
+				"totalRawSeconds",
+				"ppminc",
+				"totalExpended",
+				"remainingBalance",
+				"hours",
+				"minutes",
+				"seconds",
+				"leads",
+				'diallableLeads'
+			));
 	}
 	public function actionClientRequest()
 	{

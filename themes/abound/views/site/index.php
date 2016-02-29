@@ -159,7 +159,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
         <div class="row-fluid">
             <?php
                 $this->beginWidget('zii.widgets.CPortlet', array(
-                    'title'=>'Leads and status :' . $currentCampaignSelected,
+                    'title'=>'Leads and status : ' . $currentCampaignSelected,
                 ));
             ?>
             <?php 
@@ -178,7 +178,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     Diallable Leads
                     <hr>
                     <small>
-                        <?php echo rand(0, 5000) ?>
+                        <?php echo $diallableLeads ?>
                     </small>
                 </h3>
             </div>
@@ -188,17 +188,17 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     Credit Used
                     <hr>
                     <small>
-                        <?php echo rand(0, 5000) ?>
+                        <?php echo $totalExpended ?>
                     </small>
                 </h3>
             </div>
             <div class="span4 well text-center">
                 <h3>
                     <img src="//icons.iconarchive.com/icons/paomedia/small-n-flat/48/money-icon.png"> <br>
-                    Balance
+                    Remaining Balance
                     <hr>
                     <small>
-                        <?php echo rand(0, 5000) ?>
+                        <?php echo $remainingBalance ?>
                     </small>
                 </h3>
             </div>
@@ -208,7 +208,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     5 Press
                     <hr>
                     <small>
-                        <?php echo rand(0, 5000) ?>
+                        <?php echo $leads ?>
                     </small>
                 </h3>
             </div>
@@ -218,7 +218,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     Total Minutes
                     <hr>
                     <small>
-                        <?php echo rand(0, 5000) ?>
+                        <?php echo $minutes ?>
                     </small>
                 </h3>
             </div>
