@@ -62,23 +62,16 @@ class SiteController extends Controller
 
 
 		$leadsAndStatusDataProvider = new LeadsStatusDataProvider('2262016');
-		$currentCampaignSelected = "PENSION1";
+		$currentCampaignSelected = null;
 		if (  isset($_GET['listid'])) {
 			$tempContainer = intval($_GET['listid']);
 			$leadsAndStatusDataProvider = new LeadsStatusDataProvider($tempContainer);
-			$currentCampaignSelected = "Funeral1";
+			$currentCampaignSelected = $campaignIdMap[$_GET['listid']];
 		}
-
-
-
 
 		/*check if campaign_action*/
 		if (isset($_GET['campaign_action'])) {
 			$campaignStatusUpdater = null;
-			$campaignName = null;
-			if (isset($_GET['listid'])) {
-				$campaignName = $campaignIdMap[$_GET['listid']];
-			}
 			if ($_GET['campaign_action'] === 'start') {
 				$campaignStatusUpdater = new ActivateCampaign($campaignName);
 			}else if ($_GET['campaign_action'] === 'stop') {
