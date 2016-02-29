@@ -63,7 +63,7 @@ class SiteController extends Controller
 
 
 		$leadsAndStatusDataProvider = new LeadsStatusDataProvider('2262016');
-		$currentCampaignSelected = null;
+		$currentCampaignSelected = "PENSION1";
 		if (  isset($_GET['listid'])) {
 			$tempContainer = intval($_GET['listid']);
 			$leadsAndStatusDataProvider = new LeadsStatusDataProvider($tempContainer);
