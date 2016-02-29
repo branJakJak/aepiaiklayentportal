@@ -94,22 +94,41 @@ class SiteController extends Controller
 		$clientDashboard = Yii::app()->askteriskDb->createCommand("select * from client_panel")->queryAll();
 		$anotherSeconds = Yii::app()->askteriskDb->createCommand("select * from clientj6_sec_today")->queryAll();
 
-		$totalRawSeconds = $clientDashboard[0]['seconds'];
-		$totalRawSeconds += intval($anotherSeconds[0]['seconds']);
-		$ppminc = $clientDashboard[0]['ppminc'];
-		$diallableLeads = $clientDashboard[0]['leads'];
-		// LOOK for New Leads row
-		foreach ($leadsAndStatusDataProvider->data as $key => $value) {
-			if (isset($value['New Leads'])) {
-				$diallableLeads = $value['New Leads'];
+		$totalRawSeconds = 0;
+		$ppminc = 0;
+		$diallableLeads =0;
+		$totalExpended =0;
+		$remainingBalance =0;
+		$hours =0;
+		$minutes =0;
+		$seconds =0;
+		$leads =0;
+
+		$clientDashboardVariables = new EmptyClientDashboardVariables();
+		if (  isset($_GET['listid'])) {
+			//@TODO
+			$clientDashboardVariables = new ClientDashboardVariables($_GET['listid']);
+			//@TODO
+			$totalRawSeconds = $clientDashboard[0]['seconds'];
+			$totalRawSeconds += intval($anotherSeconds[0]['seconds']);
+			$ppminc = $clientDashboard[0]['ppminc'];
+			$diallableLeads = $clientDashboard[0]['leads'];
+			// LOOK for New Leads row
+			foreach ($leadsAndStatusDataProvider->data as $key => $value) {
+				if (isset($value['New Leads'])) {
+					$diallableLeads = $value['New Leads'];
+				}
 			}
+			$totalExpended = ( $totalRawSeconds / 60 ) * doubleval($ppminc);
+			$remainingBalance = $updatedInitBalance - $totalExpended;
+			$hours = $totalRawSeconds / (60*60);
+			$minutes = intval($totalRawSeconds / 60);
+			$seconds = $totalRawSeconds % 60;
+			$leads = BarryOptLog::getCountToday();
 		}
-		$totalExpended = ( $totalRawSeconds / 60 ) * doubleval($ppminc);
-		$remainingBalance = $updatedInitBalance - $totalExpended;
-		$hours = $totalRawSeconds / (60*60);
-		$minutes = intval($totalRawSeconds / 60);
-		$seconds = $totalRawSeconds % 60;
-		$leads = BarryOptLog::getCountToday();
+
+
+
 
 		/*file uploaded*/
 		$fileUploadedObj = new ClientUploadedData;
