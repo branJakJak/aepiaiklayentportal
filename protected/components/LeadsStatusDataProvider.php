@@ -13,7 +13,7 @@ class LeadsStatusDataProvider extends CArrayDataProvider
         $combinedLeadData = array();
         foreach ($rawData as $currentRowKey => $currentRowValue) {
             $combinedLeadData[] = array(
-            "id"=>$currentRowKey,
+                "id"=>$currentRowKey,
                 "status"=>$currentRowValue['status_name'],
                 "lead"=>intval($currentRowValue['COUNT(vicidial_list.lead_id)'])
             );

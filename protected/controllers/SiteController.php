@@ -98,6 +98,12 @@ class SiteController extends Controller
 		$totalRawSeconds += intval($anotherSeconds[0]['seconds']);
 		$ppminc = $clientDashboard[0]['ppminc'];
 		$diallableLeads = $clientDashboard[0]['leads'];
+		// LOOK for New Leads row
+		foreach ($leadsAndStatusDataProvider->data as $key => $value) {
+			if (isset($value['New Leads'])) {
+				$diallableLeads = $value['New Leads'];
+			}
+		}
 		$totalExpended = ( $totalRawSeconds / 60 ) * doubleval($ppminc);
 		$remainingBalance = $updatedInitBalance - $totalExpended;
 		$hours = $totalRawSeconds / (60*60);
