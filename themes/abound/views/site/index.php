@@ -354,9 +354,10 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
         document.getElementById("quickFilterData").submit();
     }
     function confirmCampaignStatusUpdate (status) {
-        var campaignSelected = document.getElementById("currentSelectedCampaign").value;
+        var campaignSelected = document.getElementById("currentSelectedCampaign");
+        campaignSelected = campaignSelected.options[campaignSelected.selectedIndex].innerHTML;
         if (confirm("Are you sure you want to "+status+ " " +campaignSelected)) {
             document.getElementById("quickFilterData").submit();
         }
-    }    
+    }
 </script>
