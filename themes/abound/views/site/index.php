@@ -182,86 +182,58 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
         <?php $this->endWidget(); ?>
 
 
-        <?php
-        $this->beginWidget('zii.widgets.CPortlet', array(
-            'title' => '<span class="icon-user"></span>Client VB',
-            'titleCssClass' => ''
-        ));
-        ?>
-        <br>
-        <div class="alert alert-info">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <strong><span class=' icon-info-sign'></span> "This Data will refresh every 5 minutes"</strong>
-        </div>
-
-        <?php $this->widget('yiiwheels.widgets.grid.WhGridView', array(
-            'id' => "balanceGrid",
-            'type' => 'striped bordered condensed',
-            'dataProvider' => $gridDataProvider,
-            'template' => "{summary}\n{items}\n{pager}",
-            'columns' => array(
-                array(
-                    'header' => 'Balance',
-                    'type' => 'raw',
-                    'value' => '$data["balance"]',
-                ),
-                array(
-                    'header' => 'Credit Used',
-                    'type' => 'raw',
-                    'value' => '$data["total"]',
-                ),
-                // array(
-                //     'header' => 'Total Calls Made',
-                //     'type' => 'raw',
-                //     'value' => '$data["calls"]',
-                // ),
-                array(
-                    'header' => 'Dialable Leads',
-                    'type' => 'raw',
-                    'value' => '$data["leads"]',
-                ),
-
-                array(
-                    'header' => '5 PRESS',
-                    'type' => 'raw',
-                    'value' => '$data["cxfer"]',
-                ),
-                // 'total',
-                // 'balance',
-                // 'clientj_sec_count',
-                // array(
-                //     'header'=>'Hours',
-                //     'type'=>'raw',
-                //     'value'=>'$data["hours"]',
-                // ),
-                array(
-                    'header'=>'Total Minutes',
-                    'type'=>'raw',
-                    'value'=>'$data["minutes"]',
-                ),
-                // array(
-                //     'header'=>'Seconds',
-                //     'type'=>'raw',
-                //     'value'=>'$data["seconds"]',
-                // ),
-                // array(
-                //     'header' => 'Total in Seconds',
-                //     'type' => 'raw',
-                //     'value' => '$data["raw_seconds"]',
-                // ),
-                // array(
-                //     'header' => 'Rate',
-                //     'type' => 'raw',
-                //     'value' => '$data["ppminc"]',
-                // ),
-                // 'ppminc',
-                // 'raw_seconds',
-                // 'calls',
-                // 'generated',
-                // 'leads',
-            ),
-        )); ?>
-        <?php $this->endWidget(); ?>
+        <div class="row-fluid">
+            <div class="span4 well text-center">
+                <h3>
+                    <img src="//icons.iconarchive.com/icons/graphicloads/100-flat/48/phone-call-icon.png"><br>
+                    Diallable Leads
+                    <hr>
+                    <small>
+                        <?php echo rand(0, 5000) ?>
+                    </small>
+                </h3>
+            </div>
+            <div class="span4 well text-center">
+                <h3>
+                    <img src="//icons.iconarchive.com/icons/uiconstock/e-commerce/48/credit-card-icon.png"> <br>
+                    Credit Used
+                    <hr>
+                    <small>
+                        <?php echo rand(0, 5000) ?>
+                    </small>
+                </h3>
+            </div>
+            <div class="span4 well text-center">
+                <h3>
+                    <img src="//icons.iconarchive.com/icons/paomedia/small-n-flat/48/money-icon.png"> <br>
+                    Balance
+                    <hr>
+                    <small>
+                        <?php echo rand(0, 5000) ?>
+                    </small>
+                </h3>
+            </div>
+            <div class="span4 well text-center">
+                <h3>
+                    <img src="//icons.iconarchive.com/icons/graphicloads/colorful-long-shadow/48/Check-2-icon.png"> <br>
+                    5 Press
+                    <hr>
+                    <small>
+                        <?php echo rand(0, 5000) ?>
+                    </small>
+                </h3>
+            </div>
+            <div class="span4 well text-center">
+                <h3>
+                    <img src="//icons.iconarchive.com/icons/graphicloads/flat-finance/48/time-icon.png"> <br>
+                    Total Minutes
+                    <hr>
+                    <small>
+                        <?php echo rand(0, 5000) ?>
+                    </small>
+                </h3>
+            </div>
+        </div><!-- end of row-fluid -->
         <?php endif ?>
     </div>
     <hr>
