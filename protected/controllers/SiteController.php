@@ -62,8 +62,9 @@ class SiteController extends Controller
 		/*END - setup initial balance*/
 
 
-		$leadsAndStatusDataProvider = new LeadsStatusDataProvider('2262016');
-		$currentCampaignSelected = "PENSION1";
+		$leadsAndStatusDataProvider = new EmptyLeadStatusDataProvider();
+		$currentCampaignSelected = null;
+
 		if (  isset($_GET['listid'])) {
 			$tempContainer = intval($_GET['listid']);
 			$leadsAndStatusDataProvider = new LeadsStatusDataProvider($tempContainer);
@@ -81,7 +82,6 @@ class SiteController extends Controller
 				Yii::app()->user->setFlash("success","Success! Campaign $currentCampaignSelected deactivated.");
 			}
 			$campaignStatusUpdater->updateStatus();
-
 		}
 
 		//Pass the combined data for chart
