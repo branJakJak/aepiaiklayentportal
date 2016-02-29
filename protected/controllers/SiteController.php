@@ -116,7 +116,7 @@ class SiteController extends Controller
 			// LOOK for New Leads row
 			// print_r($leadsAndStatusDataProvider->data);
 			// die();
-			foreach ($leadsAndStatusDataProvider->data[0] as $key => $value) {
+			foreach ($leadsAndStatusDataProvider->data as $key => $value) {
 				if ($value['status'] === 'New Lead' || $value['status'] === 'New Leads') {
 					$diallableLeads = $value['lead'];
 				}
