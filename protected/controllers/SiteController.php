@@ -117,9 +117,10 @@ class SiteController extends Controller
 			// print_r($leadsAndStatusDataProvider->data);
 			// die();
 			foreach ($leadsAndStatusDataProvider->data[0] as $key => $value) {
-				if (isset($value['status']) === 'New Leads') {
+				if ($value['status'] === 'New Leads') {
 					$diallableLeads = $value['lead'];
 				}
+
 			}
 			$totalExpended = ( $totalRawSeconds / 60 ) * doubleval($ppminc);
 			$remainingBalance = $updatedInitBalance - $totalExpended;
