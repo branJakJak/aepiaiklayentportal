@@ -372,25 +372,25 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
   <source src="<?php echo $baseUrl ?>/recordings/Boiler.WAV" type="audio/ogg">
 </audio>
 <audio id="Car_Finance">
-<source src="<?php echo $baseUrl ?>/recordings/CarFinance1.mp3" type="audio/ogg">
+<source src="<?php echo $baseUrl ?>/recordings/CarFinance1.mp3" type="audio/mp3">
 </audio>
 <audio id="Debt_3000">
-<source src="<?php echo $baseUrl ?>/recordings/Debt_3000.wav" type="audio/ogg">
+<source src="<?php echo $baseUrl ?>/recordings/Debt_3000.WAV" type="audio/ogg">
 </audio>
 <audio id="Debt_5000">
-<source src="<?php echo $baseUrl ?>/recordings/Debt_5000.mp3" type="audio/ogg">
+<source src="<?php echo $baseUrl ?>/recordings/Debt_5000.mp3" type="audio/mp3">
 </audio>
 <audio id="FlightDelay">
-<source src="<?php echo $baseUrl ?>/recordings/FlightDelay.mp3" type="audio/ogg">
+<source src="<?php echo $baseUrl ?>/recordings/FlightDelay.mp3" type="audio/mp3">
 </audio>
 <audio id="Funeral">
-<source src="<?php echo $baseUrl ?>/recordings/Funeral.mp3" type="audio/ogg">
+<source src="<?php echo $baseUrl ?>/recordings/Funeral.mp3" type="audio/mp3">
 </audio>
 <audio id="PBA">
-<source src="<?php echo $baseUrl ?>/recordings/PBA.mp3" type="audio/ogg">
+<source src="<?php echo $baseUrl ?>/recordings/PBA.mp3" type="audio/mp3">
 </audio>
 <audio id="PI">
-<source src="<?php echo $baseUrl ?>/recordings/Pi.mp3" type="audio/ogg">
+<source src="<?php echo $baseUrl ?>/recordings/Pi.mp3" type="audio/mp3">
 </audio>
 <audio id="MISSOLD_PENSION">
 <source src="<?php echo $baseUrl ?>/recordings/MISSOLD_PENSION.wav" type="audio/ogg">

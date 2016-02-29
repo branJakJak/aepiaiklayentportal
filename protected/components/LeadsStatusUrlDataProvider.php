@@ -10,7 +10,7 @@ class LeadsStatusUrlDataProvider extends CArrayDataProvider
         // get all leads from 1501
         $fetcher = new LeadDataFetcher();
         // $rawData = $fetcher->retrieveRemoteData();
-        $rawData = $fetcher->getDataFromDialer("5555");
+        $rawData = $fetcher->getDataFromDialer("888");
         foreach ($rawData as $currentRowKey => $currentRowValue) {
             $combinedLeadData[] = array(
                 "id"=>$currentRowKey,
