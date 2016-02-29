@@ -159,7 +159,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
         <div class="row-fluid">
             <?php
                 $this->beginWidget('zii.widgets.CPortlet', array(
-                    'title'=>'Leads and status',
+                    'title'=>'Leads and status :' . $currentCampaignSelected,
                 ));
             ?>
             <?php 
@@ -253,10 +253,8 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     Load Source/Campaign<br>
                     <?php 
                         echo CHtml::dropDownList('listid', @$_GET['listid'], array(
-                            "Campaign1"=>"Campaign1 (ACTIVE)",
-                            "Campaign2"=>"Campaign2 (ACTIVE)",
-                            "Campaign3"=>"Campaign3 (INACTIVE)",
-                            "Campaign4"=>"Campaign4 (INACTIVE)"
+                            "2262016"=>"Pension1",
+                            "22920162"=>"Funeral1",
                         ), array('prompt'=>'Select Campaign','onchange'=>'submitFilterForm(this)')); ?>
                     <br>
                     <div class="btn-group">

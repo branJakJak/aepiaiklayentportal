@@ -37,47 +37,19 @@ class SiteController extends Controller
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
+	 * "2262016"=>"PENSION1"
+	 * "22920162"=>"Funeral1"
 	 */
 	public function actionIndex()
 	{
 		$dialableLeads = 0;
-		$leadsAndStatusDataProvider1 = new LeadsStatusDataProvider('2262016');
-		$leadsAndStatusDataProvider2 = new LeadsStatusDataProvider('22920162');
-
-
-		if (  isset($_GET['listid']) && $_GET['listid'] == '1503,1504') {
-			$leadsAndStatusDataProvider1 = new LeadsStatusDataProvider('1503');
-			$leadsAndStatusDataProvider2 = new LeadsStatusDataProvider('1504');
+		$leadsAndStatusDataProvider = new LeadsStatusDataProvider('2262016');
+		$currentCampaignSelected = "PENSION1";
+		if (  isset($_GET['listid'])) {
+			$tempContainer = intval($_GET['listid']);
+			$leadsAndStatusDataProvider = new LeadsStatusDataProvider($tempContainer);
+			$currentCampaignSelected = "Funeral1";
 		}
-		//@TODO - combine leads status
-		$data1Arr = $leadsAndStatusDataProvider1->data;
-		$data2Arr = $leadsAndStatusDataProvider2->data;
-		$tempClone = array();
-		if (!empty($data1Arr)) {
-			$tempClone = $data1Arr;
-		}else if (!empty($data2Arr)) {
-			$tempClone = $data2Arr;
-		}
-		$combinedArr = array();
-		foreach ($tempClone as $key => $value) {
-			$first = $data1Arr[$key]['lead'];
-			$second = $data2Arr[$key]['lead'];
-			$combinedArr[] = array(
-					'id'=>$key,
-					'status'=>$tempClone[$key]['status'],
-					'lead'=>intval($first) + intval($second)
-				);
-			if ($tempClone[$key]['status'] == 'New Lead') {
-				$dialableLeads = intval($first) + intval($second);
-			}
-		}
-
-
-		$leadsAndStatusDataProvider = new CArrayDataProvider($combinedArr,array(
-				'id'=>'id',
-				'keyField'=>'id',
-			));
-		$leadsAndStatusDataProvider->pagination = false;
 
 		//Pass the combined data for chart
 		$chartDataObj = new ChartDataProvider($leadsAndStatusDataProvider->data);
@@ -147,7 +119,10 @@ class SiteController extends Controller
 				$this->redirect(array('/site/index'));
 			}
 		}
-		$this->render('index',compact('clientVb','fileUploadedArr','exportModel','leadsAndStatusDataProvider','chartDataProvider'));
+
+
+
+		$this->render('index',compact('clientVb','fileUploadedArr','exportModel','leadsAndStatusDataProvider','chartDataProvider','currentCampaignSelected'));
 	}
 	public function actionClientRequest()
 	{
