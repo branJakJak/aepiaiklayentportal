@@ -78,14 +78,12 @@ class BarryOptLog {
     }
     public static function getCountToday()
     {
-        $obj = new BarryOptLog;
-        $resColl = $obj->getAllToday();
-        return count($resColl);
+        $countAsterisk = Yii::app()->askteriskDb->createCommand("SELECT count(*) FROM asterisk.barry_5s where date(entry_time) = date(NOW())")->queryColumn();
+        return intval($countAsterisk);
     }
     public static function getCountAll()
     {
-        $obj = new BarryOptLog;
-        $resColl = $obj->getAllData();
-        return count($resColl);
+        $countAsterisk = Yii::app()->askteriskDb->createCommand("SELECT count(*) FROM asterisk.barry_5s")->queryColumn();
+        return intval($countAsterisk);
     }
 } 
