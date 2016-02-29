@@ -82,6 +82,7 @@ class SiteController extends Controller
 				Yii::app()->user->setFlash("success","Success! Campaign $currentCampaignSelected deactivated.");
 			}
 			$campaignStatusUpdater->updateStatus();
+
 		}
 
 		//Pass the combined data for chart
@@ -97,7 +98,7 @@ class SiteController extends Controller
 		$totalRawSeconds += intval($anotherSeconds[0]['seconds']);
 		$ppminc = $clientDashboard['ppminc'];
 		$diallableLeads = $clientDashboard[0]['leads'];
-		$totalExpended = ( $totalRawSeconds / 60 ) * $ppminc;
+		$totalExpended = ( $totalRawSeconds / 60 ) * doubleval($ppminc);
 		$remainingBalance = $updatedInitBalance - $totalExpended;
 		$hours = $totalRawSeconds / (60*60);
 		$minutes = intval($totalRawSeconds / 60);
