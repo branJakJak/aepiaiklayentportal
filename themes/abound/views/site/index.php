@@ -188,7 +188,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     Credit Used
                     <hr>
                     <small>
-                        <?php echo $totalExpended ?>
+                        <?php echo sprintf("%.2f", $totalExpended) ?>
                     </small>
                 </h3>
             </div>
@@ -198,7 +198,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     Remaining Balance
                     <hr>
                     <small>
-                        <?php echo $remainingBalance ?>
+                        <?php echo sprintf("%.2f", $remainingBalance) ?>
                     </small>
                 </h3>
             </div>
