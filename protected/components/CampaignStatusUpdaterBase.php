@@ -54,7 +54,8 @@ class CampaignStatusUpdaterBase
 
 	public function updateStatus()
 	{
-		$url = "https://162.250.124.167/vicidial/non_agent_api.php?";
+		// $url = "https://162.250.124.167/vicidial/non_agent_api.php?";
+		$url = "https://216.158.235.129/stick/non_agent_api.php?";
 		$httpParams = array(
 			"function"=>"toggle_campaign",
 			"source"=>"CAMPUPDATE",
