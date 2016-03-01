@@ -5,7 +5,7 @@ $this->pageTitle = Yii::app()->name;
 $baseUrl = Yii::app()->theme->baseUrl;
 
 
-$gridDataProvider = new CArrayDataProvider($clientVb);
+
 
 $fileUploadedDataProvider = new CArrayDataProvider($fileUploadedArr);
 
@@ -74,11 +74,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
             <div class="clearfix"></div>
             <?php endif; ?>
     </div>
-
     <div class="span8" >
-
-
-
         <?php
         $this->widget('bootstrap.widgets.TbAlert', array(
             'fade' => true, // use transitions?
@@ -90,141 +86,83 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
         )); ?>    
 
         <?php if (!Yii::app()->user->checkAccess('exporter')): ?>
+
+
         <?php
-            $this->beginWidget('zii.widgets.CPortlet', array(
-                'title' => '<span class="icon-picture"></span>Request Form',
-                'titleCssClass' => ''
-            ));
+            $this->renderPartial('_request_form', array());
         ?>
-        <?php echo CHtml::beginForm(array('/site/clientRequest'), 'POST',array('class'=>'well')); ?>
-            <?php echo CHtml::hiddenField('clientUpload', 'clientUpload'); ?>
-            <?php echo CHtml::hiddenField('fileName', null, array('id'=>'fileName')); ?>
-            <label>Upload the mobile numbers</label>
-            <?php $this->widget('ext.EAjaxUpload.EAjaxUpload',
-                array(
-                    'id' => 'uploadFile',
-                    'config' => array(
-                        'template' => '<div class="qq-uploader"><div class="qq-upload-drop-area"><span>Drop files here to upload</span></div><div class="qq-upload-button">Upload a file</div><ul class="qq-upload-list"></ul></div>',
-                        'action' => Yii::app()->createUrl('site/upload'),
-                        'allowedExtensions' => array("csv",'txt', 'xlsx', 'xls'),
-                        //array("jpg","jpeg","gif","exe","mov" and etc...
-                        'sizeLimit' => 10 * 1024 * 1024,
-                        // maximum file size in bytes
-                        'onComplete' => "js:
-                            function(id, fileName, responseJSON){ 
-                                document.getElementById('fileName').value = fileName;
-                            }
-                        ",
-                        'messages' => array(
-                            'typeError' => "{file} has invalid extension. Only {extensions} are allowed.",
-                            'sizeError' => "{file} is too large, maximum file size is {sizeLimit}.",
-                            'minSizeError' => "{file} is too small, minimum file size is {minSizeLimit}.",
-                            'emptyError' => "{file} is empty, please select files again without it.",
-                            'onLeave' => "The files are being uploaded, if you leave now the upload will be cancelled."
-                        ),
-                        // 'showMessage' => "js:function(message){ alert(message);}"
-                    )
-                )); 
-            ?>
-            <label>Select sound file : </label>
+
+
+        <div class="row-fluid">
+            <?php if (!Yii::app()->user->checkAccess('exporter')): ?>
+                <div class="">
+                    <?php
+                        $this->beginWidget('zii.widgets.CPortlet', array(
+                            'title'=>'Export and Status',
+                        ));
+                    ?>
+                            <div class="span8" style="padding: 22px;">
+                                <?php 
+                                    $this->renderPartial('_load_source', array());
+                                ?>
+                            </div>
+                            <div class="span4">
+                                <?php $this->renderPartial('_export', array()); ?>
+                            </div>
+                            <div class="clearfix"></div>
+                            <br>
+                    <?php
+                        $this->endWidget();
+                    ?>
+            <?php endif ?>
+            </div>
+        </div>
+
+
+
+
+        <div class="row-fluid">
             <?php 
-            
-                echo CHtml::dropDownList('soundFileName', null, array(
-                    'Boiler'=>'HCCRO',
-                    'Car_Finance'=>'Car Finance',
-                    'Debt_3000'=>'Debt - 3000',
-                    'Debt_5000'=>'Debt - 5000',
-                    'FlightDelay'=>'Flight Delay',
-                    'Funeral'=>'Funeral',
-                    'PBA'=>'PBA',
-                    'PI'=>'PI',
-                    'MISSOLD_PENSION'=>'Mis-Sold Pension',
-                    // 'ECO'=>'Eco',
-                ), array('id'=>'soundFileName','prompt'=>'Please select a sound file')); 
+                $this->renderPartial('_client_dash', compact(
+                        "totalRawSeconds",
+                        "ppminc",
+                        "totalExpended",
+                        "remainingBalance",
+                        "hours",
+                        "minutes",
+                        "seconds",
+                        "leads",
+                        'diallableLeads'                            
+                    ));
             ?>
-            <button type='button' onclick='playSoundFile(this);' style="margin-top: -10px;">
-                <span id="playIcon" class='icon icon-play'></span>
-            </button>
-            <button type='button' onclick='stopAllSoundFile(this);' style="margin-top: -10px;">
-                <span class='icon icon-stop'></span>
-            </button>
-            <button type="submit" class="btn btn-primary btn-large" style="margin-top: -14px;margin-left: 7px;">Submit</button>
-        <?php echo CHtml::endForm(); ?>
-        
-        <?php $this->endWidget(); ?>
+        </div><!-- end of row-fluid -->
+
+        <div class="row-fluid">
+            <?php 
+                $this->renderPartial('leadsAndStatus', compact('leadsAndStatusDataProvider','currentCampaignSelected'));
+            ?>
+        </div>
 
         <div class="row-fluid">
             <?php
                 $this->beginWidget('zii.widgets.CPortlet', array(
-                    'title'=>'Leads and status : ' . $currentCampaignSelected,
+                    'title'=>'Chart',
                 ));
             ?>
             <?php 
-                $this->renderPartial('leadsAndStatus', array('leadsAndStatusDataProvider'=>$leadsAndStatusDataProvider));
+                echo $this->renderPartial('_chart', array('chartDataProvider'=>$chartDataProvider),true);
             ?>
             <?php
                 $this->endWidget();
             ?>
         </div>
 
-
-        <div class="row-fluid">
-            <div class="span4 well text-center">
-                <h3>
-                    <img src="//icons.iconarchive.com/icons/graphicloads/100-flat/48/phone-call-icon.png"><br>
-                    Diallable Leads
-                    <hr>
-                    <small>
-                        <?php echo $diallableLeads ?>
-                    </small>
-                </h3>
-            </div>
-            <div class="span4 well text-center">
-                <h3>
-                    <img src="//icons.iconarchive.com/icons/uiconstock/e-commerce/48/credit-card-icon.png"> <br>
-                    Credit Used
-                    <hr>
-                    <small>
-                        <?php echo sprintf("%.2f", $totalExpended) ?>
-                    </small>
-                    <!-- <?php echo $totalExpended ?> -->
-                </h3>
-            </div>
-            <div class="span4 well text-center">
-                <h3>
-                    <img src="//icons.iconarchive.com/icons/paomedia/small-n-flat/48/money-icon.png"> <br>
-                    Remaining Balance
-                    <hr>
-                    <small>
-                        <?php echo sprintf("%.2f", $remainingBalance) ?>
-                    </small>
-                    <!-- <?php echo $remainingBalance ?> -->
-                </h3>
-            </div>
-            <div class="span4 well text-center">
-                <h3>
-                    <img src="//icons.iconarchive.com/icons/graphicloads/colorful-long-shadow/48/Check-2-icon.png"> <br>
-                    5 Press
-                    <hr>
-                    <small>
-                        <?php echo $leads ?>
-                    </small>
-                </h3>
-            </div>
-            <div class="span4 well text-center">
-                <h3>
-                    <img src="//icons.iconarchive.com/icons/graphicloads/flat-finance/48/time-icon.png"> <br>
-                    Total Minutes
-                    <hr>
-                    <small>
-                        <?php echo $minutes ?>
-                    </small>
-                </h3>
-            </div>
-        </div><!-- end of row-fluid -->
         <?php endif ?>
     </div>
     <hr>
+
+
+    <!-- imma ninja -->
     <div class="row-fluid hidden">
         <?php if (!Yii::app()->user->checkAccess('exporter')): ?>
             <div class="span4 offset3">
@@ -237,57 +175,8 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
             </div>
         <?php endif ?>
     </div>
+    <!-- end of ninja -->
     <br>
-    <div class="row-fluid">
-        <?php if (!Yii::app()->user->checkAccess('exporter')): ?>
-        <div class="offset3 span8">
-            <?php
-                $this->beginWidget('zii.widgets.CPortlet', array(
-                    'title'=>'Export and Status',
-                ));
-            ?>
-            
-            <div class="span8" style="padding: 22px;">
-                <?php echo CHtml::beginForm(array('/site/index'), 'GET',array('id'=>'quickFilterData')); ?>
-                    Load Source/Campaign<br>
-                    <?php echo CHtml::hiddenField('campaign_action', null, array('name'=>'campaign_action','id'=>'campaign_actionFld')); ?>
-                    <?php 
-                        echo CHtml::dropDownList('listid', @$_GET['listid'], array(
-                            "2262016"=>"Pension1",
-                            "22920162"=>"Funeral1",
-                        ), array('prompt'=>'Select Campaign','onchange'=>'submitFilterForm(this)','id'=>'currentSelectedCampaign','style'=>"float: left;")); ?>
-                    <br>
-                    <div class="btn-group" style="float: left;margin-left: 5px;margin-top: -25px;">
-                        <button onclick="confirmCampaignStatusUpdate('start')" type="button" class="btn btn-primary btn-large" value="start">Start</button>
-                        <button onclick="confirmCampaignStatusUpdate('stop')" type="button" class="btn btn-danger btn-large" value="stop">Stop</button>
-                    </div>
-                <?php echo CHtml::endForm(); ?>
-            </div>
-            <div class="span4">
-                <?php $this->renderPartial('_export', array()); ?>
-            </div>
-            <div class="clearfix"></div>
-            <br>
-
-            <?php
-                $this->endWidget();
-            ?>
-
-            <hr>
-            <?php
-                $this->beginWidget('zii.widgets.CPortlet', array(
-                    'title'=>'Chart',
-                ));
-            ?>
-            <?php 
-                echo $this->renderPartial('_chart', array('chartDataProvider'=>$chartDataProvider),true);
-            ?>
-            <?php
-                $this->endWidget();
-            ?>
-        <?php endif ?>
-        </div>
-    </div>
 </div>
 
 <?php 
