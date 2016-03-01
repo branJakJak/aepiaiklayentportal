@@ -190,6 +190,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     <small>
                         <?php echo sprintf("%.2f", $totalExpended) ?>
                     </small>
+                    <!-- <?php echo $totalExpended ?> -->
                 </h3>
             </div>
             <div class="span4 well text-center">
@@ -200,6 +201,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     <small>
                         <?php echo sprintf("%.2f", $remainingBalance) ?>
                     </small>
+                    <!-- <?php echo $remainingBalance ?> -->
                 </h3>
             </div>
             <div class="span4 well text-center">
