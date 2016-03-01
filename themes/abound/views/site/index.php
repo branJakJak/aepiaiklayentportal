@@ -97,8 +97,6 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
             ));
         ?>
         <?php echo CHtml::beginForm(array('/site/clientRequest'), 'POST',array('class'=>'well')); ?>
-            <h1>Request Form</h1>
-            <hr>
             <?php echo CHtml::hiddenField('clientUpload', 'clientUpload'); ?>
             <?php echo CHtml::hiddenField('fileName', null, array('id'=>'fileName')); ?>
             <label>Upload the mobile numbers</label>
@@ -150,8 +148,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
             <button type='button' onclick='stopAllSoundFile(this);' style="margin-top: -10px;">
                 <span class='icon icon-stop'></span>
             </button>
-            <br>
-            <button type="submit" class="btn btn-primary btn-large">Submit</button>
+            <button type="submit" class="btn btn-primary btn-large" style="margin-top: -14px;margin-left: 7px;">Submit</button>
         <?php echo CHtml::endForm(); ?>
         
         <?php $this->endWidget(); ?>
