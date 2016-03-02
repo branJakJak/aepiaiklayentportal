@@ -46,7 +46,9 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
         ),
     ));
 ?>
-    <?php echo CHtml::image($baseUrl.'/img/loading.gif', 'loading gif', array()); ?>
+    <div style='text-align:center'>
+    <?php echo CHtml::image($baseUrl.'/img/loading.gif', 'loading gif', array('style'=>"height: 117px;")); ?>
+    </div>
 <?php 
     $this->endWidget();
 ?>
