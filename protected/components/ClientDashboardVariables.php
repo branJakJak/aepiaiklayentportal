@@ -21,7 +21,7 @@ class ClientDashboardVariables
 		$this->updatedInitBalance = $this->updatedInitBalance[0];
 
 		$rawSeconds = $this->getRawSeconds();
-		$totalRawSeconds = intval($rawSeconds[0]);
+		$totalRawSeconds = doubleval($rawSeconds[0]);
 		
 		//look for the lead value
 		foreach ($this->leadsAndStatusDataProvider->data as $key => $value) {
@@ -65,13 +65,21 @@ EOL;
 
 	public function getRawSeconds()
 	{
+// 		$rawsecondsSqlCommandStr = <<<EOL
+// SELECT SUM(vicidial_log.length_in_sec)
+//   FROM asterisk.vicidial_log vicidial_log
+//  WHERE (vicidial_log.length_in_sec > 0) AND (vicidial_log.list_id = :list_id)
+// EOL;
+// 		$rawSecondsCommandObj = Yii::app()->askteriskDb->createCommand($rawsecondsSqlCommandStr);
+// 		$rawSecondsCommandObj->bindParam(":list_id" , $this->listid,PDO::PARAM_INT);
+// 		return $rawSecondsCommandObj->queryColumn();
+
+		$client_name = Yii::app()->params['client_name'];
 		$rawsecondsSqlCommandStr = <<<EOL
-SELECT SUM(vicidial_log.length_in_sec)
-  FROM asterisk.vicidial_log vicidial_log
- WHERE (vicidial_log.length_in_sec > 0) AND (vicidial_log.list_id = :list_id)
+		select seconds from camp_all_list_since_bal_update where client_name = :client_name
 EOL;
 		$rawSecondsCommandObj = Yii::app()->askteriskDb->createCommand($rawsecondsSqlCommandStr);
-		$rawSecondsCommandObj->bindParam(":list_id" , $this->listid,PDO::PARAM_INT);
+		$rawSecondsCommandObj->bindParam(":client_name" , $client_name);
 		return $rawSecondsCommandObj->queryColumn();
 	}
 

@@ -7,7 +7,6 @@ class LeadsStatusDataProvider extends CArrayDataProvider
     public $listid;
     function __construct($listid)
     {
-        // get all leads from 1501
         $fetcher = new LeadDataFetcher();
         $rawData = $fetcher->retrieveRemoteData($listid);
         $combinedLeadData = array();

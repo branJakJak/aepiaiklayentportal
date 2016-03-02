@@ -166,11 +166,11 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
     <div class="row-fluid hidden">
         <?php if (!Yii::app()->user->checkAccess('exporter')): ?>
             <div class="span4 offset3">
-                <?php echo CHtml::link('Start', array('/campaigns/activate'),
+                <?php echo CHtml::link('Activate', array('/campaigns/activate'),
                     array('class' => 'btn btn-primary btn-block action-buttons')); ?>
             </div>
             <div class="span4">
-                <?php echo CHtml::link('Stop', array('/campaigns/deactivate'),
+                <?php echo CHtml::link('Deactivate', array('/campaigns/deactivate'),
                     array('class' => 'btn btn-danger btn-block action-buttons')); ?>
             </div>
         <?php endif ?>
