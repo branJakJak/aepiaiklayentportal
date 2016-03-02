@@ -41,7 +41,7 @@
         ?>
         </div>
         <div class="span5" style="padding-top: 75px;">
-            <button type="submit" class="btn btn-primary btn-large" style="margin-top: -14px;margin-left: 7px;">Submit</button>
+            <button type="submit" class="btn btn-primary btn-large" style="margin-top: -14px;margin-left: 7px;position: relative;left: -102px;">Submit</button>
         </div>
 
         <div class="clearfix"></div>
