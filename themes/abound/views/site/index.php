@@ -37,6 +37,24 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
 
 <?php 
     $this->beginWidget('zii.widgets.jui.CJuiDialog',array(
+        'id'=>'loadingPleaseWait',
+        'options'=>array(
+            'title'=>'Please wait while we load the data.',
+            'autoOpen'=>false,
+            'modal'=>true,
+            'width'=>'330px',
+        ),
+    ));
+?>
+    <?php echo CHtml::image($baseUrl.'/img/loading.gif', 'loading gif', array()); ?>
+<?php 
+    $this->endWidget();
+?>
+
+
+
+<?php 
+    $this->beginWidget('zii.widgets.jui.CJuiDialog',array(
         'id'=>'exportModal',
         'options'=>array(
             'title'=>'Export Range',
@@ -45,7 +63,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
         ),
     ));
     echo $this->renderPartial('_export_range', compact('exportModel'),true);
-    $this->endWidget('zii.widgets.jui.CJuiDialog');
+    $this->endWidget();
 ?>
 
 
@@ -240,6 +258,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
         window.previousAudio.pause();
     }
     function submitFilterForm (dom) {
+        jQuery("#loadingPleaseWait").dialog("open");
         document.getElementById("quickFilterData").submit();
     }
     function confirmCampaignStatusUpdate (status) {
