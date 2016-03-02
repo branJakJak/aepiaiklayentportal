@@ -101,6 +101,7 @@ class SiteController extends Controller
 		}
 
 
+
 		/*file uploaded*/
 		$fileUploadedObj = new ClientUploadedData;
 		$fileUploadedArr = $fileUploadedObj->getListUploaded();

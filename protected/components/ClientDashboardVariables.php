@@ -18,10 +18,11 @@ class ClientDashboardVariables
 		$ppminc = Yii::app()->params['ppminc'];
 
 		$this->updatedInitBalance = $this->getClientBalance(Yii::app()->params['client_name']);
-		$this->updatedInitBalance = $this->updatedInitBalance[0];
+		$this->updatedInitBalance = doubleval($this->updatedInitBalance);
+
 
 		$rawSeconds = $this->getRawSeconds();
-		$totalRawSeconds = doubleval($rawSeconds[0]);
+		$totalRawSeconds = doubleval($rawSeconds);
 		
 		//look for the lead value
 		foreach ($this->leadsAndStatusDataProvider->data as $key => $value) {
@@ -60,7 +61,7 @@ EOL;
 		$rawGetClientBalanceQueryObj = Yii::app()->askteriskDb->createCommand($rawGetClientBalanceQueryStr);
 		$rawGetClientBalanceQueryObj->bindParam(":client_name" , $client_name);
 		$returnedRes = $rawGetClientBalanceQueryObj->queryColumn();
-		return doubleval($returnedRes);
+		return $returnedRes[0];
 	}
 
 	public function getRawSeconds()
@@ -80,7 +81,9 @@ EOL;
 EOL;
 		$rawSecondsCommandObj = Yii::app()->askteriskDb->createCommand($rawsecondsSqlCommandStr);
 		$rawSecondsCommandObj->bindParam(":client_name" , $client_name);
-		return $rawSecondsCommandObj->queryColumn();
+		$tempRawSecondsContainer = $rawSecondsCommandObj->queryColumn();
+		$tempRawSecondsContainer = $tempRawSecondsContainer[0];
+		return $tempRawSecondsContainer;
 	}
 
 	/**
