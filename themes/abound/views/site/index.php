@@ -89,7 +89,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
 
 
         <?php
-            $this->renderPartial('_request_form', array());
+            $this->renderPartial('_request_form', compact('remainingBalance'));
         ?>
 
 

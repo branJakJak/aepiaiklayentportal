@@ -1,4 +1,4 @@
-            <div class="span4 well text-center">
+            <div class="span3 well text-center">
                 <h3>
                     <img src="//icons.iconarchive.com/icons/graphicloads/100-flat/48/phone-call-icon.png"><br>
                     Diallable Leads
@@ -8,7 +8,7 @@
                     </small>
                 </h3>
             </div>
-            <div class="span4 well text-center">
+            <div class="span3 well text-center">
                 <h3>
                     <img src="//icons.iconarchive.com/icons/uiconstock/e-commerce/48/credit-card-icon.png"> <br>
                     Credit Used
@@ -19,18 +19,7 @@
                     <!-- <?php echo $totalExpended ?> -->
                 </h3>
             </div>
-            <div class="span4 well text-center">
-                <h3>
-                    <img src="//icons.iconarchive.com/icons/paomedia/small-n-flat/48/money-icon.png"> <br>
-                    Remaining Balance
-                    <hr>
-                    <small>
-                        <?php echo sprintf("%.2f", $remainingBalance) ?>
-                    </small>
-                    <!-- <?php echo $remainingBalance ?> -->
-                </h3>
-            </div>
-            <div class="span4 well text-center" style="margin-left: 131px;">
+            <div class="span3 well text-center">
                 <h3>
                     <img src="//icons.iconarchive.com/icons/graphicloads/colorful-long-shadow/48/Check-2-icon.png"> <br>
                     5 Press
@@ -40,7 +29,7 @@
                     </small>
                 </h3>
             </div>
-            <div class="span4 well text-center">
+            <div class="span3 well text-center">
                 <h3>
                     <img src="//icons.iconarchive.com/icons/graphicloads/flat-finance/48/time-icon.png"> <br>
                     Total Minutes
