@@ -9,6 +9,7 @@
         <?php echo CHtml::hiddenField('clientUpload', 'clientUpload'); ?>
         <?php echo CHtml::hiddenField('fileName', null, array('id'=>'fileName')); ?>
         <label>Upload the mobile numbers</label>
+        <?php echo CHtml::textField('campaignName', null, array('placeholder'=>'Campaign Name')); ?>
         <?php $this->widget('ext.EAjaxUpload.EAjaxUpload',
             array(
                 'id' => 'uploadFile',
