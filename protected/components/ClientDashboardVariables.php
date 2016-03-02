@@ -13,21 +13,16 @@ class ClientDashboardVariables
 	}
 	public function getVars()
 	{
-		$clientDashboard = Yii::app()->askteriskDb->createCommand("select * from client_panel")->queryAll();
-		$rawsecondsSqlCommandStr = <<<EOL
-SELECT SUM(vicidial_log.length_in_sec)
-  FROM asterisk.vicidial_log vicidial_log
- WHERE (vicidial_log.length_in_sec > 0) AND (vicidial_log.list_id = :list_id)
-EOL;
-		$rawSecondsCommandObj = Yii::app()->askteriskDb->createCommand($rawsecondsSqlCommandStr);
-		$rawSecondsCommandObj->bindParam(":list_id" , $this->listid,PDO::PARAM_INT);
-		$rawSeconds = $rawSecondsCommandObj->queryColumn();
+		/*initialize variables*/
+		$diallableLeads = 0;
+		$ppminc = Yii::app()->params['ppminc'];
 
-		// $totalRawSeconds = $clientDashboard[0]['seconds'];
-		// 
+		$this->updatedInitBalance = $this->getClientBalance(Yii::app()->params['client_name']);
+		$this->updatedInitBalance = $this->updatedInitBalance[0];
+
+		$rawSeconds = $this->getRawSeconds();
 		$totalRawSeconds = intval($rawSeconds[0]);
-		$ppminc = $clientDashboard[0]['ppminc'];
-		$diallableLeads = $clientDashboard[0]['leads'];
+		
 		//look for the lead value
 		foreach ($this->leadsAndStatusDataProvider->data as $key => $value) {
 			if ($value['status'] === 'New Lead' || $value['status'] === 'New Leads') {
@@ -40,8 +35,6 @@ EOL;
 		$minutes = intval($totalRawSeconds / 60);
 		$seconds = $totalRawSeconds % 60;
 		$leads = BarryOptLog::getCountToday();
-
-		
 		return array(
 				"totalRawSeconds"=>$totalRawSeconds,
 				"ppminc"=>$ppminc,
@@ -53,6 +46,33 @@ EOL;
 				"seconds"=>$seconds,
 				"leads" =>$leads
 		);
+	}
+	/**
+	 * Returns the current client balance
+	 * @param  string $client_name name of the client
+	 * @return double              the balance
+	 */
+	public function getClientBalance($client_name)
+	{
+		$rawGetClientBalanceQueryStr = <<<EOL
+		SELECT balance FROM asterisk.balance_client WHERE client_name = :client_name
+EOL;
+		$rawGetClientBalanceQueryObj = Yii::app()->askteriskDb->createCommand($rawGetClientBalanceQueryStr);
+		$rawGetClientBalanceQueryObj->bindParam(":client_name" , $client_name);
+		$returnedRes = $rawGetClientBalanceQueryObj->queryColumn();
+		return doubleval($returnedRes);
+	}
+
+	public function getRawSeconds()
+	{
+		$rawsecondsSqlCommandStr = <<<EOL
+SELECT SUM(vicidial_log.length_in_sec)
+  FROM asterisk.vicidial_log vicidial_log
+ WHERE (vicidial_log.length_in_sec > 0) AND (vicidial_log.list_id = :list_id)
+EOL;
+		$rawSecondsCommandObj = Yii::app()->askteriskDb->createCommand($rawsecondsSqlCommandStr);
+		$rawSecondsCommandObj->bindParam(":list_id" , $this->listid,PDO::PARAM_INT);
+		return $rawSecondsCommandObj->queryColumn();
 	}
 
 	/**
