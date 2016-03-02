@@ -166,7 +166,12 @@ class SiteController extends Controller
 			} catch (Exception $e) {
 				throw new CHttpException(500,$e->getMessage());
 			}        
-			Yii::app()->user->setFlash("success","Success! Request sent.");
+			$successMessage = '
+				Success! Request sent. <br>
+				Please wait up to 30mins for your New Campaign to appear in the <br>
+				"Export & Status" area below, you will receive email confirmation of this when complete.
+			';
+			Yii::app()->user->setFlash("success",$successMessage);
 		}else{
 			Yii::app()->user->setFlash("error","Please complete the request form.");
 		}
