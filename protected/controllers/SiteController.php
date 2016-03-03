@@ -73,12 +73,21 @@ class SiteController extends Controller
 		/*check if campaign_action*/
 		if (isset($_GET['campaign_action']) && !empty($_GET['campaign_action'])) {
 			$campaignStatusUpdater = null;
+			/*check cookie if exists*/
+			
+			if (!isset(Yii::app()->request->cookies['campaign_action_message'])) {
+				$newCookie = new CHttpCookie("campaign_action_message","",array());
+				Yii::app()->request->cookies['campaign_action_message'] = $newCookie;
+			}
+			$campaignActionCookie = Yii::app()->request->cookies['campaign_action_message'];
 			if ($_GET['campaign_action'] === 'start') {
 				$campaignStatusUpdater = new ActivateCampaign($currentCampaignSelected);
-				Yii::app()->user->setFlash("campaign_action_message","Campaign $currentCampaignSelected activated.");
+				$campaignActionCookie->value = "Campaign $currentCampaignSelected activated.";
+				// Yii::app()->user->setFlash("campaign_action_message","Campaign $currentCampaignSelected activated.");
 			}else if ($_GET['campaign_action'] === 'stop') {
 				$campaignStatusUpdater = new DeactivateCampaign($currentCampaignSelected);
-				Yii::app()->user->setFlash("campaign_action_message","Campaign $currentCampaignSelected deactivated.");
+				$campaignActionCookie->value = "Campaign $currentCampaignSelected activated.";
+				// Yii::app()->user->setFlash("campaign_action_message","Campaign $currentCampaignSelected deactivated.");
 			}
 			$campaignStatusUpdater->updateStatus();
 		}
@@ -102,7 +111,7 @@ class SiteController extends Controller
 			$clientDashboardVariables = new ClientDashboardVariables(@$_GET['listid']);
 			$remainingBalance = $clientDashboardVariables->getClientBalance(Yii::app()->params['client_name']);
 		}
-		
+
 
 
 

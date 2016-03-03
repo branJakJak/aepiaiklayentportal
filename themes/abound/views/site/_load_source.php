@@ -1,3 +1,12 @@
+<?php 
+//get cookie here
+
+if (!isset(Yii::app()->request->cookies['campaign_action_message'])) {
+    $newCookie = new CHttpCookie("campaign_action_message","",array());
+}
+
+
+?>
 <?php echo CHtml::beginForm(array('/site/index'), 'GET',array('id'=>'quickFilterData')); ?>
     <div class="span6">
         Load Source/Campaign<br>
