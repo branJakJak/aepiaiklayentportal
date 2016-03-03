@@ -5,7 +5,7 @@
 */
 class LastStatusUpdate extends CApplicationComponent
 {
-	public $defaultLastActionMessage = "No last action detected";
+	public $defaultLastActionMessage = "No last action detected. deactivated.";
 	public $logFile;
 	public $logFileMap = array(
 		"22920161"=>"PENSION1",
