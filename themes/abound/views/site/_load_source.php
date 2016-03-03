@@ -15,7 +15,7 @@ $lastMessage = Yii::app()->lastStatusUpdate->read();
             ), array('prompt'=>'Select Campaign','onchange'=>'submitFilterForm(this)','id'=>'currentSelectedCampaign','style'=>"float: left;")); ?>
             <div class="clearfix"></div>
 
-            <?php if (  isset( $lastMessage )): ?>
+            <?php if (  isset( $lastMessage ) && strpos($lastMessage, 'deactivated') === FALSE): ?>
             <div class="alert alert-success" style="width: 169px">
                 <strong>Success!</strong> 
                 <?php echo $lastMessage ?>

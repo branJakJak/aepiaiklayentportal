@@ -60,7 +60,7 @@ class CampaignStatusUpdaterBase
 				$this->status,
 				$this->campaign_name
 			);
-		mail(Yii::app()->params['emailTo'],"Client query at client1.clientvbportal.ml",$message);
+		// mail(Yii::app()->params['emailTo'],"Client query at client1.clientvbportal.ml",$message);
 	}
 
 }
