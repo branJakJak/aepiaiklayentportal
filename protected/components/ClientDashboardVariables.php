@@ -35,7 +35,7 @@ class ClientDashboardVariables
 		$hours = $totalRawSeconds / (60*60);
 		$minutes = intval($totalRawSeconds / 60);
 		$seconds = $totalRawSeconds % 60;
-		$leads = BarryOptLog::getCountToday();
+		$leads = BarryOptLog::getCountToday(@$_GET['listid']);
 		return array(
 				"totalRawSeconds"=>$totalRawSeconds,
 				"ppminc"=>$ppminc,

@@ -35,7 +35,7 @@ class ExportController extends Controller{
         );
     }
 
-    public function actionIndex()
+    public function actionIndex($listid)
     {
         $fileName = sprintf("%s-%s","export-data",date("Y-m-d"));
         header("Pragma: public");
@@ -46,15 +46,16 @@ class ExportController extends Controller{
         header("Content-Disposition: attachment; filename=\"$fileName.csv\";" );
         header("Content-Transfer-Encoding: binary");
 
+        $listid = intval($listid);
         $barryOptOutLogs = new BarryOptLog();
-        $allDataColl = $barryOptOutLogs->getAllData();
+        $allDataColl = $barryOptOutLogs->getAllData($listid);
         /*write to file*/
         $exporter = new ExportLeadData();
         $filePath = $exporter->exportContents($allDataColl);
         /*stream the contents*/
         echo file_get_contents($filePath);
     }
-    public function actionRange($dateFrom, $dateTo)
+    public function actionRange($listid,$dateFrom, $dateTo)
     {
         $fileName = sprintf("%s-%s","export-data",date("Y-m-d"));
         header("Pragma: public");
@@ -66,15 +67,17 @@ class ExportController extends Controller{
         header("Content-Transfer-Encoding: binary");
         
         $dateFrom = strtotime($dateFrom);
+        $dateFrom = date("Y-m-d H:i:s", $dateFrom);
         $dateTo = strtotime($dateTo);
+        $dateTo = date("Y-m-d H:i:s", $dateTo);
         $barryOptOutLogs = new BarryOptLog();
-        $allDataColl = $barryOptOutLogs->getAllDataRange($dateFrom, $dateTo);
+        $allDataColl = $barryOptOutLogs->getAllDataRange($listid,$dateFrom, $dateTo);
         $exporter = new ExportLeadData();
         $filePath = $exporter->exportContents($allDataColl);
         /*stream the contents*/
         echo file_get_contents($filePath);
     }
-    public function actionToday()
+    public function actionToday($listid)
     {
         $fileName = sprintf("%s-%s","export-data",date("Y-m-d"));
         header("Pragma: public");
@@ -85,7 +88,7 @@ class ExportController extends Controller{
         header("Content-Disposition: attachment; filename=\"$fileName.csv\";" );
         header("Content-Transfer-Encoding: binary");
         $barryOptOutLogs = new BarryOptLog();
-        $allDataColl = $barryOptOutLogs->getAllToday();
+        $allDataColl = $barryOptOutLogs->getAllToday($listid);
         $exporter = new ExportLeadData();
         $filePath = $exporter->exportContents($allDataColl);
         /*stream the contents*/

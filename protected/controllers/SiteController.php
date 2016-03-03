@@ -113,7 +113,7 @@ class SiteController extends Controller
 		if (isset($_POST['ExportRangeForm'])) {
 			$exportModel->attributes = $_POST['ExportRangeForm'];
 			if ($exportModel->validate()) {
-				$this->redirect(array("/export/range" , "dateFrom"=>$exportModel->date_from  , "dateTo"=>$exportModel->date_to));
+				$this->redirect(array("/export/range" , 'listid'=>$_POST['listid'] ,"dateFrom"=>$exportModel->date_from  , "dateTo"=>$exportModel->date_to));
 			}else{
 				Yii::app()->user->setFlash("error",CHtml::errorSummary($exportModel));
 				$this->redirect(array('/site/index'));

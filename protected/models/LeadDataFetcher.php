@@ -56,7 +56,7 @@ class LeadDataFetcher
     WHERE
         (
             `vicidial_list`.`list_id` = '$listid'
-            #AND (`vicidial_lists`.`active` = 'Y')
+            AND (`vicidial_lists`.`active` = 'Y')
         )
     GROUP BY `vicidial_statuses`.`status_name`
 EOL;
