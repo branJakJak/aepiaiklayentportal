@@ -37,14 +37,14 @@ class SiteController extends Controller
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
-	 * "2262016"=>"PENSION1"
+	 * "22920161"=>"PENSION1"
 	 * "22920162"=>"Funeral1"
 	 */
 	public function actionIndex()
 	{
 		$dialableLeads = 0;
 		$campaignIdMap = array(
-				"2262016"=>"PENSION1",
+				"22920161"=>"PENSION1",
 				"22920162"=>"Funeral1"
 			);
 

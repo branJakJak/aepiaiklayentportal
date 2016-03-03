@@ -4,7 +4,7 @@
         <?php echo CHtml::hiddenField('campaign_action', null, array('name'=>'campaign_action','id'=>'campaign_actionFld')); ?>
         <?php 
             echo CHtml::dropDownList('listid', @$_GET['listid'], array(
-                "2262016"=>"Pension1",
+                "22920161"=>"Pension1",
                 "22920162"=>"Funeral1",
             ), array('prompt'=>'Select Campaign','onchange'=>'submitFilterForm(this)','id'=>'currentSelectedCampaign','style'=>"float: left;")); ?>
             <div class="clearfix"></div>
