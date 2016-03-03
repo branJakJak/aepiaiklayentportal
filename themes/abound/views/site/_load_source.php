@@ -16,20 +16,15 @@ $lastMessage2 = @Yii::app()->lastStatusUpdate->read("22920162");
             ), array('prompt'=>'Select Campaign','onchange'=>'submitFilterForm(this)','id'=>'currentSelectedCampaign','style'=>"float: left;")); ?>
             <div class="clearfix"></div>
 
-            <?php if (  
-                        (   isset( $lastMessage ) && 
-                            strpos($lastMessage, 'deactivated') === FALSE 
-                        )
-                        || 
-                        (
-                            isset( $lastMessage2 ) && 
-                            strpos($lastMessage2, 'deactivated') === FALSE 
-                        ) 
-                    ): ?>
+            <?php if (  ( isset( $lastMessage ) ) || ( isset( $lastMessage2 ) ) ): ?>
             <div class="alert alert-success" style="width: 169px">
                 <strong>Success!</strong> <br>
-                <?php echo $lastMessage ?> <br>
-                <?php echo $lastMessage2 ?> <br>
+                <?php if (strpos($lastMessage, 'deactivated') === FALSE): ?>
+                    <?php echo $lastMessage ?>
+                <?php endif ?>
+                <?php if (strpos($lastMessage2, 'deactivated') === FALSE): ?>
+                    <?php echo $lastMessage2 ?>
+                <?php endif ?>
             </div>
             <?php endif ?>
 
