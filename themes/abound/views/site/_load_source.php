@@ -10,7 +10,6 @@
             <div class="clearfix"></div>
             <?php if (Yii::app()->user->hasFlash("campaign_action_message")): ?>
             <div class="alert alert-success" style="width: 169px">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <strong>Success!</strong> <?php echo Yii::app()->user->getFlash("campaign_action_message") ?>
             </div>
             <?php endif ?>
