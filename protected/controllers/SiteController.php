@@ -98,7 +98,11 @@ class SiteController extends Controller
 			$clientDashboardVariables->setUpdatedInitBalance($updatedInitBalance);
 			$clientVarsArr = $clientDashboardVariables->getVars();
 			extract($clientVarsArr);
+		}else{
+			$clientDashboardVariables = new ClientDashboardVariables(@$_GET['listid']);
+			$remainingBalance = $clientDashboardVariables->getClientBalance(Yii::app()->params['client_name']);
 		}
+		
 
 
 
