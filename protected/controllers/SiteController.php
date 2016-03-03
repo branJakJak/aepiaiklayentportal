@@ -82,7 +82,7 @@ class SiteController extends Controller
 				$campaignStatusUpdater = new DeactivateCampaign($currentCampaignSelected);
 				$campaignStatusMessage = "Campaign $currentCampaignSelected deactivated.";
 			}
-			Yii::app()->lastStatusUpdate->write($campaignStatusMessage);
+			Yii::app()->lastStatusUpdate->write($_GET['listid'], $campaignStatusMessage);
 			$campaignStatusUpdater->updateStatus();
 		}
 
