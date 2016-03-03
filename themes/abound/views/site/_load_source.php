@@ -1,9 +1,6 @@
 <?php 
 //get cookie here
 
-if (!isset(Yii::app()->request->cookies['campaign_action_message'])) {
-    $newCookie = new CHttpCookie("campaign_action_message","",array());
-}
 
 
 ?>
@@ -17,11 +14,14 @@ if (!isset(Yii::app()->request->cookies['campaign_action_message'])) {
                 "22920162"=>"Funeral1",
             ), array('prompt'=>'Select Campaign','onchange'=>'submitFilterForm(this)','id'=>'currentSelectedCampaign','style'=>"float: left;")); ?>
             <div class="clearfix"></div>
-            <?php if (Yii::app()->user->hasFlash("campaign_action_message")): ?>
+
+            <?php if (isset(Yii::app()->request->cookies['campaign_action_message'])): ?>
             <div class="alert alert-success" style="width: 169px">
-                <strong>Success!</strong> <?php echo Yii::app()->user->getFlash("campaign_action_message") ?>
+                <strong>Success!</strong> 
+                <?php echo (string)Yii::app()->request->cookies['campaign_action_message'] ?>
             </div>
             <?php endif ?>
+
     </div>    
     <div class="span6">
         <div class="" style="margin-top: 20px;">
