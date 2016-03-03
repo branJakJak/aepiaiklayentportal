@@ -13,8 +13,6 @@ class RemoteBalanceLog
 		SET updated_date = :dateUpdated , balance = :balance
   		WHERE client_name = :clientname
 EOL;
-		var_dump($balance);	
-		die();
 		$commandObj = Yii::app()->askteriskDb->createCommand($updateString);
 		$commandObj->bindParam(":dateUpdated",$dateUpdated);
 		$commandObj->bindParam(":balance",$balance ,PDO::PARAM_STR);
