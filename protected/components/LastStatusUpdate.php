@@ -14,12 +14,12 @@ class LastStatusUpdate extends CApplicationComponent
 	public function init()
 	{
 		//last log file 
-		$this->logFile = Yii::getPathOfAlias("application.data").DIRECTORY_SEPARATOR.'last_action_update';
+		
 		$tempFile1 = Yii::getPathOfAlias("application.data").DIRECTORY_SEPARATOR.'last_action_update_'.$this->logFileMap['22920161'];
 		if (!file_exists($tempFile1)) {
 			file_put_contents($tempFile1, $this->defaultLastActionMessage);
 		}
-		$this->logFile = Yii::getPathOfAlias("application.data").DIRECTORY_SEPARATOR.'last_action_update';
+		
 		$tempFile2 = Yii::getPathOfAlias("application.data").DIRECTORY_SEPARATOR.'last_action_update_'.$this->logFileMap['22920162'];
 		if (!file_exists($tempFile2)) {
 			file_put_contents($tempFile2, $this->defaultLastActionMessage);
