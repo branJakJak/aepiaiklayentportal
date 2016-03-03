@@ -1,6 +1,6 @@
 <?php 
 //get cookie here
-$lastMessage1 = @Yii::app()->lastStatusUpdate->read("22920161");
+$lastMessage = @Yii::app()->lastStatusUpdate->read("22920161");
 $lastMessage2 = @Yii::app()->lastStatusUpdate->read("22920162");
 
 
