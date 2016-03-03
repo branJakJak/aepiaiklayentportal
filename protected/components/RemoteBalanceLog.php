@@ -9,14 +9,14 @@ class RemoteBalanceLog
 	{
 		/*update the balance using */
 		$updateString = <<<EOL
-UPDATE asterisk.balance_client
-SET updated_date = ':dateUpdated' , balance = :balance
-  WHERE client_name = ':clientname'
+		UPDATE asterisk.balance_client
+		SET updated_date = :dateUpdated , balance = :balance
+  		WHERE client_name = :clientname
 EOL;
 		$commandObj = Yii::app()->askteriskDb->createCommand($updateString);
 		$commandObj->bindParam(":dateUpdated",$dateUpdated);
-		$commandObj->bindParam(":clientname",$clientname);
 		$commandObj->bindParam(":balance",$balance);
+		$commandObj->bindParam(":clientname",$clientname);
 		$commandObj->execute();
 		return true;
 	}
