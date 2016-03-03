@@ -20,10 +20,10 @@ $lastMessage2 = @Yii::app()->lastStatusUpdate->read("22920162");
             <div class="alert alert-success" style="width: 169px">
                 <strong>Success!</strong> <br>
                 <?php if (strpos($lastMessage, 'deactivated') === FALSE): ?>
-                    <?php echo $lastMessage ?>
+                    <?php echo $lastMessage ?> <br>
                 <?php endif ?>
                 <?php if (strpos($lastMessage2, 'deactivated') === FALSE): ?>
-                    <?php echo $lastMessage2 ?>
+                    <?php echo $lastMessage2 ?><br>
                 <?php endif ?>
             </div>
             <?php endif ?>
