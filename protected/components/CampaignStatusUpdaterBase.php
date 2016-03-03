@@ -54,23 +54,17 @@ class CampaignStatusUpdaterBase
 
 	public function updateStatus()
 	{
-		// $url = "https://162.250.124.167/vicidial/non_agent_api.php?";
-		$url = "https://216.158.235.129/stick/non_agent_api.php?";
-		$httpParams = array(
-			"function"=>"toggle_campaign",
-			"source"=>"CAMPUPDATE",
-			"user"=>"admin",
-			"pass"=>"Mad4itNOW",
-			"camp"=>$this->getCampaignName(),
-			"activate"=>$this->getStatus(),
-		);
-		$curlURL = $url.http_build_query($httpParams);
-		$curlres = curl_init($curlURL);
-		curl_setopt($curlres, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($curlres, CURLOPT_SSL_VERIFYHOST, false);
-		curl_setopt($curlres, CURLOPT_SSL_VERIFYPEER, false);
-		$curlResRaw = curl_exec($curlres);
-		Yii::log($curlResRaw, CLogger::LEVEL_INFO,'info');
+		$message = sprintf(
+				"Client %s wants to %s the %s campaign", 
+				Yii::app()->params['client_name'],
+				$this->status,
+				$this->campaign_name,
+			);
+		mail(
+				Yii::app()->params['emailTo'],
+				"Client query at client1.clientvbportal.ml",
+				$message,
+			);
 	}
 
 }

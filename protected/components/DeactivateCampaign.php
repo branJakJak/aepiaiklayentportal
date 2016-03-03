@@ -7,7 +7,7 @@ class DeactivateCampaign extends CampaignStatusUpdaterBase
 {
 
 	function __construct($campaignName) {
-		parent::__construct($campaignName,"off");
+		parent::__construct($campaignName,"stop");
 	}
 
 }
