@@ -8,11 +8,10 @@
     <?php echo CHtml::beginForm(array('/site/clientRequest'), 'POST',array('class'=>'well')); ?>
         <?php echo CHtml::hiddenField('clientUpload', 'clientUpload'); ?>
         <?php echo CHtml::hiddenField('fileName', null, array('id'=>'fileName')); ?>
-
-
-        <div class="span5">
-        <label>Upload the mobile numbers</label>
+        <label>Campaign Name</label>
         <?php echo CHtml::textField('campaignName', null, array('placeholder'=>'Campaign Name')); ?>
+        <br>
+        <label>Upload the mobile numbers</label>
         <?php $this->widget('ext.EAjaxUpload.EAjaxUpload',
             array(
                 'id' => 'uploadFile',
@@ -39,12 +38,6 @@
                 )
             )); 
         ?>
-        </div>
-        <div class="span5" style="padding-top: 75px;">
-            <button type="submit" class="btn btn-primary btn-large" style="margin-top: -14px;margin-left: 7px;position: relative;left: -102px;">Submit</button>
-        </div>
-
-        <div class="clearfix"></div>
 
         <label>Select sound file : </label>
         <?php 
@@ -68,7 +61,8 @@
         <button type='button' onclick='stopAllSoundFile(this);' style="margin-top: -10px;">
             <span class='icon icon-stop'></span>
         </button>
-        
+        <br>
+        <button type="submit" class="btn btn-primary btn-large" style="">Submit</button>
         <?php echo CHtml::endForm(); ?>
 </div>
 <div class="span4">
