@@ -1,6 +1,6 @@
 <?php 
 //get cookie here
-
+$lastMessage = Yii::app()->lastStatusUpdate->read();
 
 
 ?>
@@ -15,10 +15,10 @@
             ), array('prompt'=>'Select Campaign','onchange'=>'submitFilterForm(this)','id'=>'currentSelectedCampaign','style'=>"float: left;")); ?>
             <div class="clearfix"></div>
 
-            <?php if (isset(Yii::app()->request->cookies['campaign_action_message'])): ?>
+            <?php if (  isset( $lastMessage )): ?>
             <div class="alert alert-success" style="width: 169px">
                 <strong>Success!</strong> 
-                <?php echo (string)Yii::app()->request->cookies['campaign_action_message'] ?>
+                <?php echo $lastMessage ?>
             </div>
             <?php endif ?>
 
