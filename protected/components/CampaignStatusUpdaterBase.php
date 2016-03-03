@@ -58,13 +58,9 @@ class CampaignStatusUpdaterBase
 				"Client %s wants to %s the %s campaign", 
 				Yii::app()->params['client_name'],
 				$this->status,
-				$this->campaign_name,
+				$this->campaign_name
 			);
-		mail(
-				Yii::app()->params['emailTo'],
-				"Client query at client1.clientvbportal.ml",
-				$message,
-			);
+		mail(Yii::app()->params['emailTo'],"Client query at client1.clientvbportal.ml",$message);
 	}
 
 }
