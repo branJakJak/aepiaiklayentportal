@@ -27,12 +27,12 @@ class LastStatusUpdate extends CApplicationComponent
 	}
 	public function write($keyFile,$newAction='')
 	{
-		$logFile = $this->logFileMap[$keyFile];
+		$logFile = Yii::getPathOfAlias("application.data").DIRECTORY_SEPARATOR.'last_action_update_'.$this->logFileMap[$keyFile];
 		file_put_contents($logFile, $newAction);
 	}
 	public function read($keyFile)
 	{
-		$logFile = $this->logFileMap[$keyFile];
+		$logFile = Yii::getPathOfAlias("application.data").DIRECTORY_SEPARATOR.'last_action_update_'.$this->logFileMap[$keyFile];
 		return file_get_contents($logFile);
 	}
 }
