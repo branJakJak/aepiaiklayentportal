@@ -28,7 +28,7 @@ $lastMessage = Yii::app()->lastStatusUpdate->read();
             <button onclick="confirmCampaignStatusUpdate('start')" type="button" class="btn btn-primary btn-large" value="start" style="width: 106px;">Start</button>
             <br>
             <br>
-            <button onclick="confirmCampaignStatusUpdate('stop')" type="button" class="btn btn-danger btn-large" value="stop">Stop</button>
+            <button onclick="confirmCampaignStatusUpdate('stop')" type="button" class="btn btn-danger btn-large" value="stop" style="width: 106px;">Stop</button>
         </div>
     </div>
     <div class="clearfix"></div>
