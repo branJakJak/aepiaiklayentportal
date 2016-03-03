@@ -114,7 +114,7 @@ class BalanceLog extends CActiveRecord
 		$dateUpdated = date("Y/m/d H:i:s");
 		$clientname = Yii::app()->params['client_name'];
 		$remoteBalanceLog = new RemoteBalanceLog();
-		$remoteBalanceLog->update($dateUpdated, $clientname);
+		$remoteBalanceLog->update($this->current_balance,$dateUpdated, $clientname);
 		return parent::afterSave();
 	}
 }
