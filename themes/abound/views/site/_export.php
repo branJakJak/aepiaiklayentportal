@@ -6,8 +6,8 @@
             echo CHtml::link("Export Data <span class='label label-info'>".BarryOptLog::getCountAll(@$_GET['listid'])."</span>", array('/export/index','listid'=>@$_GET['listid']));
         ?>
     </h5>
-    <?php endif ?>
     <hr>
+    <?php endif ?>
     <?php if (isset($_GET['listid'])): ?>
     <h5>
         <span class="icon-calendar"></span>
@@ -15,8 +15,8 @@
                 echo CHtml::link("Export Today  <span class='label label-info'>".BarryOptLog::getCountToday(@$_GET['listid'])."</span>",  array('/export/today','listid'=>@$_GET['listid']));
             ?>
     </h5>
-    <?php endif ?>
     <hr>
+    <?php endif ?>
     <?php if (isset($_GET['listid'])): ?>
     <h5>
         <span class="icon-calendar"></span>
@@ -34,7 +34,7 @@
         <?php
             echo CHtml::link("Export Today  <span class='label label-info'>".BarryOptLog::getCountToday()."</span>",  array('/export/today','listid'=>@$_GET['listid']));
         ?>
-    </h5>
     <hr>
+    </h5>
     <?php endif ?>
 <?php endif ?>

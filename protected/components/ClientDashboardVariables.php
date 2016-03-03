@@ -82,7 +82,7 @@ EOL;
 		$rawSecondsCommandObj = Yii::app()->askteriskDb->createCommand($rawsecondsSqlCommandStr);
 		$rawSecondsCommandObj->bindParam(":client_name" , $client_name);
 		$tempRawSecondsContainer = $rawSecondsCommandObj->queryColumn();
-		$tempRawSecondsContainer = $tempRawSecondsContainer[0];
+		$tempRawSecondsContainer = @$tempRawSecondsContainer[0];
 		return $tempRawSecondsContainer;
 	}
 

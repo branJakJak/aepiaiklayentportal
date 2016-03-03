@@ -75,10 +75,10 @@ class SiteController extends Controller
 			$campaignStatusUpdater = null;
 			if ($_GET['campaign_action'] === 'start') {
 				$campaignStatusUpdater = new ActivateCampaign($currentCampaignSelected);
-				Yii::app()->user->setFlash("success","Success! Campaign $currentCampaignSelected activated.");
+				Yii::app()->user->setFlash("campaign_action_message","Campaign $currentCampaignSelected activated.");
 			}else if ($_GET['campaign_action'] === 'stop') {
 				$campaignStatusUpdater = new DeactivateCampaign($currentCampaignSelected);
-				Yii::app()->user->setFlash("success","Success! Campaign $currentCampaignSelected deactivated.");
+				Yii::app()->user->setFlash("campaign_action_message","Campaign $currentCampaignSelected deactivated.");
 			}
 			$campaignStatusUpdater->updateStatus();
 		}

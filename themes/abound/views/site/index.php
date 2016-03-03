@@ -137,10 +137,6 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
             <?php endif ?>
             </div>
         </div>
-
-
-
-
         <div class="row-fluid">
             <?php 
                 $this->renderPartial('_client_dash', compact(
