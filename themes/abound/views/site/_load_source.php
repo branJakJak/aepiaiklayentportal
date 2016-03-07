@@ -45,8 +45,13 @@ foreach ($listIds as $key => $currentId) {
         </div>
         <div class="span6" style="text-align:center">
             <h4>
-                <small>Today's Used Time (seconds)</small> <br>
-                <?php echo $totalSecondsToday ?>
+                <small>Credit Used Today</small> <br>
+                <?php 
+                    $ppminc = doubleval(Yii::app()->params['ppminc']);
+                    $creditUsedToday = ( ($totalSecondsToday / 60) *  $ppminc );
+                    $creditUsedToday = intval($creditUsedToday);
+                    echo $creditUsedToday;
+                ?>
             </h4>
             
         </div>
