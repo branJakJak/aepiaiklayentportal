@@ -8,8 +8,10 @@ class ClientDashboardVariables
 	protected $listid;
 	protected $leadsAndStatusDataProvider;
 	protected $updatedInitBalance;
+	protected $listIds;
 	function __construct($listid) {
 		$this->listid = $listid;
+		$listIds = array();
 	}
 	public function getVars()
 	{
@@ -20,18 +22,22 @@ class ClientDashboardVariables
 		$this->updatedInitBalance = $this->getClientBalance(Yii::app()->params['client_name']);
 		$this->updatedInitBalance = doubleval($this->updatedInitBalance);
 
-
-		$rawSeconds = $this->getRawSeconds();
-		$totalRawSeconds = doubleval($rawSeconds);
-		
 		//look for the lead value
 		foreach ($this->leadsAndStatusDataProvider->data as $key => $value) {
 			if ($value['status'] === 'New Lead' || $value['status'] === 'New Leads') {
 				$diallableLeads = $value['lead'];
 			}
 		}
+
+		$rawSeconds = $this->getRawSeconds();
+		$totalRawSeconds = doubleval($rawSeconds);
 		$totalExpended = ( $totalRawSeconds / 60 ) * doubleval($ppminc);
-		$remainingBalance = $this->updatedInitBalance - $totalExpended;
+
+		/* Compute remaining balance*/
+
+		// $remainingBalance = $this->updatedInitBalance - $totalExpended;
+		$remainingBalance = $this->getRemainingBalance();
+
 		$hours = $totalRawSeconds / (60*60);
 		$minutes = intval($totalRawSeconds / 60);
 		$seconds = $totalRawSeconds % 60;
@@ -47,6 +53,19 @@ class ClientDashboardVariables
 				"seconds"=>$seconds,
 				"leads" =>$leads
 		);
+	}
+
+	public function getRemainingBalance()
+	{
+		// get listids
+		$totalSeconds = 0;
+		foreach ($this->listIds as $key => $currentListId) {
+			$this->listid = $currentListId;
+			$totalSecRaw = $this->getRawSeconds();
+			$totalSeconds += doubleval($totalSecRaw);
+		}
+		$totalMinutes = $totalSeconds / 60;
+		return ($totalMinutes * Yii::app()->params['ppminc']);
 	}
 	/**
 	 * Returns the current client balance
@@ -149,6 +168,26 @@ EOL;
 	public function setListid($listid) {
 	    $this->listid = $listid;
 	
+	    return $this;
+	}
+
+
+	/**
+	 * Get list ids
+	 *
+	 * @return array listids
+	 */
+	public function getListIds() {
+	    return $this->listIds;
+	}
+	
+	/**
+	 * set list ids
+	 *
+	 * @param Array $newlistIds Listids
+	 */
+	public function setListIds($listIds) {
+	    $this->listIds = $listIds;
 	    return $this;
 	}
 }

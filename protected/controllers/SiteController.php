@@ -69,11 +69,12 @@ class SiteController extends Controller
 			$tempContainer = intval($_GET['listid']);
 			$leadsAndStatusDataProvider = new LeadsStatusDataProvider($tempContainer);
 			$currentCampaignSelected = $campaignIdMap[$_GET['listid']];
-		}else{
-			$_GET['listid'] = 372016;
-			$leadsAndStatusDataProvider = new LeadsStatusDataProvider(372016);
-			$currentCampaignSelected = $campaignIdMap[$_GET['listid']];
 		}
+		// else{
+		// 	$_GET['listid'] = 372016;
+		// 	$leadsAndStatusDataProvider = new LeadsStatusDataProvider(372016);
+		// 	$currentCampaignSelected = $campaignIdMap[$_GET['listid']];
+		// }
 
 		/*check if campaign_action*/
 		if (isset($_GET['campaign_action']) && !empty($_GET['campaign_action'])) {
@@ -104,6 +105,11 @@ class SiteController extends Controller
 			$clientDashboardVariables = new ClientDashboardVariables($_GET['listid']);
 			$clientDashboardVariables->setLeadsAndStatusDataProvider($leadsAndStatusDataProvider);
 			$clientDashboardVariables->setUpdatedInitBalance($updatedInitBalance);
+			$clientDashboardVariables->setListIds(array(
+					"22920161",
+					"22920162",
+					"372016",
+				));
 			$clientVarsArr = $clientDashboardVariables->getVars();
 			extract($clientVarsArr);
 		}else{
