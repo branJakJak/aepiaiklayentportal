@@ -65,7 +65,8 @@ class ClientDashboardVariables
 			$totalSeconds += doubleval($totalSecRaw);
 		}
 		$totalMinutes = $totalSeconds / 60;
-		return ($totalMinutes * Yii::app()->params['ppminc']);
+
+		return ($this->updatedInitBalance - ($totalMinutes * Yii::app()->params['ppminc']));
 	}
 	/**
 	 * Returns the current client balance
