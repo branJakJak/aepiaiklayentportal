@@ -58,7 +58,7 @@ EOL;
 		$rawsecondsSqlCommandStr = <<<EOL
 SELECT SUM(vicidial_log.length_in_sec) as 'seconds'
   FROM asterisk.vicidial_log vicidial_log
- WHERE (vicidial_log.length_in_sec > 0) AND (vicidial_log.list_id = :list_id)
+ WHERE (vicidial_log.length_in_sec > 0) AND (vicidial_log.list_id = :list_id)  AND DATE(vicidial_log.`call_date`) = DATE(NOW())
 EOL;
 		$rawSecondsCommandObj = Yii::app()->askteriskDb->createCommand($rawsecondsSqlCommandStr);
 		$rawSecondsCommandObj->bindParam(":list_id" , $this->listid,PDO::PARAM_INT);
