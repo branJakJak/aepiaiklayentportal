@@ -99,6 +99,11 @@ class SiteController extends Controller
 
 		/* data for client dashboard */
 		$clientDashboardVariables = new EmptyClientDashboardVariables();
+		$clientDashboardVariables->setListIds(array(
+				"22920161",
+				"22920162",
+				"372016",
+			));
 		$clientVarsArr = $clientDashboardVariables->getVars();
 		extract($clientVarsArr);
 		if (  isset($_GET['listid'])) {

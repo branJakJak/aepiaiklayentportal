@@ -55,6 +55,7 @@ class EmptyLeadStatusDataProvider extends CArrayDataProvider
     		),
     	);
 
+
         $this->data = $emptyLeadData;
         //set data
         $this->id = "id";
