@@ -71,12 +71,6 @@ class SiteController extends Controller
 			$leadsAndStatusDataProvider = new LeadsStatusDataProvider($tempContainer);
 			$currentCampaignSelected = $campaignIdMap[$_GET['listid']];
 		}
-		// else{
-		// 	$_GET['listid'] = 372016;
-		// 	$leadsAndStatusDataProvider = new LeadsStatusDataProvider(372016);
-		// 	$currentCampaignSelected = $campaignIdMap[$_GET['listid']];
-		// }
-
 		/*check if campaign_action*/
 		if (isset($_GET['campaign_action']) && !empty($_GET['campaign_action'])) {
 			$campaignStatusUpdater = null;
@@ -121,7 +115,6 @@ class SiteController extends Controller
 				));
 			$clientVarsArr = $clientDashboardVariables->getVars();
 			extract($clientVarsArr);
-			// $remainingBalance = $clientDashboardVariables->getClientBalance(Yii::app()->params['client_name']);
 		}
 
 		/*file uploaded*/
@@ -158,7 +151,8 @@ class SiteController extends Controller
 				"minutes",
 				"seconds",
 				"leads",
-				'diallableLeads'
+				'diallableLeads',
+				'totalSecondsToday'
 			));
 	}
 	public function actionClientRequest()

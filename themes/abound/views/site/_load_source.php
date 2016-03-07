@@ -8,8 +8,8 @@ $listIds = array(
 $allMessage  = "";
 foreach ($listIds as $key => $currentId) {
     $tempContainer = @Yii::app()->lastStatusUpdate->read($currentId);
-    if (isset($tempContainer) && strpos($tempContainer, 'deactivated') === FALSE) {
-        $allMessage .= $tempContainer;
+    if (isset($tempContainer) && strpos($tempContainer, 'deactivated') !== FALSE) {
+        $allMessage .= $tempContainer . "<br>";
     }
 }
 ?>
@@ -25,7 +25,7 @@ foreach ($listIds as $key => $currentId) {
                 "3720161"=>"HCCRO",
             ), array('prompt'=>'Select Campaign','onchange'=>'submitFilterForm(this)','id'=>'currentSelectedCampaign','style'=>"float: left;")); ?>
             <div class="clearfix"></div>
-            
+
             <?php if (!empty($allMessage)): ?>
             <div class="alert alert-success" style="width: 169px">
                 <strong>Success!</strong> <br>

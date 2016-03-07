@@ -38,6 +38,7 @@ class ClientDashboardVariables
 		// $remainingBalance = $this->updatedInitBalance - $totalExpended;
 		$remainingBalance = $this->getRemainingBalance();
 
+
 		$hours = $totalRawSeconds / (60*60);
 		$minutes = intval($totalRawSeconds / 60);
 		$seconds = $totalRawSeconds % 60;
@@ -51,7 +52,8 @@ class ClientDashboardVariables
 				"hours"=>$hours,
 				"minutes"=>$minutes,
 				"seconds"=>$seconds,
-				"leads" =>$leads
+				"leads" =>$leads,
+				"totalSecondsToday" =>$this->getTotalSecondsToday()
 		);
 	}
 
@@ -191,4 +193,24 @@ EOL;
 	    $this->listIds = $listIds;
 	    return $this;
 	}
+	public function getTotalSecondsToday()
+	{
+		$sqlCommand = <<<EOL
+SELECT SUM(vicidial_log.length_in_sec) as 'seconds',
+       vicidial_campaigns.client_name,
+       vicidial_log.call_date
+  FROM asterisk.vicidial_log vicidial_log
+       INNER JOIN asterisk.vicidial_campaigns vicidial_campaigns
+          ON (vicidial_log.campaign_id = vicidial_campaigns.campaign_id)
+ WHERE     (vicidial_log.length_in_sec > 0)
+       AND (vicidial_campaigns.client_name = :client_name)
+       AND (vicidial_log.call_date >= CURDATE())
+EOL;
+		$rawSecondsCommandObj = Yii::app()->askteriskDb->createCommand($sqlCommand);
+		$rawSecondsCommandObj->bindParam(":client_name" , Yii::app()->params['client_name']);
+		$rowRes = $rawSecondsCommandObj->queryRow();
+		$rawSeconds = $rowRes['seconds'];
+		return intval($rawSeconds);	
+	}
+
 }
