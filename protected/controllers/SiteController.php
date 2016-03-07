@@ -99,13 +99,6 @@ class SiteController extends Controller
 
 		/* data for client dashboard */
 		$clientDashboardVariables = new EmptyClientDashboardVariables();
-		$clientDashboardVariables->setListIds(array(
-				"22920161",
-				"22920162",
-				"372016",
-			));
-		$clientVarsArr = $clientDashboardVariables->getVars();
-		extract($clientVarsArr);
 		if (  isset($_GET['listid'])) {
 			$clientDashboardVariables = new ClientDashboardVariables($_GET['listid']);
 			$clientDashboardVariables->setLeadsAndStatusDataProvider($leadsAndStatusDataProvider);
@@ -118,8 +111,14 @@ class SiteController extends Controller
 			$clientVarsArr = $clientDashboardVariables->getVars();
 			extract($clientVarsArr);
 		}else{
-			$clientDashboardVariables = new ClientDashboardVariables(@$_GET['listid']);
-			$remainingBalance = $clientDashboardVariables->getClientBalance(Yii::app()->params['client_name']);
+			$clientDashboardVariables->setListIds(array(
+					"22920161",
+					"22920162",
+					"372016",
+				));
+			$clientVarsArr = $clientDashboardVariables->getVars();
+			extract($clientVarsArr);
+			// $remainingBalance = $clientDashboardVariables->getClientBalance(Yii::app()->params['client_name']);
 		}
 
 
