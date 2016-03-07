@@ -67,13 +67,15 @@ EOL;
 	public function getRawSeconds()
 	{
 		$rawsecondsSqlCommandStr = <<<EOL
-SELECT SUM(vicidial_log.length_in_sec)
+SELECT SUM(vicidial_log.length_in_sec) as 'seconds'
   FROM asterisk.vicidial_log vicidial_log
  WHERE (vicidial_log.length_in_sec > 0) AND (vicidial_log.list_id = :list_id)
 EOL;
 		$rawSecondsCommandObj = Yii::app()->askteriskDb->createCommand($rawsecondsSqlCommandStr);
 		$rawSecondsCommandObj->bindParam(":list_id" , $this->listid,PDO::PARAM_INT);
-		return $rawSecondsCommandObj->queryColumn();
+		$rowRes = $rawSecondsCommandObj->queryRow();
+		$rawSeconds = $rowRes['seconds'];
+		return intval($rawSeconds);
 
 // 		$client_name = Yii::app()->params['client_name'];
 // 		$rawsecondsSqlCommandStr = <<<EOL
