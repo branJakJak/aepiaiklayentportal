@@ -1,9 +1,17 @@
 <?php 
 //get cookie here
-$lastMessage = @Yii::app()->lastStatusUpdate->read("22920161");
-$lastMessage2 = @Yii::app()->lastStatusUpdate->read("22920162");
-
-
+$listIds = array(
+        "22920161",
+        "22920162",
+        "3720161",
+    );
+$allMessage  = "";
+foreach ($listIds as $key => $currentId) {
+    $tempContainer = @Yii::app()->lastStatusUpdate->read($currentId);
+    if (isset($tempContainer) && strpos($tempContainer, 'deactivated') === FALSE) {
+        $allMessage .= $tempContainer;
+    }
+}
 ?>
 <?php echo CHtml::beginForm(array('/site/index'), 'GET',array('id'=>'quickFilterData')); ?>
     <div class="span6">
@@ -14,27 +22,14 @@ $lastMessage2 = @Yii::app()->lastStatusUpdate->read("22920162");
                 "22920161"=>"Pension1",
                 "22920162"=>"Funeral1",
                 "372016"=>"CARFINANCE TEST CAMPAIGN",
+                "3720161"=>"HCCRO",
             ), array('prompt'=>'Select Campaign','onchange'=>'submitFilterForm(this)','id'=>'currentSelectedCampaign','style'=>"float: left;")); ?>
             <div class="clearfix"></div>
-
-            <?php if (  
-                        (   isset( $lastMessage ) && 
-                            strpos($lastMessage, 'deactivated') === FALSE 
-                        )
-                        || 
-                        (
-                            isset( $lastMessage2 ) && 
-                            strpos($lastMessage2, 'deactivated') === FALSE 
-                        ) 
-                    ): ?>
+            
+            <?php if (!empty($allMessage)): ?>
             <div class="alert alert-success" style="width: 169px">
                 <strong>Success!</strong> <br>
-                <?php if (strpos($lastMessage, 'deactivated') === FALSE): ?>
-                    <?php echo $lastMessage ?> <br>
-                <?php endif ?>
-                <?php if (strpos($lastMessage2, 'deactivated') === FALSE): ?>
-                    <?php echo $lastMessage2 ?> <br>
-                <?php endif ?>
+                <?php echo $allMessage ?>
             </div>
             <?php endif ?>
 

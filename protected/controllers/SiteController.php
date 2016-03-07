@@ -47,6 +47,7 @@ class SiteController extends Controller
 				"22920161"=>"PENSION1",
 				"22920162"=>"Funeral1",
 				"372016"=>"CARFINANCE TEST CAMPAIGN",
+				"3720161"=>"HCCRO",
 			);
 
 		/*setup initial balance*/
@@ -107,6 +108,7 @@ class SiteController extends Controller
 					"22920161",
 					"22920162",
 					"372016",
+					"3720161",
 				));
 			$clientVarsArr = $clientDashboardVariables->getVars();
 			extract($clientVarsArr);
@@ -115,14 +117,12 @@ class SiteController extends Controller
 					"22920161",
 					"22920162",
 					"372016",
+					"3720161",
 				));
 			$clientVarsArr = $clientDashboardVariables->getVars();
 			extract($clientVarsArr);
 			// $remainingBalance = $clientDashboardVariables->getClientBalance(Yii::app()->params['client_name']);
 		}
-
-
-
 
 		/*file uploaded*/
 		$fileUploadedObj = new ClientUploadedData;
