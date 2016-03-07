@@ -45,7 +45,8 @@ class SiteController extends Controller
 		$dialableLeads = 0;
 		$campaignIdMap = array(
 				"22920161"=>"PENSION1",
-				"22920162"=>"Funeral1"
+				"22920162"=>"Funeral1",
+				"372016"=>"CARFINANCE TEST CAMPAIGN",
 			);
 
 		/*setup initial balance*/
@@ -67,6 +68,10 @@ class SiteController extends Controller
 		if (  isset($_GET['listid'])) {
 			$tempContainer = intval($_GET['listid']);
 			$leadsAndStatusDataProvider = new LeadsStatusDataProvider($tempContainer);
+			$currentCampaignSelected = $campaignIdMap[$_GET['listid']];
+		}else{
+			$_GET['listid'] = 372016;
+			$leadsAndStatusDataProvider = new LeadsStatusDataProvider(372016);
 			$currentCampaignSelected = $campaignIdMap[$_GET['listid']];
 		}
 

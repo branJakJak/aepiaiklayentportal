@@ -13,6 +13,7 @@ $lastMessage2 = @Yii::app()->lastStatusUpdate->read("22920162");
             echo CHtml::dropDownList('listid', @$_GET['listid'], array(
                 "22920161"=>"Pension1",
                 "22920162"=>"Funeral1",
+                "372016"=>"CARFINANCE TEST CAMPAIGN",
             ), array('prompt'=>'Select Campaign','onchange'=>'submitFilterForm(this)','id'=>'currentSelectedCampaign','style'=>"float: left;")); ?>
             <div class="clearfix"></div>
 
