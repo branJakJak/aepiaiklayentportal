@@ -116,7 +116,6 @@ class SiteController extends Controller
 			$clientVarsArr = $clientDashboardVariables->getVars();
 			extract($clientVarsArr);
 		}
-
 		/*file uploaded*/
 		$fileUploadedObj = new ClientUploadedData;
 		$fileUploadedArr = $fileUploadedObj->getListUploaded();
@@ -142,7 +141,6 @@ class SiteController extends Controller
 				'leadsAndStatusDataProvider',
 				'chartDataProvider',
 				'currentCampaignSelected',
-				"totalRawSeconds",
 				"totalRawSeconds",
 				"ppminc",
 				"totalExpended",

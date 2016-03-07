@@ -35,12 +35,22 @@ foreach ($listIds as $key => $currentId) {
 
     </div>    
     <div class="span6">
-        <div class="" style="margin-top: 20px;">
-            <button onclick="confirmCampaignStatusUpdate('start')" type="button" class="btn btn-primary btn-large" value="start" style="width: 106px;">Start</button>
-            <br>
-            <br>
-            <button onclick="confirmCampaignStatusUpdate('stop')" type="button" class="btn btn-danger btn-large" value="stop" style="width: 106px;">Stop</button>
+        <div class="span6">
+            <div class="" style="margin-top: 20px;">
+                <button onclick="confirmCampaignStatusUpdate('start')" type="button" class="btn btn-primary btn-large" value="start" style="width: 106px;">Start</button>
+                <br>
+                <br>
+                <button onclick="confirmCampaignStatusUpdate('stop')" type="button" class="btn btn-danger btn-large" value="stop" style="width: 106px;">Stop</button>
+            </div>
         </div>
+        <div class="span6" style="text-align:center">
+            <h4>
+                <small>Today's Used Time (seconds)</small> <br>
+                <?php echo $totalSecondsToday ?>
+            </h4>
+            
+        </div>
+
     </div>
     <div class="clearfix"></div>
 <?php echo CHtml::endForm(); ?>

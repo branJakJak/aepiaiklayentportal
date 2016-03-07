@@ -113,9 +113,9 @@ SELECT SUM(vicidial_log.length_in_sec) as 'seconds',
        AND (vicidial_campaigns.client_name = :client_name)
        AND (vicidial_log.call_date >= CURDATE())
 EOL;
-
 		$rawSecondsCommandObj = Yii::app()->askteriskDb->createCommand($sqlCommand);
-		$rawSecondsCommandObj->bindParam(":client_name" , Yii::app()->params['client_name']);
+		$clientName = Yii::app()->params['client_name'];
+		$rawSecondsCommandObj->bindParam(":client_name" , $clientName);
 		$rowRes = $rawSecondsCommandObj->queryRow();
 		$rawSeconds = $rowRes['seconds'];
 		return intval($rawSeconds);	
