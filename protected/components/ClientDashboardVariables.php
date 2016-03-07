@@ -66,30 +66,30 @@ EOL;
 
 	public function getRawSeconds()
 	{
-// 		$rawsecondsSqlCommandStr = <<<EOL
-// SELECT SUM(vicidial_log.length_in_sec)
-//   FROM asterisk.vicidial_log vicidial_log
-//  WHERE (vicidial_log.length_in_sec > 0) AND (vicidial_log.list_id = :list_id)
-// EOL;
-// 		$rawSecondsCommandObj = Yii::app()->askteriskDb->createCommand($rawsecondsSqlCommandStr);
-// 		$rawSecondsCommandObj->bindParam(":list_id" , $this->listid,PDO::PARAM_INT);
-// 		return $rawSecondsCommandObj->queryColumn();
-
-		$client_name = Yii::app()->params['client_name'];
 		$rawsecondsSqlCommandStr = <<<EOL
-		select 
-		sum(vicidial_log.length_in_sec) AS seconds,
-		vicidial_log.call_date AS from_last_updated,
-		vicidial_campaigns.client_name AS client_name 
-		from ((balance_client balance_client_1 join 
-		(vicidial_campaigns join balance_client on((vicidial_campaigns.client_name = :client_name)))) join vicidial_log on((vicidial_log.campaign_id = vicidial_campaigns.campaign_id))) where ((vicidial_log.length_in_sec > 0) and (vicidial_log.call_date >= balance_client.updated_date)) group by vicidial_campaigns.client_name;
+SELECT SUM(vicidial_log.length_in_sec)
+  FROM asterisk.vicidial_log vicidial_log
+ WHERE (vicidial_log.length_in_sec > 0) AND (vicidial_log.list_id = :list_id)
 EOL;
 		$rawSecondsCommandObj = Yii::app()->askteriskDb->createCommand($rawsecondsSqlCommandStr);
-		$rawSecondsCommandObj->bindParam(":client_name" , $client_name);
-		$tempRawSecondsContainer = $rawSecondsCommandObj->queryRow();
-		$tempRawSecondsContainer = @$tempRawSecondsContainer['seconds'];
-		$tempRawSecondsContainer = doubleval($tempRawSecondsContainer);
-		return $tempRawSecondsContainer;
+		$rawSecondsCommandObj->bindParam(":list_id" , $this->listid,PDO::PARAM_INT);
+		return $rawSecondsCommandObj->queryColumn();
+
+// 		$client_name = Yii::app()->params['client_name'];
+// 		$rawsecondsSqlCommandStr = <<<EOL
+// 		select 
+// 		sum(vicidial_log.length_in_sec) AS seconds,
+// 		vicidial_log.call_date AS from_last_updated,
+// 		vicidial_campaigns.client_name AS client_name 
+// 		from ((balance_client balance_client_1 join 
+// 		(vicidial_campaigns join balance_client on((vicidial_campaigns.client_name = :client_name)))) join vicidial_log on((vicidial_log.campaign_id = vicidial_campaigns.campaign_id))) where ((vicidial_log.length_in_sec > 0) and (vicidial_log.call_date >= balance_client.updated_date)) group by vicidial_campaigns.client_name;
+// EOL;
+// 		$rawSecondsCommandObj = Yii::app()->askteriskDb->createCommand($rawsecondsSqlCommandStr);
+// 		$rawSecondsCommandObj->bindParam(":client_name" , $client_name);
+// 		$tempRawSecondsContainer = $rawSecondsCommandObj->queryRow();
+// 		$tempRawSecondsContainer = @$tempRawSecondsContainer['seconds'];
+// 		$tempRawSecondsContainer = doubleval($tempRawSecondsContainer);
+// 		return $tempRawSecondsContainer;
 	}
 
 	/**
