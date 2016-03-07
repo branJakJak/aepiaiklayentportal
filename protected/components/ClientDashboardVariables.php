@@ -77,7 +77,10 @@ EOL;
 
 		$client_name = Yii::app()->params['client_name'];
 		$rawsecondsSqlCommandStr = <<<EOL
-		select seconds from camp_all_list_since_bal_update where client_name = :client_name
+		select 
+		sum(vicidial_log.length_in_sec) AS seconds,
+		from ((balance_client balance_client_1 join 
+		(vicidial_campaigns join balance_client on((vicidial_campaigns.client_name = :client_name)))) join vicidial_log on((vicidial_log.campaign_id = vicidial_campaigns.campaign_id))) where ((vicidial_log.length_in_sec > 0) and (vicidial_log.call_date >= balance_client.updated_date)) group by vicidial_campaigns.client_name;
 EOL;
 		$rawSecondsCommandObj = Yii::app()->askteriskDb->createCommand($rawsecondsSqlCommandStr);
 		$rawSecondsCommandObj->bindParam(":client_name" , $client_name);
