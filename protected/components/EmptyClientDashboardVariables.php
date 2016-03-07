@@ -44,11 +44,12 @@ EOL;
 	{
 		// get listids
 		$totalSeconds = 0;
-		foreach ($this->listIds as $key => $currentListId) {
-			$this->listid = $currentListId;
-			$totalSecRaw = $this->getRawSeconds();
-			$totalSeconds += doubleval($totalSecRaw);
-		}
+		// foreach ($this->listIds as $key => $currentListId) {
+		// 	$this->listid = $currentListId;
+		// 	$totalSecRaw = $this->getRawSeconds();
+		// 	$totalSeconds += doubleval($totalSecRaw);
+		// }
+		$totalSeconds = $this->getTotalSecondsToday();
 		$totalMinutes = $totalSeconds / 60;
 		return ($this->updatedInitBalance - ($totalMinutes * Yii::app()->params['ppminc']));
 	}
