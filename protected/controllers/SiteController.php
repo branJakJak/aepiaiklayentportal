@@ -152,16 +152,17 @@ class SiteController extends Controller
 				(isset($_POST['fileName']) && !empty($_POST['fileName'])) && 
 				(isset($_POST['soundFileName']) && !empty($_POST['clientUpload']))
 			) {
-			$fileName = $_POST['fileName'];
-			$soundFileName = $_POST['soundFileName'];
+			$fileName = @$_POST['fileName'];
+			$soundFileName = @$_POST['soundFileName'];
+			$campaignName = @$_POST['campaignName'];
 			try {
 		        $folderPath = Yii::getPathOfAlias("upload_folder");
 		        $filePath = $folderPath.DIRECTORY_SEPARATOR . $fileName;
-		        $message = sprintf("Please send attached file : %s using sound file %s sound file", $fileName , $soundFileName);
+		        $message = sprintf("Please send attached file : %s using sound file %s sound file. Campaign : %s", $fileName , $soundFileName,$campaignName);
 
 		        $emailsArr = Yii::app()->params['emailRecipient'];
 		        foreach ($emailsArr as $key => $currentEmail) {
-		        	$emailSending = $this->sendFile($filePath,$currentEmail,$message);
+		        	$emailSending = $this->sendFile($campaignName,$filePath,$currentEmail,$message);
 		        }
 		        
 		        // $emailSending = $this->sendFile($filePath,Yii::app()->params['emailTo'],$message);
@@ -198,7 +199,7 @@ class SiteController extends Controller
         $fileName=$result['filename'];//GETTING FILE NAME
         echo $return;// it's array		
 	}
-	private function sendFile($filePath , $emailAddress,$headerMessage)
+	private function sendFile($campaignName,$filePath , $emailAddress,$headerMessage)
 	{
 		$file = $filePath;
 		$mail = new Zend_Mail();
