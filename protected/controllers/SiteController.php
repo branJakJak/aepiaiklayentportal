@@ -49,21 +49,21 @@ class SiteController extends Controller
 				"372016"=>"CARFINANCE TEST CAMPAIGN",
 				"3720161"=>"HCCRO",
 			);
+		$initialBalance = 0;
+		$remainingBalance = 0;
+		$clientName = Yii::app()->params['client_name'];
 
-		/*setup initial balance*/
-		$criteria = new CDbCriteria;
-		$criteria->order = "date_created DESC";
-		$currentBalance = BalanceLog::model()->find($criteria);
-		$updatedInitBalance = 300;
-		if ($currentBalance) {
-			$updatedInitBalance = $currentBalance->current_balance;
-		}else{
-			$currentBalance->current_balance = 300;
-			$currentBalance->save();
-		}
-		/*END - setup initial balance*/
+		//get the initial balance
+		$rawGetClientBalanceQueryStr = <<<EOL
+		SELECT balance FROM asterisk.balance_client WHERE client_name = :client_name
+EOL;
+		$rawGetClientBalanceQueryObj = Yii::app()->askteriskDb->createCommand($rawGetClientBalanceQueryStr);
+		$rawGetClientBalanceQueryObj->bindParam(":client_name" , $clientName);
+		$returnedRes = $rawGetClientBalanceQueryObj->queryColumn();
+		$initialBalance = $returnedRes[0];
 
-		
+
+		/*Leads and Status*/
 		$leadsAndStatusDataProvider = new EmptyLeadStatusDataProvider();
 		$currentCampaignSelected = null;
 		if (  isset($_GET['listid'])) {
@@ -71,7 +71,10 @@ class SiteController extends Controller
 			$leadsAndStatusDataProvider = new LeadsStatusDataProvider($tempContainer);
 			$currentCampaignSelected = $campaignIdMap[$_GET['listid']];
 		}
-		/*check if campaign_action*/
+		/*end of leads and status*/
+
+
+		/*Campaign action*/
 		if (isset($_GET['campaign_action']) && !empty($_GET['campaign_action'])) {
 			$campaignStatusUpdater = null;
 			$campaignStatusMessage = "";
@@ -86,39 +89,39 @@ class SiteController extends Controller
 			Yii::app()->lastStatusUpdate->write($_GET['listid'], $campaignStatusMessage);
 			$campaignStatusUpdater->updateStatus();
 		}
+		/*end of campaign action*/
 
 		//Pass the combined data for chart
 		$chartDataObj = new ChartDataProvider($leadsAndStatusDataProvider->data);
 		$chartDataProvider = $chartDataObj->getData();
-
+		/*end of chart data*/
 
 		/* data for client dashboard */
 		$clientDashboardVariables = new EmptyClientDashboardVariables();
+		$clientDashboardVariables->setListIds(array(
+				"22920161",
+				"22920162",
+				"372016",
+				"3720161",
+			));
+
 		if (  isset($_GET['listid'])) {
 			$clientDashboardVariables = new ClientDashboardVariables($_GET['listid']);
 			$clientDashboardVariables->setLeadsAndStatusDataProvider($leadsAndStatusDataProvider);
-			$clientDashboardVariables->setUpdatedInitBalance($updatedInitBalance);
-			$clientDashboardVariables->setListIds(array(
-					"22920161",
-					"22920162",
-					"372016",
-					"3720161",
-				));
+			$clientDashboardVariables->setUpdatedInitBalance($initialBalance);
 			$clientVarsArr = $clientDashboardVariables->getVars();
 			extract($clientVarsArr);
 		}else{
-			$clientDashboardVariables->setListIds(array(
-					"22920161",
-					"22920162",
-					"372016",
-					"3720161",
-				));
 			$clientVarsArr = $clientDashboardVariables->getVars();
 			extract($clientVarsArr);
 		}
+
+
+
 		/*file uploaded*/
 		$fileUploadedObj = new ClientUploadedData;
 		$fileUploadedArr = $fileUploadedObj->getListUploaded();
+		/*end of file upload handler*/
 
 
 		/*export range form*/
@@ -133,6 +136,18 @@ class SiteController extends Controller
 				$this->redirect(array('/site/index'));
 			}
 		}
+		/*end of export range handler*/
+
+		//update remote sync the balance
+		$updateRemoteSyncQuery = <<<EOL
+		UPDATE asterisk.balance_client
+		SET balance = :remainingBalance,updated_date = NOW()
+		WHERE client_name = :client_name
+EOL;
+		$updateRemoteSyncCommand = Yii::app()->askteriskDb->createCommand($updateRemoteSyncQuery);
+		$updateRemoteSyncCommand->bindParam(":client_name" , $clientName);
+		$updateRemoteSyncCommand->bindParam(":remainingBalance" , $remainingBalance);
+		$updateRemoteSyncCommand->execute();
 
 		$this->render('index',compact(
 				'clientVb',
