@@ -149,6 +149,13 @@ EOL;
 		$updateRemoteSyncCommand->bindParam(":remainingBalance" , $remainingBalance);
 		$updateRemoteSyncCommand->execute();
 
+
+		/*save the credit used*/
+		
+		/**/
+
+
+
 		$this->render('index',compact(
 				'clientVb',
 				'fileUploadedArr',
