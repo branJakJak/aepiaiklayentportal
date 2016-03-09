@@ -139,15 +139,15 @@ EOL;
 		/*end of export range handler*/
 
 		//update remote sync the balance
-		$updateRemoteSyncQuery = <<<EOL
-		UPDATE asterisk.balance_client
-		SET balance = :remainingBalance,updated_date = NOW()
-		WHERE client_name = :client_name
-EOL;
-		$updateRemoteSyncCommand = Yii::app()->askteriskDb->createCommand($updateRemoteSyncQuery);
-		$updateRemoteSyncCommand->bindParam(":client_name" , $clientName);
-		$updateRemoteSyncCommand->bindParam(":remainingBalance" , $remainingBalance);
-		$updateRemoteSyncCommand->execute();
+// 		$updateRemoteSyncQuery = <<<EOL
+// 		UPDATE asterisk.balance_client
+// 		SET balance = :remainingBalance,updated_date = NOW()
+// 		WHERE client_name = :client_name
+// EOL;
+// 		$updateRemoteSyncCommand = Yii::app()->askteriskDb->createCommand($updateRemoteSyncQuery);
+// 		$updateRemoteSyncCommand->bindParam(":client_name" , $clientName);
+// 		$updateRemoteSyncCommand->bindParam(":remainingBalance" , $remainingBalance);
+// 		$updateRemoteSyncCommand->execute();
 
 
 		/*save the credit used*/
