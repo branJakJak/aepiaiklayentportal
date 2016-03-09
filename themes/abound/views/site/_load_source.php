@@ -43,10 +43,10 @@ foreach ($listIds as $key => $currentId) {
                 <button onclick="confirmCampaignStatusUpdate('stop')" type="button" class="btn btn-danger btn-large" value="stop" style="width: 106px;">Stop</button>
             </div>
         </div>
+        <div class="span6" style="text-align:center">
             <?php if ($minutes !== 0): ?>
                 <h4>
                     <small>Credit Used Today</small> <br>
-                    <div class="span6" style="text-align:center">
                     <?php 
                         $ppminc = doubleval(Yii::app()->params['ppminc']);
                         $creditUsedToday = ( ($totalSecondsToday / 60) *  $ppminc );
