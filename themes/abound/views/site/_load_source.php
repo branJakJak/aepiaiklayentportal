@@ -54,6 +54,14 @@ foreach ($listIds as $key => $currentId) {
                     ?>
                 </h4>
             <?php endif ?>
+            <?php if ($minutes == 0): ?>
+                <h4>
+                    <small>Credit Used Today</small> <br>
+                    <?php 
+                        echo sprintf("%.2f", 0);
+                    ?>
+                </h4>
+            <?php endif ?>
         </div>
 
     </div>
