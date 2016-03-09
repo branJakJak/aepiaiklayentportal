@@ -123,7 +123,7 @@ Yii::app()->clientScript->registerScript($updateEvery60, $updateEvery60, CClient
                     ?>
                             <div class="span8" style="padding: 22px;">
                                 <?php 
-                                    $this->renderPartial('_load_source', compact('totalSecondsToday'));
+                                    $this->renderPartial('_load_source', compact('totalSecondsToday','minutes'));
                                 ?>
                             </div>
                             <div class="span4">

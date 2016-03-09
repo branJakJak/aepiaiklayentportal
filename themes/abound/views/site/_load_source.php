@@ -44,7 +44,7 @@ foreach ($listIds as $key => $currentId) {
             </div>
         </div>
         <div class="span6" style="text-align:center">
-            <?php if ($totalSecondsToday !== 0): ?>
+            <?php if ($minutes !== 0): ?>
                 <h4>
                     <small>Credit Used Today</small> <br>
                     <?php 
