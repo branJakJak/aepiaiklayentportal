@@ -44,15 +44,16 @@ foreach ($listIds as $key => $currentId) {
             </div>
         </div>
         <div class="span6" style="text-align:center">
-            <h4>
-                <small>Credit Used Today</small> <br>
-                <?php 
-                    $ppminc = doubleval(Yii::app()->params['ppminc']);
-                    $creditUsedToday = ( ($totalSecondsToday / 60) *  $ppminc );
-                    echo sprintf("%.2f", $creditUsedToday);
-                ?>
-            </h4>
-            
+            <?php if ($totalSecondsToday !== 0): ?>
+                <h4>
+                    <small>Credit Used Today</small> <br>
+                    <?php 
+                        $ppminc = doubleval(Yii::app()->params['ppminc']);
+                        $creditUsedToday = ( ($totalSecondsToday / 60) *  $ppminc );
+                        echo sprintf("%.2f", $creditUsedToday);
+                    ?>
+                </h4>
+            <?php endif ?>
         </div>
 
     </div>
